@@ -1691,6 +1691,10 @@
             if (pageId === 'sell-airtime') checkFloatStatus();
             if (pageId === 'deposit') startDepositRefresh();
             else stopDepositRefresh();
+            if (pageId === 'admin' && adminLoggedIn) {
+                loadAdminData();
+                startAdminAutoRefresh();
+            }
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(`page-${pageId}`).classList.add('active');
             document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
