@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Airtime Solution Kenya 🇰🇪</title>
+    <title>Login - Airtime Solution Kenya</title>
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" type="image/png" href="/airtime-logo.png">
     <link rel="apple-touch-icon" href="/airtime-logo.png">
@@ -749,6 +749,105 @@
             }
         }
 
+        async function registerWithRetry(email, firebaseUid, maxRetries = 3) {
+            let lastError = null;
+            
+            for (let attempt = 1; attempt <= maxRetries; attempt++) {
+                try {
+                    showLoading(`Setting up your profile... (attempt ${attempt}/${maxRetries})`);
+                    
+                    const registerResponse = await fetch(`${API_BASE}/api/users/register`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email })
+                    });
+
+                    const registerData = await registerResponse.json();
+
+                    if (registerData.success || registerData.message === 'Email already registered') {
+                        await fetch(`${API_BASE}/api/users/update-firebase-uid`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ email, firebase_uid: firebaseUid })
+                        });
+                        
+                        localStorage.removeItem('pendingRegistration');
+                        return { success: true };
+                    }
+                    
+                    lastError = registerData.message || 'Registration failed';
+                } catch (error) {
+                    console.error(`Registration attempt ${attempt} failed:`, error);
+                    lastError = error.message || 'Network error';
+                }
+
+                if (attempt < maxRetries) {
+                    const delay = Math.pow(2, attempt) * 1000;
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                }
+            }
+
+            localStorage.setItem('pendingRegistration', JSON.stringify({
+                email,
+                firebaseUid,
+                timestamp: Date.now()
+            }));
+            
+            return { success: false, error: lastError };
+        }
+
+        async function ensureUserInDatabase(email, firebaseUid) {
+            try {
+                const checkResult = await checkEmailExists(email);
+                
+                if (!checkResult.exists) {
+                    console.log('User not in database, registering...');
+                    const result = await registerWithRetry(email, firebaseUid, 2);
+                    return result.success;
+                }
+                
+                await fetch(`${API_BASE}/api/users/update-firebase-uid`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, firebase_uid: firebaseUid })
+                });
+                
+                return true;
+            } catch (error) {
+                console.error('Error ensuring user in database:', error);
+                return false;
+            }
+        }
+
+        async function processPendingRegistration() {
+            const pending = localStorage.getItem('pendingRegistration');
+            if (!pending) return;
+
+            try {
+                const { email, firebaseUid, timestamp } = JSON.parse(pending);
+                
+                if (Date.now() - timestamp > 24 * 60 * 60 * 1000) {
+                    localStorage.removeItem('pendingRegistration');
+                    return;
+                }
+
+                const result = await registerWithRetry(email, firebaseUid, 2);
+                if (result.success) {
+                    console.log('Pending registration completed successfully');
+                }
+            } catch (error) {
+                console.error('Error processing pending registration:', error);
+            }
+        }
+
+        processPendingRegistration();
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+                processPendingRegistration();
+            }
+        });
+
         document.getElementById('loginEmail').addEventListener('input', function() {
             clearTimeout(emailCheckTimeout);
             const email = this.value.trim();
@@ -841,32 +940,21 @@
             const email = document.getElementById('loginEmail').value.trim();
             const password = document.getElementById('loginPassword').value;
 
-            if (!loginEmailValid) {
-                const result = await checkEmailExists(email);
-                if (!result.exists) {
-                    showAlert('No account found with this email. Please sign up first.', 'error');
-                    return;
-                }
-            }
-
             setLoading('loginBtn', true);
-            showLoading('Checking your account...');
+            showLoading('Authenticating...');
 
             try {
-                const dbCheck = await fetch(`${API_BASE}/api/users/check-email/${encodeURIComponent(email)}`);
-                const dbData = await dbCheck.json();
-
-                if (!dbData.exists) {
-                    hideLoading();
-                    showAlert('No account found with this email. Please sign up first.', 'error');
-                    setLoading('loginBtn', false);
-                    return;
-                }
-
-                showLoading('Authenticating...');
-
                 const userCredential = await signInWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
+
+                showLoading('Verifying your account...');
+
+                const dbExists = await ensureUserInDatabase(email, user.uid);
+                
+                if (!dbExists) {
+                    showLoading('Finalizing account setup...');
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                }
 
                 showLoading('Loading your dashboard...');
 
@@ -884,7 +972,7 @@
                 console.error('Login error:', error);
                 let message = 'Login failed. Please try again.';
                 if (error.code === 'auth/user-not-found') {
-                    message = 'No account found with this email.';
+                    message = 'No account found with this email. Please sign up.';
                 } else if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
                     message = 'Incorrect password. Please try again.';
                 } else if (error.code === 'auth/invalid-email') {
@@ -930,31 +1018,14 @@
 
                 showLoading('Creating your account...');
 
-                const registerResponse = await fetch(`${API_BASE}/api/users/register`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email })
-                });
-
-                const registerData = await registerResponse.json();
-
-                if (!registerData.success) {
-                    hideLoading();
-                    showAlert(registerData.message || 'Registration failed. Please try again.', 'error');
-                    setLoading('signupBtn', false);
-                    return;
-                }
-
-                showLoading('Setting up your account...');
-
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
 
-                await fetch(`${API_BASE}/api/users/update-firebase-uid`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, firebase_uid: user.uid })
-                });
+                const registrationResult = await registerWithRetry(email, user.uid, 3);
+
+                if (!registrationResult.success) {
+                    showAlert('Account created! Finishing setup in background...', 'warning');
+                }
 
                 localStorage.setItem('userEmail', email);
                 localStorage.setItem('userPhone', '254' + phone);
@@ -989,29 +1060,24 @@
 
             const email = document.getElementById('forgotEmail').value.trim();
 
-            setLoading('forgotBtn', true);
-            showLoading('Verifying your account...');
-
-            try {
-                const dbCheck = await fetch(`${API_BASE}/api/users/check-email/${encodeURIComponent(email)}`);
-                const dbData = await dbCheck.json();
-
-                if (!dbData.exists) {
-                    hideLoading();
-                    showAlert('User not found. Please sign up first.', 'error');
-                    setLoading('forgotBtn', false);
+            if (!forgotEmailValid) {
+                const result = await checkEmailExists(email);
+                if (!result.exists) {
+                    showAlert('No account found with this email. Please sign up first.', 'error');
                     return;
                 }
+            }
 
-                showLoading('Sending reset link...');
+            setLoading('forgotBtn', true);
+            showLoading('Sending reset link...');
 
+            try {
                 await sendPasswordResetEmail(auth, email);
-
                 hideLoading();
                 showAlert('Password reset link sent! Check your email inbox.', 'success');
             } catch (error) {
                 hideLoading();
-                console.error('Forgot password error:', error);
+                console.error('Reset error:', error);
                 let message = 'Failed to send reset link. Please try again.';
                 if (error.code === 'auth/user-not-found') {
                     message = 'No account found with this email.';
