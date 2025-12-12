@@ -449,6 +449,31 @@
             animation: pulse 1.5s ease-in-out infinite;
         }
 
+        .retry-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .retry-container p {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .retry-btn {
+            background: #f4a020;
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .retry-btn:hover {
+            background: #e09010;
+        }
+
         @media (max-width: 480px) {
             .auth-container {
                 margin: 10px;
@@ -468,6 +493,10 @@
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-spinner-large"></div>
         <div class="loading-text" id="loadingText">Processing...</div>
+        <div class="retry-container" id="retryContainer" style="display: none;">
+            <p id="retryMessage">Database connection failed. Please retry.</p>
+            <button class="retry-btn" id="retryBtn" onclick="retryRegistration()">Retry Now</button>
+        </div>
     </div>
 
     <div class="auth-container">
@@ -623,6 +652,8 @@
         let signupEmailValid = false;
         let forgotEmailValid = false;
         let emailCheckTimeout = null;
+        let pendingRetryData = null;
+        let isProcessingAuth = false;
 
         window.togglePassword = function(inputId, btn) {
             const input = document.getElementById(inputId);
@@ -675,10 +706,21 @@
         function showLoading(text = 'Processing...') {
             document.getElementById('loadingText').textContent = text;
             document.getElementById('loadingOverlay').classList.add('show');
+            document.getElementById('retryContainer').style.display = 'none';
+            document.querySelector('.loading-spinner-large').style.display = 'block';
         }
 
         function hideLoading() {
             document.getElementById('loadingOverlay').classList.remove('show');
+            document.getElementById('retryContainer').style.display = 'none';
+        }
+
+        function showRetryOption(message) {
+            document.getElementById('loadingText').textContent = 'Registration Failed';
+            document.getElementById('retryMessage').textContent = message;
+            document.querySelector('.loading-spinner-large').style.display = 'none';
+            document.getElementById('retryContainer').style.display = 'block';
+            document.getElementById('loadingOverlay').classList.add('show');
         }
 
         function setInputStatus(inputId, statusId, textId, status, message) {
@@ -749,12 +791,10 @@
             }
         }
 
-        async function registerWithRetry(email, firebaseUid, maxRetries = 3) {
-            let lastError = null;
-            
+        async function registerInDatabaseWithRetry(email, firebaseUid, maxRetries = 5) {
             for (let attempt = 1; attempt <= maxRetries; attempt++) {
                 try {
-                    showLoading(`Setting up your profile... (attempt ${attempt}/${maxRetries})`);
+                    showLoading(`Setting up your profile... (${attempt}/${maxRetries})`);
                     
                     const registerResponse = await fetch(`${API_BASE}/api/users/register`, {
                         method: 'POST',
@@ -770,83 +810,51 @@
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ email, firebase_uid: firebaseUid })
                         });
-                        
-                        localStorage.removeItem('pendingRegistration');
                         return { success: true };
                     }
                     
-                    lastError = registerData.message || 'Registration failed';
+                    if (attempt < maxRetries) {
+                        const delay = Math.min(Math.pow(2, attempt) * 1000, 10000);
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                    }
                 } catch (error) {
                     console.error(`Registration attempt ${attempt} failed:`, error);
-                    lastError = error.message || 'Network error';
-                }
-
-                if (attempt < maxRetries) {
-                    const delay = Math.pow(2, attempt) * 1000;
-                    await new Promise(resolve => setTimeout(resolve, delay));
+                    if (attempt < maxRetries) {
+                        const delay = Math.min(Math.pow(2, attempt) * 1000, 10000);
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                    }
                 }
             }
+            return { success: false, error: 'Could not connect to server. Please check your internet and try again.' };
+        }
 
-            localStorage.setItem('pendingRegistration', JSON.stringify({
-                email,
-                firebaseUid,
-                timestamp: Date.now()
-            }));
+        window.retryRegistration = async function() {
+            if (!pendingRetryData) {
+                hideLoading();
+                return;
+            }
             
-            return { success: false, error: lastError };
-        }
-
-        async function ensureUserInDatabase(email, firebaseUid) {
-            try {
-                const checkResult = await checkEmailExists(email);
+            const { email, firebaseUid, phone } = pendingRetryData;
+            
+            const result = await registerInDatabaseWithRetry(email, firebaseUid, 5);
+            
+            if (result.success) {
+                localStorage.setItem('userEmail', email);
+                localStorage.setItem('userPhone', '254' + phone);
+                localStorage.setItem('firebaseUid', firebaseUid);
+                pendingRetryData = null;
                 
-                if (!checkResult.exists) {
-                    console.log('User not in database, registering...');
-                    const result = await registerWithRetry(email, firebaseUid, 2);
-                    return result.success;
-                }
+                showLoading('Success! Redirecting...');
+                showAlert('Account created successfully!', 'success');
                 
-                await fetch(`${API_BASE}/api/users/update-firebase-uid`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, firebase_uid: firebaseUid })
-                });
-                
-                return true;
-            } catch (error) {
-                console.error('Error ensuring user in database:', error);
-                return false;
+                setTimeout(() => {
+                    hideLoading();
+                    window.location.href = 'index.html';
+                }, 1000);
+            } else {
+                showRetryOption(result.error);
             }
-        }
-
-        async function processPendingRegistration() {
-            const pending = localStorage.getItem('pendingRegistration');
-            if (!pending) return;
-
-            try {
-                const { email, firebaseUid, timestamp } = JSON.parse(pending);
-                
-                if (Date.now() - timestamp > 24 * 60 * 60 * 1000) {
-                    localStorage.removeItem('pendingRegistration');
-                    return;
-                }
-
-                const result = await registerWithRetry(email, firebaseUid, 2);
-                if (result.success) {
-                    console.log('Pending registration completed successfully');
-                }
-            } catch (error) {
-                console.error('Error processing pending registration:', error);
-            }
-        }
-
-        processPendingRegistration();
-
-        document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState === 'visible') {
-                processPendingRegistration();
-            }
-        });
+        };
 
         document.getElementById('loginEmail').addEventListener('input', function() {
             clearTimeout(emailCheckTimeout);
@@ -942,6 +950,7 @@
 
             setLoading('loginBtn', true);
             showLoading('Authenticating...');
+            isProcessingAuth = true;
 
             try {
                 const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -949,26 +958,35 @@
 
                 showLoading('Verifying your account...');
 
-                const dbExists = await ensureUserInDatabase(email, user.uid);
+                const checkResult = await checkEmailExists(email);
                 
-                if (!dbExists) {
-                    showLoading('Finalizing account setup...');
-                    await new Promise(resolve => setTimeout(resolve, 2000));
+                if (!checkResult.exists) {
+                    showLoading('Setting up your profile...');
+                    const result = await registerInDatabaseWithRetry(email, user.uid, 5);
+                    
+                    if (!result.success) {
+                        pendingRetryData = { email, firebaseUid: user.uid, phone: '' };
+                        showRetryOption(result.error);
+                        setLoading('loginBtn', false);
+                        isProcessingAuth = false;
+                        return;
+                    }
                 }
-
-                showLoading('Loading your dashboard...');
 
                 localStorage.setItem('userEmail', email);
                 localStorage.setItem('firebaseUid', user.uid);
 
+                showLoading('Loading your dashboard...');
                 showAlert('Login successful! Redirecting...', 'success');
                 
                 setTimeout(() => {
                     hideLoading();
+                    isProcessingAuth = false;
                     window.location.href = 'index.html';
                 }, 1000);
             } catch (error) {
                 hideLoading();
+                isProcessingAuth = false;
                 console.error('Login error:', error);
                 let message = 'Login failed. Please try again.';
                 if (error.code === 'auth/user-not-found') {
@@ -1006,11 +1024,13 @@
 
             setLoading('signupBtn', true);
             showLoading('Checking email availability...');
+            isProcessingAuth = true;
 
             try {
                 const emailCheck = await checkEmailExists(email);
                 if (emailCheck.exists) {
                     hideLoading();
+                    isProcessingAuth = false;
                     showAlert('Email already registered. Please login instead.', 'error');
                     setLoading('signupBtn', false);
                     return;
@@ -1021,10 +1041,14 @@
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
 
-                const registrationResult = await registerWithRetry(email, user.uid, 3);
+                const registrationResult = await registerInDatabaseWithRetry(email, user.uid, 5);
 
                 if (!registrationResult.success) {
-                    showAlert('Account created! Finishing setup in background...', 'warning');
+                    pendingRetryData = { email, firebaseUid: user.uid, phone };
+                    showRetryOption(registrationResult.error);
+                    setLoading('signupBtn', false);
+                    isProcessingAuth = false;
+                    return;
                 }
 
                 localStorage.setItem('userEmail', email);
@@ -1036,10 +1060,12 @@
 
                 setTimeout(() => {
                     hideLoading();
+                    isProcessingAuth = false;
                     window.location.href = 'index.html';
                 }, 1500);
             } catch (error) {
                 hideLoading();
+                isProcessingAuth = false;
                 console.error('Signup error:', error);
                 let message = 'Registration failed. Please try again.';
                 if (error.code === 'auth/email-already-in-use') {
@@ -1091,9 +1117,15 @@
             setLoading('forgotBtn', false);
         });
 
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, async (user) => {
+            if (isProcessingAuth) return;
+            
             if (user && localStorage.getItem('userEmail')) {
-                window.location.href = 'index.html';
+                const email = localStorage.getItem('userEmail');
+                const dbCheck = await checkEmailExists(email);
+                if (dbCheck.exists) {
+                    window.location.href = 'index.html';
+                }
             }
         });
     </script>
