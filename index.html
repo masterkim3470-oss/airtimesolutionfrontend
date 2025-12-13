@@ -1974,12 +1974,37 @@
                         <label class="form-label"><i class="fas fa-money-bill"></i> Amount to Deposit</label>
                         <input type="number" class="form-input" id="modalDepositAmount" min="10">
                     </div>
-                    <div class="btn-group">
+                    <div id="modalDepositStatus" style="margin-top: 10px; text-align: center; display: none;">
+                        <span class="live-indicator"></span>
+                        <span id="modalDepositStatusText">Waiting for payment...</span>
+                        <p id="modalCurrentBalance" style="margin-top: 10px; font-weight: 600; color: var(--primary);"></p>
+                    </div>
+                    <div class="btn-group" id="modalDepositButtons">
                         <button class="btn btn-primary" onclick="depositFromModal()">
                             <i class="fas fa-mobile-alt"></i> Deposit via M-Pesa STK
                         </button>
                         <button class="btn btn-link" onclick="depositFromModalLink()">
                             <i class="fas fa-link"></i> Deposit with Payment Link
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="floatLowModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-exclamation-circle" style="color: var(--warning);"></i> Airtime Float Low</h3>
+                    <button class="modal-close" onclick="closeModal('floatLowModal')">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p style="margin-bottom: 15px;">The airtime float is currently low.</p>
+                    <p style="margin-bottom: 15px;"><strong>Available Float:</strong> KES <span id="floatAvailableAmount">0</span></p>
+                    <p style="margin-bottom: 15px;"><strong>Maximum you can purchase:</strong> KES <span id="floatMaxPurchasable">0</span></p>
+                    <p style="color: var(--gray); font-size: 0.9rem;">Please try a smaller amount or wait for float to be replenished.</p>
+                    <div class="btn-group" style="margin-top: 20px;">
+                        <button class="btn btn-primary" onclick="closeModal('floatLowModal')">
+                            <i class="fas fa-check"></i> OK, Got it
                         </button>
                     </div>
                 </div>
@@ -2706,11 +2731,20 @@
                     showToast(`Airtime sent! KES ${data.airtimeSent} to ${phone}`, 'success');
                     refreshBalance();
                     loadTransactions();
-                } else if (data.shortfall) {
-                    pendingPurchase = { phone, amount };
-                    document.getElementById('shortfallAmount').textContent = `KES ${data.shortfall}`;
-                    document.getElementById('modalDepositAmount').value = Math.ceil(data.shortfall);
+                    document.getElementById('buyAirtimeForm').reset();
+                    selectedNetworkValue = '';
+                    document.querySelectorAll('.network-option').forEach(o => o.classList.remove('selected'));
+                } else if (data.floatLow) {
+                    document.getElementById('floatAvailableAmount').textContent = data.availableFloat || 0;
+                    document.getElementById('floatMaxPurchasable').textContent = data.maxPurchasable || 0;
+                    document.getElementById('floatLowModal').classList.add('show');
+                } else if (data.insufficientBalance || data.shortfall) {
+                    pendingPurchase = { phone, amount, source: 'buy' };
+                    document.getElementById('shortfallAmount').textContent = `KES ${data.shortfall || (amount - data.balance)}`;
+                    document.getElementById('modalDepositAmount').value = Math.ceil(data.shortfall || (amount - data.balance));
                     document.getElementById('modalDepositPhone').value = document.getElementById('airtimePhone').value;
+                    document.getElementById('modalDepositStatus').style.display = 'none';
+                    document.getElementById('modalDepositButtons').style.display = 'flex';
                     document.getElementById('insufficientModal').classList.add('show');
                 } else {
                     showToast(data.message || 'Purchase failed', 'error');
@@ -2738,6 +2772,10 @@
                 const data = await response.json();
                 if (data.success) {
                     showToast(`STK Push sent! You'll receive KES ${data.airtime_to_receive} airtime after payment.`, 'success');
+                } else if (data.floatLow) {
+                    document.getElementById('floatAvailableAmount').textContent = data.availableFloat || 0;
+                    document.getElementById('floatMaxPurchasable').textContent = data.maxPurchasable || 0;
+                    document.getElementById('floatLowModal').classList.add('show');
                 } else {
                     showToast(data.message || 'Failed', 'error');
                 }
@@ -2758,6 +2796,7 @@
         };
 
         let floatAvailable = true;
+        let currentFloatBalance = 0;
 
         async function checkFloatStatus() {
             try {
@@ -2765,12 +2804,13 @@
                 const data = await response.json();
                 if (data.success) {
                     floatAvailable = !data.floatLow;
+                    currentFloatBalance = data.availableFloat || 0;
                     const statusDiv = document.getElementById('statumFloatStatus');
                     if (floatAvailable) {
-                        statusDiv.innerHTML = `<p style="color: var(--success);"><i class="fas fa-check-circle"></i> Airtime service is available</p>`;
+                        statusDiv.innerHTML = `<p style="color: var(--success);"><i class="fas fa-check-circle"></i> Airtime service is available</p><p style="color: var(--gray); font-size: 0.85rem;">Available float: KES ${currentFloatBalance}</p>`;
                         document.getElementById('sellAirtimeStkBtn').disabled = false;
                     } else {
-                        statusDiv.innerHTML = `<p style="color: var(--warning);"><i class="fas fa-exclamation-triangle"></i> Airtime service temporarily unavailable.</p>`;
+                        statusDiv.innerHTML = `<p style="color: var(--warning);"><i class="fas fa-exclamation-triangle"></i> Airtime service temporarily limited.</p><p style="color: var(--gray); font-size: 0.85rem;">Available float: KES ${currentFloatBalance}</p>`;
                         document.getElementById('sellAirtimeStkBtn').disabled = true;
                     }
                 }
@@ -2807,8 +2847,20 @@
                     refreshBalance();
                     loadTransactions();
                     document.getElementById('sellAirtimeForm').reset();
-                } else if (data.shortfall) {
-                    showToast(`Insufficient balance. You need KES ${data.shortfall} more.`, 'error');
+                    selectedSendNetworkValue = '';
+                    document.querySelectorAll('#sellAirtimeForm .network-option').forEach(o => o.classList.remove('selected'));
+                } else if (data.floatLow) {
+                    document.getElementById('floatAvailableAmount').textContent = data.availableFloat || 0;
+                    document.getElementById('floatMaxPurchasable').textContent = data.maxPurchasable || 0;
+                    document.getElementById('floatLowModal').classList.add('show');
+                } else if (data.insufficientBalance || data.shortfall) {
+                    pendingPurchase = { phone, amount, source: 'sell' };
+                    document.getElementById('shortfallAmount').textContent = `KES ${data.shortfall || (amount - data.balance)}`;
+                    document.getElementById('modalDepositAmount').value = Math.ceil(data.shortfall || (amount - data.balance));
+                    document.getElementById('modalDepositPhone').value = document.getElementById('sellAirtimePhone').value;
+                    document.getElementById('modalDepositStatus').style.display = 'none';
+                    document.getElementById('modalDepositButtons').style.display = 'flex';
+                    document.getElementById('insufficientModal').classList.add('show');
                 } else {
                     showToast(data.message || 'Failed to send airtime', 'error');
                 }
@@ -2832,6 +2884,9 @@
             window.open(url, '_blank');
         };
 
+        let modalDepositPolling = null;
+        let modalDepositReference = null;
+
         window.depositFromModal = async function() {
             const phone = '254' + document.getElementById('modalDepositPhone').value;
             const amount = parseInt(document.getElementById('modalDepositAmount').value);
@@ -2849,8 +2904,11 @@
                 const data = await response.json();
                 if (data.success) {
                     showToast('STK Push sent! Enter your M-Pesa PIN to complete.', 'success');
-                    closeModal('insufficientModal');
-                    pollDepositStatus(data.reference);
+                    modalDepositReference = data.reference;
+                    document.getElementById('modalDepositButtons').style.display = 'none';
+                    document.getElementById('modalDepositStatus').style.display = 'block';
+                    document.getElementById('modalDepositStatusText').textContent = 'Waiting for payment...';
+                    pollModalDepositStatus(data.reference);
                 } else {
                     showToast(data.message || 'Failed', 'error');
                     btn.disabled = false;
@@ -2862,6 +2920,61 @@
                 btn.innerHTML = originalBtnHtml;
             }
         };
+
+        async function pollModalDepositStatus(reference) {
+            let attempts = 0;
+            const maxAttempts = 60;
+            
+            if (modalDepositPolling) clearInterval(modalDepositPolling);
+            
+            modalDepositPolling = setInterval(async () => {
+                attempts++;
+                try {
+                    const balanceRes = await fetch(`${API_BASE}/api/users/balance-by-email/${encodeURIComponent(currentUser.email)}`);
+                    const balanceData = await balanceRes.json();
+                    if (balanceData.success) {
+                        document.getElementById('modalCurrentBalance').textContent = `Current Balance: KES ${balanceData.total}`;
+                    }
+                    
+                    const statusRes = await fetch(`${API_BASE}/api/payments/status/${encodeURIComponent(reference)}`);
+                    const statusData = await statusRes.json();
+                    
+                    if (statusData.success && statusData.transaction) {
+                        if (statusData.transaction.status === 'completed') {
+                            clearInterval(modalDepositPolling);
+                            modalDepositPolling = null;
+                            showToast('Deposit successful! Your balance has been updated.', 'success');
+                            refreshBalance();
+                            loadTransactions();
+                            closeModal('insufficientModal');
+                            document.getElementById('modalDepositButtons').style.display = 'flex';
+                            document.getElementById('modalDepositStatus').style.display = 'none';
+                        } else if (statusData.transaction.status === 'failed') {
+                            clearInterval(modalDepositPolling);
+                            modalDepositPolling = null;
+                            showToast('Payment failed. Please try again.', 'error');
+                            document.getElementById('modalDepositButtons').style.display = 'flex';
+                            document.getElementById('modalDepositStatus').style.display = 'none';
+                            document.querySelector('#insufficientModal .btn-primary').disabled = false;
+                            document.querySelector('#insufficientModal .btn-primary').innerHTML = '<i class="fas fa-mobile-alt"></i> Deposit via M-Pesa STK';
+                        } else {
+                            document.getElementById('modalDepositStatusText').textContent = `Waiting for payment... (${attempts}s)`;
+                        }
+                    }
+                } catch (error) {
+                    console.error('Modal deposit poll error:', error);
+                }
+                
+                if (attempts >= maxAttempts) {
+                    clearInterval(modalDepositPolling);
+                    modalDepositPolling = null;
+                    document.getElementById('modalDepositStatusText').textContent = 'Timeout. Please check your balance.';
+                    document.getElementById('modalDepositButtons').style.display = 'flex';
+                    document.querySelector('#insufficientModal .btn-primary').disabled = false;
+                    document.querySelector('#insufficientModal .btn-primary').innerHTML = '<i class="fas fa-mobile-alt"></i> Deposit via M-Pesa STK';
+                }
+            }, 2000);
+        }
 
         window.depositFromModalLink = function() {
             const phone = document.getElementById('modalDepositPhone').value;
