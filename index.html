@@ -977,7 +977,7 @@
                 </button>
                 <div class="logo">
                     <img src="airtime-logo.png" alt="Logo" id="headerLogo">
-                    <span class="logo-text">Airtime Solution </span>
+                    <span class="logo-text">Airtime Solution 🇰🇪</span>
                 </div>
             </div>
             <div class="header-right">
@@ -1148,7 +1148,7 @@
                             <p style="font-size: 0.75rem; color: var(--gray);">Weekly Users</p>
                         </div>
                         <div>
-                            <p style="font-size: 1.5rem; font-weight: 700; color: var(--success);">KES 100k+</p>
+                            <p style="font-size: 1.5rem; font-weight: 700; color: var(--success);">KES 2.3M</p>
                             <p style="font-size: 0.75rem; color: var(--gray);">Airtime Sold</p>
                         </div>
                         <div>
@@ -1253,7 +1253,7 @@
                     <form id="buyAirtimeForm">
                         <!-- Network Selection -->
                         <div class="form-group">
-                            <label class="form-label"><i class="fas fa-signal"></i> Select Network * (required❗️) </label>
+                            <label class="form-label"><i class="fas fa-signal"></i> Select Network *</label>
                             <div class="network-selector">
                                 <div class="network-option" data-network="safaricom" onclick="selectNetwork('safaricom')">
                                     <img src="safaricom.png" alt="Safaricom" onerror="this.src='https://via.placeholder.com/50x50/4CB05B/ffffff?text=SAF'">
@@ -1311,13 +1311,13 @@
                     <h3 class="card-title"><i class="fas fa-paper-plane"></i> Send Airtime</h3>
 
                     <div class="info-box">
-                        <p><i class="fas fa-info-circle"></i> Send airtime to any phone number. Use your balance or pay directly via PayHero. Minimum: KES 10 .earn extra commission commission deposited directly to your account </p>
+                        <p><i class="fas fa-info-circle"></i> Send airtime to any phone number. Use your balance or pay directly via PayHero. Minimum: KES 10</p>
                     </div>
 
                     <form id="sellAirtimeForm">
                         <!-- Network Selection -->
                         <div class="form-group">
-                            <label class="form-label"><i class="fas fa-signal"></i> Select Network * (required❗️) </label>
+                            <label class="form-label"><i class="fas fa-signal"></i> Select Network *</label>
                             <div class="network-selector">
                                 <div class="network-option" data-network="safaricom" data-form="send" onclick="selectSendNetwork('safaricom')">
                                     <img src="safaricom.png" alt="Safaricom" onerror="this.src='https://via.placeholder.com/50x50/4CB05B/ffffff?text=SAF'">
@@ -2770,7 +2770,10 @@
                         statusDiv.innerHTML = `<p style="color: var(--success);"><i class="fas fa-check-circle"></i> Airtime service is available</p>`;
                         document.getElementById('sellAirtimeStkBtn').disabled = false;
                     } else {
-                        statusDiv.innerHTML = `<p style="color: var(--warning);"><i class="fas fa-exclamation-triangle"></i> Airtime service temporarily unavailable.</p>`;
+                        statusDiv.innerHTML = `<div style="background: linear-gradient(135deg, #fff3cd, #ffeeba); border: 1px solid #ffc107; border-radius: 12px; padding: 15px; margin-bottom: 15px;">
+                            <p style="color: #856404; font-weight: 600; margin-bottom: 8px;"><i class="fas fa-exclamation-triangle"></i> Low Float Balance</p>
+                            <p style="color: #856404; font-size: 0.9rem;">Our airtime float is currently low. The service will resume once the admin tops up the float. Please try again in a few minutes.</p>
+                        </div>`;
                         document.getElementById('sellAirtimeStkBtn').disabled = true;
                     }
                 }
