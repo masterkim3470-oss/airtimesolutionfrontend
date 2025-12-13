@@ -100,6 +100,102 @@
 
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
         @keyframes spin { to { transform: rotate(360deg); } }
+        
+        @keyframes bellShake {
+            0%, 100% { transform: rotate(0); }
+            10%, 30%, 50%, 70%, 90% { transform: rotate(-10deg); }
+            20%, 40%, 60%, 80% { transform: rotate(10deg); }
+        }
+        
+        .notification-btn.has-notification i {
+            animation: bellShake 0.8s ease-in-out infinite;
+            color: #ffd700;
+        }
+        
+        .notification-item.unread h5 {
+            color: #ffd700;
+            font-weight: 600;
+        }
+        
+        .scrolling-text-container {
+            background: linear-gradient(135deg, var(--secondary), #e67e22);
+            overflow: hidden;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        
+        .scrolling-text {
+            display: inline-block;
+            white-space: nowrap;
+            animation: scrollText 20s linear infinite;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        @keyframes scrollText {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .users-graph-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        .graph-container {
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            gap: 10px;
+            padding: 20px 10px 10px;
+            background: var(--light);
+            border-radius: 12px;
+        }
+        
+        .graph-bar {
+            flex: 1;
+            background: linear-gradient(to top, var(--primary), var(--primary-light));
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            min-width: 30px;
+            transition: height 0.5s ease;
+        }
+        
+        .graph-bar span {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: var(--gray);
+            white-space: nowrap;
+        }
+        
+        .graph-bar::after {
+            content: attr(data-value);
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            display: block;
+            border: 4px solid var(--primary);
+        }
 
         .app-container { max-width: 100%; min-height: 100vh; }
 
@@ -122,7 +218,7 @@
         .menu-btn { background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; padding: 5px; }
         .logo { display: flex; align-items: center; gap: 10px; }
         .logo img { width: 40px; height: 40px; border-radius: 50%; }
-        .logo-text { font-weight: 600; font-size: 1.1rem; }
+        .logo-text { font-weight: 600; font-size: 1.1rem; color: #f0f0f0; }
         .header-right { display: flex; align-items: center; gap: 15px; }
 
         .notification-btn {
@@ -812,12 +908,13 @@
             position: fixed;
             bottom: 80px;
             right: 20px;
-            background: var(--primary);
+            background: #000000;
             color: var(--white);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: none;
+            width: auto;
+            height: auto;
+            padding: 5px 10px;
+            border-radius: 8px;
+            display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
@@ -831,7 +928,7 @@
 
         @media (max-width: 480px) {
             .header { padding: 12px 15px; }
-            .logo-text { display: none; }
+            .logo-text { font-size: 0.9rem; }
             .quick-actions { grid-template-columns: 1fr; }
             .notification-panel { right: 5px; left: 5px; width: auto; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -853,8 +950,8 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="logo">
-                    <img src="https://via.placeholder.com/40x40/1a5f2a/ffffff?text=ASK" alt="Logo" id="headerLogo">
-                    <span class="logo-text">Airtime Kenya</span>
+                    <img src="airtime_logo.png" alt="Logo" id="headerLogo">
+                    <span class="logo-text">Airtime Solution 🇰🇪</span>
                 </div>
             </div>
             <div class="header-right">
@@ -942,6 +1039,11 @@
 
         <main class="main-content">
             <div id="page-dashboard" class="page active">
+                <div class="scrolling-text-container">
+                    <div class="scrolling-text">
+                        📢 IMPORTANT UPDATE: Enjoy instant airtime delivery! Deposit KES 50+ and get KES 6 bonus! New features coming soon! 24/7 Support available! 🎉
+                    </div>
+                </div>
                 <div class="card balance-card">
                     <p class="balance-label" data-translate="yourBalance">Your Balance</p>
                     <p class="balance-value" id="dashboardBalance">KES 0.00</p>
@@ -990,6 +1092,35 @@
                             <i class="fas fa-headset" style="font-size: 2rem; color: var(--info); margin-bottom: 10px;"></i>
                             <h4 style="font-size: 0.9rem; margin-bottom: 5px;">24/7 Support</h4>
                             <p style="font-size: 0.8rem; color: var(--gray);">Always here to help</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Platform Usage Graph -->
+                <div class="users-graph-card" style="margin-top: 20px;">
+                    <h3 class="card-title"><i class="fas fa-chart-bar"></i> Platform Activity</h3>
+                    <p style="font-size: 0.85rem; color: var(--gray); margin-bottom: 15px;">Users buying airtime this week</p>
+                    <div class="graph-container" style="margin-bottom: 30px;">
+                        <div class="graph-bar" style="height: 65%;" data-value="1.2K"><span>Mon</span></div>
+                        <div class="graph-bar" style="height: 80%;" data-value="1.8K"><span>Tue</span></div>
+                        <div class="graph-bar" style="height: 55%;" data-value="950"><span>Wed</span></div>
+                        <div class="graph-bar" style="height: 90%;" data-value="2.1K"><span>Thu</span></div>
+                        <div class="graph-bar" style="height: 75%;" data-value="1.5K"><span>Fri</span></div>
+                        <div class="graph-bar" style="height: 60%;" data-value="1.1K"><span>Sat</span></div>
+                        <div class="graph-bar" style="height: 85%;" data-value="1.9K"><span>Sun</span></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-around; text-align: center; padding-top: 10px; border-top: 1px solid var(--border);">
+                        <div>
+                            <p style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">10.5K</p>
+                            <p style="font-size: 0.75rem; color: var(--gray);">Weekly Users</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 1.5rem; font-weight: 700; color: var(--success);">KES 2.3M</p>
+                            <p style="font-size: 0.75rem; color: var(--gray);">Airtime Sold</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 1.5rem; font-weight: 700; color: var(--secondary);">99.8%</p>
+                            <p style="font-size: 0.75rem; color: var(--gray);">Success Rate</p>
                         </div>
                     </div>
                 </div>
@@ -1355,6 +1486,7 @@
             <div id="page-profile" class="page">
                 <div class="card">
                     <h3 class="card-title"><i class="fas fa-user"></i> My Profile</h3>
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=airtimeuser&backgroundColor=b6e3f4" alt="Profile Avatar" class="profile-avatar">
                     <form id="profileForm">
                         <div class="form-group">
                             <label class="form-label">Email</label>
@@ -1842,8 +1974,8 @@
             <span id="toastMessage">Message</span>
         </div>
 
-        <button class="pwa-install" id="pwaInstall" onclick="installPWA()">
-            <i class="fas fa-download"></i>
+        <button class="pwa-install" id="pwaInstall" onclick="installPWA()" title="Install App">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" style="height: 40px; width: auto;">
         </button>
     </div>
 
@@ -2035,6 +2167,12 @@
             const list = document.getElementById('notificationList');
             const unreadCount = notifications.filter(n => !n.is_read).length;
             document.getElementById('notifBadge').textContent = unreadCount;
+            const notifBtn = document.querySelector('.notification-btn');
+            if (unreadCount > 0) {
+                notifBtn.classList.add('has-notification');
+            } else {
+                notifBtn.classList.remove('has-notification');
+            }
             if (notifications.length === 0) {
                 list.innerHTML = '<div class="empty-state" style="padding: 30px;"><i class="fas fa-bell-slash"></i><p>No notifications yet</p></div>';
                 return;
@@ -3143,12 +3281,28 @@
             document.getElementById('pwaInstall').classList.add('show');
         });
 
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then((registration) => {
+                        console.log('ServiceWorker registered:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.log('ServiceWorker registration failed:', error);
+                    });
+            });
+        }
+
         window.installPWA = async function() {
-            if (!deferredPrompt) return;
+            if (!deferredPrompt) {
+                showToast('Open in Chrome/Edge browser to install app, or add to home screen from browser menu', 'info');
+                return;
+            }
             deferredPrompt.prompt();
             const { outcome } = await deferredPrompt.userChoice;
             if (outcome === 'accepted') {
-                document.getElementById('pwaInstall').classList.remove('show');
+                showToast('App installed successfully!', 'success');
+                document.getElementById('pwaInstall').style.display = 'none';
             }
             deferredPrompt = null;
         };
