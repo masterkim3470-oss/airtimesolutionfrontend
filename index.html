@@ -412,6 +412,82 @@
 
         .info-box p { font-size: 0.9rem; color: var(--dark); }
 
+        /* Network Selector Styles */
+        .network-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .network-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            border: 3px solid var(--border);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--white);
+            min-width: 90px;
+        }
+
+        .network-option:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .network-option.selected {
+            border-color: var(--primary);
+            background: rgba(26, 95, 42, 0.1);
+            box-shadow: 0 0 0 3px rgba(26, 95, 42, 0.2);
+        }
+
+        .network-option img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            margin-bottom: 8px;
+        }
+
+        .network-option span {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .validation-error {
+            color: var(--danger);
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .validation-error.show {
+            display: block;
+        }
+
+        .form-input.valid {
+            border-color: var(--success);
+        }
+
+        .form-input.invalid {
+            border-color: var(--danger);
+        }
+
+        .network-error {
+            color: var(--danger);
+            font-size: 0.85rem;
+            text-align: center;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .network-error.show {
+            display: block;
+        }
+
         .transaction-list { max-height: 400px; overflow-y: auto; }
 
         .transaction-item {
@@ -532,10 +608,11 @@
             border-bottom: 1px solid var(--border);
             cursor: pointer;
             transition: background 0.2s;
+            background: rgba(26, 95, 42, 0.08);
         }
 
-        .notification-item:hover { background: var(--light); }
-        .notification-item.unread { background: rgba(26,95,42,0.05); }
+        .notification-item:hover { background: rgba(26, 95, 42, 0.15); }
+        .notification-item.unread { background: rgba(26, 95, 42, 0.18); }
         .notification-item h5 { font-size: 0.9rem; font-weight: 500; margin-bottom: 5px; }
         .notification-item p { font-size: 0.8rem; color: var(--gray); }
         .notification-item .time { font-size: 0.75rem; color: var(--gray); margin-top: 5px; }
@@ -819,7 +896,7 @@
                     <i class="fas fa-mobile-alt"></i> Buy Airtime
                 </button>
                 <button class="menu-item" onclick="showPage('sell-airtime')">
-                    <i class="fas fa-paper-plane"></i> Sell Airtime
+                    <i class="fas fa-paper-plane"></i> Send Airtime
                 </button>
                 <button class="menu-item" onclick="showPage('airtime-to-cash')">
                     <i class="fas fa-exchange-alt"></i> Airtime to Cash
@@ -866,32 +943,80 @@
         <main class="main-content">
             <div id="page-dashboard" class="page active">
                 <div class="card balance-card">
-                    <p class="balance-label">Your Balance</p>
+                    <p class="balance-label" data-translate="yourBalance">Your Balance</p>
                     <p class="balance-value" id="dashboardBalance">KES 0.00</p>
-                    <p class="balance-bonus">Deposit 50+ to get +6 bonus!</p>
+                    <p class="balance-bonus"><i class="fas fa-gift"></i> Deposit KES 50+ and receive KES 6 bonus instantly!</p>
                 </div>
 
                 <div class="quick-actions">
                     <button class="action-btn" onclick="showPage('deposit')">
                         <i class="fas fa-wallet"></i>
-                        <span>Deposit</span>
+                        <span data-translate="deposit">Deposit</span>
                     </button>
                     <button class="action-btn" onclick="showPage('buy-airtime')">
                         <i class="fas fa-mobile-alt"></i>
-                        <span>Buy Airtime</span>
+                        <span data-translate="buyAirtime">Buy Airtime</span>
                     </button>
                     <button class="action-btn" onclick="showPage('airtime-to-cash')">
                         <i class="fas fa-exchange-alt"></i>
-                        <span>Airtime to Cash</span>
+                        <span data-translate="airtimeToCash">Airtime to Cash</span>
                     </button>
                     <button class="action-btn" onclick="showPage('transactions')">
                         <i class="fas fa-history"></i>
-                        <span>History</span>
+                        <span data-translate="history">History</span>
                     </button>
                 </div>
 
+                <!-- Why Choose Us Section -->
                 <div class="card" style="margin-top: 20px;">
-                    <h3 class="card-title"><i class="fas fa-clock"></i> Recent Transactions</h3>
+                    <h3 class="card-title"><i class="fas fa-star"></i> <span data-translate="whyChooseUs">Why Choose Us</span></h3>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                        <div style="text-align: center; padding: 15px; background: var(--light); border-radius: 12px;">
+                            <i class="fas fa-bolt" style="font-size: 2rem; color: var(--secondary); margin-bottom: 10px;"></i>
+                            <h4 style="font-size: 0.9rem; margin-bottom: 5px;">Instant Delivery</h4>
+                            <p style="font-size: 0.8rem; color: var(--gray);">Airtime delivered in seconds</p>
+                        </div>
+                        <div style="text-align: center; padding: 15px; background: var(--light); border-radius: 12px;">
+                            <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--success); margin-bottom: 10px;"></i>
+                            <h4 style="font-size: 0.9rem; margin-bottom: 5px;">Secure Payments</h4>
+                            <p style="font-size: 0.8rem; color: var(--gray);">M-Pesa powered security</p>
+                        </div>
+                        <div style="text-align: center; padding: 15px; background: var(--light); border-radius: 12px;">
+                            <i class="fas fa-percentage" style="font-size: 2rem; color: var(--primary); margin-bottom: 10px;"></i>
+                            <h4 style="font-size: 0.9rem; margin-bottom: 5px;">Best Rates</h4>
+                            <p style="font-size: 0.8rem; color: var(--gray);">Competitive discounts</p>
+                        </div>
+                        <div style="text-align: center; padding: 15px; background: var(--light); border-radius: 12px;">
+                            <i class="fas fa-headset" style="font-size: 2rem; color: var(--info); margin-bottom: 10px;"></i>
+                            <h4 style="font-size: 0.9rem; margin-bottom: 5px;">24/7 Support</h4>
+                            <p style="font-size: 0.8rem; color: var(--gray);">Always here to help</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="card" style="margin-top: 20px;">
+                    <h3 class="card-title"><i class="fas fa-question-circle"></i> <span data-translate="faq">Frequently Asked Questions</span></h3>
+                    <div class="faq-item" style="margin-bottom: 15px; padding: 15px; background: var(--light); border-radius: 12px;">
+                        <h4 style="font-size: 0.95rem; color: var(--primary); margin-bottom: 8px;"><i class="fas fa-chevron-right" style="margin-right: 8px;"></i>How do I buy airtime?</h4>
+                        <p style="font-size: 0.85rem; color: var(--gray);">Simply deposit funds to your wallet, select a network, enter the phone number and amount, then click "Buy Now".</p>
+                    </div>
+                    <div class="faq-item" style="margin-bottom: 15px; padding: 15px; background: var(--light); border-radius: 12px;">
+                        <h4 style="font-size: 0.95rem; color: var(--primary); margin-bottom: 8px;"><i class="fas fa-chevron-right" style="margin-right: 8px;"></i>How long does airtime delivery take?</h4>
+                        <p style="font-size: 0.85rem; color: var(--gray);">Airtime is delivered instantly within 5-30 seconds after successful payment.</p>
+                    </div>
+                    <div class="faq-item" style="margin-bottom: 15px; padding: 15px; background: var(--light); border-radius: 12px;">
+                        <h4 style="font-size: 0.95rem; color: var(--primary); margin-bottom: 8px;"><i class="fas fa-chevron-right" style="margin-right: 8px;"></i>What is the minimum deposit?</h4>
+                        <p style="font-size: 0.85rem; color: var(--gray);">The minimum deposit is KES 10. Deposits of KES 50 or more receive a KES 6 bonus!</p>
+                    </div>
+                    <div class="faq-item" style="padding: 15px; background: var(--light); border-radius: 12px;">
+                        <h4 style="font-size: 0.95rem; color: var(--primary); margin-bottom: 8px;"><i class="fas fa-chevron-right" style="margin-right: 8px;"></i>Which networks are supported?</h4>
+                        <p style="font-size: 0.85rem; color: var(--gray);">We support Safaricom, Airtel, and Telkom Kenya networks.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 20px;">
+                    <h3 class="card-title"><i class="fas fa-clock"></i> <span data-translate="recentTransactions">Recent Transactions</span></h3>
                     <div class="transaction-list" id="recentTransactions">
                         <div class="empty-state">
                             <i class="fas fa-inbox"></i>
@@ -958,35 +1083,58 @@
                     <h3 class="card-title"><i class="fas fa-mobile-alt"></i> Buy Airtime</h3>
 
                     <div class="info-box">
-                        <p><i class="fas fa-info-circle"></i> Buy KES 20 and receive KES 18 airtime. Minimum purchase: KES 5</p>
+                        <p><i class="fas fa-info-circle"></i> Buy KES 20 and receive KES 18 airtime. Minimum purchase: KES 10</p>
                     </div>
 
                     <form id="buyAirtimeForm">
+                        <!-- Network Selection -->
                         <div class="form-group">
-                            <label class="form-label"><i class="fas fa-phone"></i> Number to Receive Airtime *</label>
-                            <div class="phone-wrapper">
-                                <span class="phone-prefix">+254</span>
-                                <input type="tel" class="form-input" id="airtimePhone" placeholder="7XXXXXXXX" maxlength="9" required>
+                            <label class="form-label"><i class="fas fa-signal"></i> Select Network *</label>
+                            <div class="network-selector">
+                                <div class="network-option" data-network="safaricom" onclick="selectNetwork('safaricom')">
+                                    <img src="safaricom.png" alt="Safaricom" onerror="this.src='https://via.placeholder.com/50x50/4CB05B/ffffff?text=SAF'">
+                                    <span>Safaricom</span>
+                                </div>
+                                <div class="network-option" data-network="airtel" onclick="selectNetwork('airtel')">
+                                    <img src="airtel.png" alt="Airtel" onerror="this.src='https://via.placeholder.com/50x50/ED1C24/ffffff?text=AIR'">
+                                    <span>Airtel</span>
+                                </div>
+                                <div class="network-option" data-network="telcom" onclick="selectNetwork('telcom')">
+                                    <img src="telcom.png" alt="Telcom" onerror="this.src='https://via.placeholder.com/50x50/0066B3/ffffff?text=TEL'">
+                                    <span>Telcom</span>
+                                </div>
                             </div>
+                            <p class="network-error" id="networkError">Please select a network to continue</p>
+                            <input type="hidden" id="selectedNetwork" value="">
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label"><i class="fas fa-money-bill"></i> Airtime Amount (KES) *</label>
-                            <input type="number" class="form-input" id="airtimeAmount" placeholder="Minimum: 5" min="5" required>
+                            <label class="form-label"><i class="fas fa-phone"></i> Phone Number *</label>
+                            <div class="phone-wrapper">
+                                <span class="phone-prefix">+254</span>
+                                <input type="tel" class="form-input" id="airtimePhone" placeholder="7XXXXXXXX" maxlength="9" required oninput="validateAirtimePhone()">
+                            </div>
+                            <p class="validation-error" id="phoneError">Enter a valid 9-digit phone number starting with 7 or 1</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-money-bill"></i> Amount (KES) *</label>
+                            <input type="number" class="form-input" id="airtimeAmount" placeholder="Minimum: 10" min="10" required oninput="validateAirtimeAmount()">
+                            <p class="validation-error" id="amountError">Minimum amount is KES 10</p>
                         </div>
 
                         <div class="btn-group">
-                            <button type="submit" class="btn btn-primary" id="buyAirtimeBtn">
+                            <button type="submit" class="btn btn-primary" id="buyAirtimeBtn" disabled>
                                 <i class="fas fa-shopping-cart"></i> Buy Now (From Balance)
                             </button>
 
                             <div class="divider-text"><span>OR</span></div>
 
-                            <button type="button" class="btn btn-secondary" onclick="directAirtimePurchase()">
+                            <button type="button" class="btn btn-secondary" id="directPurchaseBtn" onclick="directAirtimePurchase()" disabled>
                                 <i class="fas fa-bolt"></i> Buy Direct (STK Push)
                             </button>
 
-                            <button type="button" class="btn btn-link" onclick="buyAirtimeWithLink()">
+                            <button type="button" class="btn btn-link" id="linkPurchaseBtn" onclick="buyAirtimeWithLink()" disabled>
                                 <i class="fas fa-link"></i> Buy with Payment Link
                             </button>
                         </div>
@@ -996,34 +1144,57 @@
 
             <div id="page-sell-airtime" class="page">
                 <div class="card">
-                    <h3 class="card-title"><i class="fas fa-paper-plane"></i> Sell Airtime</h3>
+                    <h3 class="card-title"><i class="fas fa-paper-plane"></i> Send Airtime</h3>
 
                     <div class="info-box">
-                        <p><i class="fas fa-info-circle"></i> Send airtime to any phone number. Use your balance or pay directly via PayHero.</p>
+                        <p><i class="fas fa-info-circle"></i> Send airtime to any phone number. Use your balance or pay directly via PayHero. Minimum: KES 10</p>
                     </div>
 
                     <form id="sellAirtimeForm">
+                        <!-- Network Selection -->
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-signal"></i> Select Network *</label>
+                            <div class="network-selector">
+                                <div class="network-option" data-network="safaricom" data-form="send" onclick="selectSendNetwork('safaricom')">
+                                    <img src="safaricom.png" alt="Safaricom" onerror="this.src='https://via.placeholder.com/50x50/4CB05B/ffffff?text=SAF'">
+                                    <span>Safaricom</span>
+                                </div>
+                                <div class="network-option" data-network="airtel" data-form="send" onclick="selectSendNetwork('airtel')">
+                                    <img src="airtel.png" alt="Airtel" onerror="this.src='https://via.placeholder.com/50x50/ED1C24/ffffff?text=AIR'">
+                                    <span>Airtel</span>
+                                </div>
+                                <div class="network-option" data-network="telcom" data-form="send" onclick="selectSendNetwork('telcom')">
+                                    <img src="telcom.png" alt="Telcom" onerror="this.src='https://via.placeholder.com/50x50/0066B3/ffffff?text=TEL'">
+                                    <span>Telcom</span>
+                                </div>
+                            </div>
+                            <p class="network-error" id="sendNetworkError">Please select a network to continue</p>
+                            <input type="hidden" id="selectedSendNetwork" value="">
+                        </div>
+
                         <div class="form-group">
                             <label class="form-label"><i class="fas fa-phone"></i> Phone Number to Receive Airtime *</label>
                             <div class="phone-wrapper">
                                 <span class="phone-prefix">+254</span>
-                                <input type="tel" class="form-input" id="sellAirtimePhone" placeholder="7XXXXXXXX" maxlength="9" required>
+                                <input type="tel" class="form-input" id="sellAirtimePhone" placeholder="7XXXXXXXX" maxlength="9" required oninput="validateSendPhone()">
                             </div>
+                            <p class="validation-error" id="sendPhoneError">Enter a valid 9-digit phone number starting with 7 or 1</p>
                         </div>
 
                         <div class="form-group">
                             <label class="form-label"><i class="fas fa-money-bill"></i> Airtime Amount (KES) *</label>
-                            <input type="number" class="form-input" id="sellAirtimeAmount" placeholder="Minimum: 5" min="5" required>
+                            <input type="number" class="form-input" id="sellAirtimeAmount" placeholder="Minimum: 10" min="10" required oninput="validateSendAmount()">
+                            <p class="validation-error" id="sendAmountError">Minimum amount is KES 10</p>
                         </div>
 
                         <div class="btn-group">
-                            <button type="submit" class="btn btn-primary" id="sellAirtimeBalanceBtn">
+                            <button type="submit" class="btn btn-primary" id="sellAirtimeBalanceBtn" disabled>
                                 <i class="fas fa-wallet"></i> Send from Balance
                             </button>
 
                             <div class="divider-text"><span>OR</span></div>
 
-                            <button type="button" class="btn btn-secondary" id="sellAirtimeStkBtn" onclick="sellAirtimeWithStk()">
+                            <button type="button" class="btn btn-secondary" id="sellAirtimeStkBtn" onclick="sellAirtimeWithStk()" disabled>
                                 <i class="fas fa-bolt"></i> Pay via PayHero Link
                             </button>
                         </div>
@@ -1193,10 +1364,12 @@
                             <label class="form-label"><i class="fas fa-phone"></i> Phone Number</label>
                             <div class="phone-wrapper">
                                 <span class="phone-prefix">+254</span>
-                                <input type="tel" class="form-input" id="profilePhone" maxlength="9">
+                                <input type="tel" class="form-input" id="profilePhone" maxlength="9" oninput="validateProfilePhone()">
                             </div>
+                            <p class="validation-error" id="profilePhoneError">Enter a valid 9-digit phone number starting with 7 or 1</p>
+                            <p class="validation-error" id="profilePhoneDuplicateError" style="color: var(--warning);">This phone number is already registered</p>
                         </div>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" id="profileSaveBtn">
                             <i class="fas fa-save"></i> Save Changes
                         </button>
                     </form>
@@ -1205,69 +1378,255 @@
 
             <div id="page-about" class="page">
                 <div class="card">
-                    <h3 class="card-title"><i class="fas fa-info-circle"></i> About Us</h3>
-                    <p style="margin-bottom: 15px;"><strong>Airtime Solution Kenya</strong> is your trusted partner for buying and reselling airtime across all networks in Kenya.</p>
+                    <h3 class="card-title"><i class="fas fa-info-circle"></i> <span data-translate="aboutUs">About Us</span></h3>
+                    
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <img src="about1.png" alt="Airtime Solution Kenya" style="max-width: 200px; border-radius: 16px; margin-bottom: 10px;" onerror="this.style.display='none'">
+                    </div>
+                    
+                    <p style="margin-bottom: 15px; font-size: 1.05rem;"><strong>Airtime Solution Kenya</strong> is your trusted partner for buying and reselling airtime across all networks in Kenya.</p>
+                    
+                    <div style="background: var(--light); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                        <h4 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-bullseye" style="margin-right: 8px;"></i>Our Mission</h4>
+                        <p style="color: var(--gray);">To provide Kenyans with the most convenient, affordable, and reliable airtime services, empowering individuals and businesses to stay connected.</p>
+                    </div>
+                    
+                    <div style="background: var(--light); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                        <h4 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-eye" style="margin-right: 8px;"></i>Our Vision</h4>
+                        <p style="color: var(--gray);">To become Kenya's leading digital airtime platform, known for innovation, trust, and exceptional customer service.</p>
+                    </div>
+                    
                     <p style="margin-bottom: 15px;">We provide a fast, secure, and reliable platform that allows you to:</p>
-                    <ul style="margin-left: 20px; margin-bottom: 15px;">
-                        <li>Buy airtime instantly at discounted rates</li>
-                        <li>Resell airtime and earn profits</li>
-                        <li>Convert airtime to cash</li>
-                        <li>Deposit and manage your wallet easily</li>
+                    <ul style="margin-left: 20px; margin-bottom: 20px; line-height: 1.8;">
+                        <li><i class="fas fa-check" style="color: var(--success); margin-right: 8px;"></i>Buy airtime instantly at discounted rates</li>
+                        <li><i class="fas fa-check" style="color: var(--success); margin-right: 8px;"></i>Resell airtime and earn profits</li>
+                        <li><i class="fas fa-check" style="color: var(--success); margin-right: 8px;"></i>Convert airtime to cash (Coming Soon)</li>
+                        <li><i class="fas fa-check" style="color: var(--success); margin-right: 8px;"></i>Deposit and manage your wallet easily</li>
+                        <li><i class="fas fa-check" style="color: var(--success); margin-right: 8px;"></i>Send airtime to any network</li>
                     </ul>
-                    <p><strong>Founded:</strong> 2024<br><strong>Location:</strong> Nairobi, Kenya</p>
+                    
+                    <div style="text-align: center; margin-bottom: 15px;">
+                        <img src="about2.png" alt="Our Team" style="max-width: 100%; border-radius: 16px;" onerror="this.style.display='none'">
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
+                        <div style="text-align: center; padding: 15px; background: var(--light); border-radius: 12px;">
+                            <i class="fas fa-calendar-alt" style="font-size: 1.5rem; color: var(--primary); margin-bottom: 8px;"></i>
+                            <p style="font-weight: 600;">Founded</p>
+                            <p style="color: var(--gray);">2024</p>
+                        </div>
+                        <div style="text-align: center; padding: 15px; background: var(--light); border-radius: 12px;">
+                            <i class="fas fa-map-marker-alt" style="font-size: 1.5rem; color: var(--primary); margin-bottom: 8px;"></i>
+                            <p style="font-weight: 600;">Location</p>
+                            <p style="color: var(--gray);">Nairobi, Kenya</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div id="page-contact" class="page">
                 <div class="card">
-                    <h3 class="card-title"><i class="fas fa-envelope"></i> Contact Us</h3>
-                    <p style="margin-bottom: 20px;">Have questions or need help? Reach out to us:</p>
-                    <div style="margin-bottom: 20px;">
-                        <p style="margin-bottom: 10px;"><i class="fab fa-whatsapp" style="color: #25d366; margin-right: 10px;"></i><strong>WhatsApp:</strong> <a href="https://wa.me/254718369524" target="_blank" style="color: var(--primary);">+254 718 369 524</a></p>
-                        <p style="margin-bottom: 10px;"><i class="fas fa-phone" style="color: var(--primary); margin-right: 10px;"></i><strong>Call:</strong> <a href="tel:+254718369524" style="color: var(--primary);">+254 718 369 524</a></p>
-                        <p><i class="fas fa-envelope" style="color: var(--primary); margin-right: 10px;"></i><strong>Email:</strong> <a href="mailto:your.email@gmail.com" style="color: var(--primary);">your.email@gmail.com</a></p>
+                    <h3 class="card-title"><i class="fas fa-envelope"></i> <span data-translate="contactUs">Contact Us</span></h3>
+                    
+                    <p style="margin-bottom: 20px; font-size: 1.05rem;">Have questions or need help? We're here for you 24/7!</p>
+                    
+                    <div style="display: grid; gap: 15px; margin-bottom: 25px;">
+                        <div style="display: flex; align-items: center; padding: 15px; background: var(--light); border-radius: 12px;">
+                            <i class="fab fa-whatsapp" style="font-size: 2rem; color: #25d366; margin-right: 15px;"></i>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 3px;">WhatsApp</p>
+                                <a href="https://wa.me/254718369524" target="_blank" style="color: var(--primary);">+254 718 369 524</a>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; padding: 15px; background: var(--light); border-radius: 12px;">
+                            <i class="fas fa-phone-alt" style="font-size: 2rem; color: var(--primary); margin-right: 15px;"></i>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 3px;">Phone Call</p>
+                                <a href="tel:+254718369524" style="color: var(--primary);">+254 718 369 524</a>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; padding: 15px; background: var(--light); border-radius: 12px;">
+                            <i class="fas fa-envelope" style="font-size: 2rem; color: var(--info); margin-right: 15px;"></i>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 3px;">Email</p>
+                                <a href="mailto:support@airtimesolutionkenya.com" style="color: var(--primary);">support@airtimesolutionkenya.com</a>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; padding: 15px; background: var(--light); border-radius: 12px;">
+                            <i class="fas fa-clock" style="font-size: 2rem; color: var(--secondary); margin-right: 15px;"></i>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 3px;">Working Hours</p>
+                                <p style="color: var(--gray);">24 Hours, 7 Days a Week</p>
+                            </div>
+                        </div>
                     </div>
-                    <a href="https://wa.me/254718369524" target="_blank" class="btn btn-primary" style="background: #25d366;">
-                        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-                    </a>
+                    
+                    <div style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); padding: 20px; border-radius: 12px; text-align: center; color: white; margin-bottom: 15px;">
+                        <h4 style="margin-bottom: 10px;"><i class="fas fa-headset" style="margin-right: 8px;"></i>Need Immediate Help?</h4>
+                        <p style="opacity: 0.9; margin-bottom: 15px;">Our support team is always ready to assist you with any questions or issues.</p>
+                        <a href="https://wa.me/254718369524" target="_blank" class="btn btn-secondary" style="display: inline-flex; width: auto;">
+                            <i class="fab fa-whatsapp"></i> Chat Now on WhatsApp
+                        </a>
+                    </div>
                 </div>
             </div>
 
             <div id="page-privacy" class="page">
                 <div class="card">
-                    <h3 class="card-title"><i class="fas fa-shield-alt"></i> Privacy Policy</h3>
-                    <p style="margin-bottom: 15px;"><strong>Last Updated:</strong> December 2024</p>
-                    <h4 style="margin: 15px 0 10px;">1. Information We Collect</h4>
-                    <p style="margin-bottom: 15px;">We collect your email for account management. Transaction data is stored securely.</p>
-                    <h4 style="margin: 15px 0 10px;">2. How We Use Your Information</h4>
-                    <p style="margin-bottom: 15px;">Your information is used to process transactions, provide support, and improve services.</p>
-                    <h4 style="margin: 15px 0 10px;">3. Data Security</h4>
-                    <p>We implement industry-standard security measures including encryption.</p>
+                    <h3 class="card-title"><i class="fas fa-shield-alt"></i> <span data-translate="privacyPolicy">Privacy Policy</span></h3>
+                    
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <img src="privacy1.png" alt="Privacy" style="max-width: 150px; border-radius: 12px;" onerror="this.style.display='none'">
+                    </div>
+                    
+                    <div style="background: var(--light); padding: 15px; border-radius: 12px; margin-bottom: 20px;">
+                        <p style="color: var(--gray);"><i class="fas fa-calendar" style="margin-right: 8px;"></i><strong>Last Updated:</strong> December 2024</p>
+                    </div>
+                    
+                    <p style="margin-bottom: 20px;">At Airtime Solution Kenya, we are committed to protecting your privacy and ensuring the security of your personal information.</p>
+                    
+                    <div style="border-left: 4px solid var(--primary); padding-left: 15px; margin-bottom: 20px;">
+                        <h4 style="color: var(--primary); margin-bottom: 10px;">1. Information We Collect</h4>
+                        <ul style="margin-left: 15px; color: var(--gray); line-height: 1.8;">
+                            <li>Email address for account authentication</li>
+                            <li>Phone number for airtime transactions</li>
+                            <li>Transaction history and amounts</li>
+                            <li>Device information for security purposes</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="border-left: 4px solid var(--info); padding-left: 15px; margin-bottom: 20px;">
+                        <h4 style="color: var(--info); margin-bottom: 10px;">2. How We Use Your Information</h4>
+                        <ul style="margin-left: 15px; color: var(--gray); line-height: 1.8;">
+                            <li>Process airtime purchases and deposits</li>
+                            <li>Send transaction confirmations</li>
+                            <li>Provide customer support</li>
+                            <li>Improve our services and user experience</li>
+                            <li>Prevent fraud and maintain security</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="border-left: 4px solid var(--success); padding-left: 15px; margin-bottom: 20px;">
+                        <h4 style="color: var(--success); margin-bottom: 10px;">3. Data Security</h4>
+                        <p style="color: var(--gray); margin-bottom: 10px;">We implement industry-standard security measures including:</p>
+                        <ul style="margin-left: 15px; color: var(--gray); line-height: 1.8;">
+                            <li>SSL/TLS encryption for all data transfers</li>
+                            <li>Secure payment processing via M-Pesa</li>
+                            <li>Regular security audits</li>
+                            <li>Access controls and authentication</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="border-left: 4px solid var(--warning); padding-left: 15px; margin-bottom: 20px;">
+                        <h4 style="color: var(--warning); margin-bottom: 10px;">4. Your Rights</h4>
+                        <p style="color: var(--gray);">You have the right to access, correct, or delete your personal data. Contact us at support@airtimesolutionkenya.com for any privacy-related requests.</p>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <img src="privacy2.png" alt="Data Protection" style="max-width: 100%; border-radius: 12px;" onerror="this.style.display='none'">
+                    </div>
                 </div>
             </div>
 
             <div id="page-terms" class="page">
                 <div class="card">
-                    <h3 class="card-title"><i class="fas fa-file-contract"></i> Terms of Service</h3>
-                    <p style="margin-bottom: 15px;"><strong>Effective Date:</strong> December 2024</p>
-                    <h4 style="margin: 15px 0 10px;">1. Acceptance of Terms</h4>
-                    <p style="margin-bottom: 15px;">By using Airtime Solution Kenya, you agree to these terms.</p>
-                    <h4 style="margin: 15px 0 10px;">2. Services</h4>
-                    <p style="margin-bottom: 15px;">We provide airtime purchase, resale, and conversion services. All transactions are final.</p>
-                    <h4 style="margin: 15px 0 10px;">3. User Responsibilities</h4>
-                    <p>You are responsible for maintaining account security and accurate transaction details.</p>
+                    <h3 class="card-title"><i class="fas fa-file-contract"></i> <span data-translate="termsOfService">Terms of Service</span></h3>
+                    
+                    <div style="background: var(--light); padding: 15px; border-radius: 12px; margin-bottom: 20px;">
+                        <p style="color: var(--gray);"><i class="fas fa-calendar" style="margin-right: 8px;"></i><strong>Effective Date:</strong> December 2024</p>
+                    </div>
+                    
+                    <p style="margin-bottom: 20px;">Please read these Terms of Service carefully before using Airtime Solution Kenya.</p>
+                    
+                    <div style="background: var(--light); padding: 20px; border-radius: 12px; margin-bottom: 15px;">
+                        <h4 style="color: var(--primary); margin-bottom: 10px;"><i class="fas fa-handshake" style="margin-right: 8px;"></i>1. Acceptance of Terms</h4>
+                        <p style="color: var(--gray);">By accessing or using Airtime Solution Kenya, you agree to be bound by these Terms of Service. If you do not agree, please do not use our services.</p>
+                    </div>
+                    
+                    <div style="background: var(--light); padding: 20px; border-radius: 12px; margin-bottom: 15px;">
+                        <h4 style="color: var(--primary); margin-bottom: 10px;"><i class="fas fa-cogs" style="margin-right: 8px;"></i>2. Services Provided</h4>
+                        <ul style="margin-left: 15px; color: var(--gray); line-height: 1.8;">
+                            <li>Airtime purchase for Safaricom, Airtel, and Telkom networks</li>
+                            <li>Wallet deposit and management</li>
+                            <li>Airtime to cash conversion (coming soon)</li>
+                            <li>All completed transactions are final and non-reversible</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: var(--light); padding: 20px; border-radius: 12px; margin-bottom: 15px;">
+                        <h4 style="color: var(--primary); margin-bottom: 10px;"><i class="fas fa-user-shield" style="margin-right: 8px;"></i>3. User Responsibilities</h4>
+                        <ul style="margin-left: 15px; color: var(--gray); line-height: 1.8;">
+                            <li>Maintain the security of your account credentials</li>
+                            <li>Provide accurate phone numbers for transactions</li>
+                            <li>Report any unauthorized activity immediately</li>
+                            <li>Use services only for lawful purposes</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: var(--light); padding: 20px; border-radius: 12px; margin-bottom: 15px;">
+                        <h4 style="color: var(--primary); margin-bottom: 10px;"><i class="fas fa-ban" style="margin-right: 8px;"></i>4. Prohibited Activities</h4>
+                        <ul style="margin-left: 15px; color: var(--gray); line-height: 1.8;">
+                            <li>Fraudulent transactions or money laundering</li>
+                            <li>Attempting to exploit system vulnerabilities</li>
+                            <li>Using the service for illegal purposes</li>
+                            <li>Sharing account credentials with others</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: var(--light); padding: 20px; border-radius: 12px;">
+                        <h4 style="color: var(--primary); margin-bottom: 10px;"><i class="fas fa-gavel" style="margin-right: 8px;"></i>5. Limitation of Liability</h4>
+                        <p style="color: var(--gray);">Airtime Solution Kenya shall not be liable for any indirect, incidental, or consequential damages arising from the use of our services. Our maximum liability is limited to the amount of the transaction in question.</p>
+                    </div>
                 </div>
             </div>
 
             <div id="page-cookies" class="page">
                 <div class="card">
                     <h3 class="card-title"><i class="fas fa-cookie-bite"></i> Cookie Policy</h3>
-                    <p style="margin-bottom: 15px;">We use cookies to provide and improve our services.</p>
-                    <div style="background: var(--light); padding: 15px; border-radius: 10px;">
-                        <p style="margin-bottom: 10px;">Do you accept our use of cookies?</p>
-                        <div style="display: flex; gap: 10px;">
-                            <button class="btn btn-primary" style="flex: 1;" onclick="acceptCookies()">Accept All</button>
-                            <button class="btn btn-outline" style="flex: 1;" onclick="rejectCookies()">Essential Only</button>
+                    
+                    <p style="margin-bottom: 20px;">We use cookies to enhance your experience on Airtime Solution Kenya. This policy explains what cookies are and how we use them.</p>
+                    
+                    <div style="background: var(--light); padding: 20px; border-radius: 12px; margin-bottom: 15px;">
+                        <h4 style="color: var(--primary); margin-bottom: 10px;"><i class="fas fa-question-circle" style="margin-right: 8px;"></i>What Are Cookies?</h4>
+                        <p style="color: var(--gray);">Cookies are small text files stored on your device when you visit a website. They help us remember your preferences and improve your experience.</p>
+                    </div>
+                    
+                    <div style="background: var(--light); padding: 20px; border-radius: 12px; margin-bottom: 15px;">
+                        <h4 style="color: var(--primary); margin-bottom: 10px;"><i class="fas fa-list" style="margin-right: 8px;"></i>Types of Cookies We Use</h4>
+                        <div style="margin-top: 15px;">
+                            <div style="display: flex; align-items: start; margin-bottom: 15px;">
+                                <i class="fas fa-check-circle" style="color: var(--success); margin-right: 10px; margin-top: 3px;"></i>
+                                <div>
+                                    <p style="font-weight: 600;">Essential Cookies</p>
+                                    <p style="color: var(--gray); font-size: 0.9rem;">Required for basic functionality like authentication and security.</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: start; margin-bottom: 15px;">
+                                <i class="fas fa-chart-bar" style="color: var(--info); margin-right: 10px; margin-top: 3px;"></i>
+                                <div>
+                                    <p style="font-weight: 600;">Analytics Cookies</p>
+                                    <p style="color: var(--gray); font-size: 0.9rem;">Help us understand how users interact with our platform.</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: start;">
+                                <i class="fas fa-sliders-h" style="color: var(--secondary); margin-right: 10px; margin-top: 3px;"></i>
+                                <div>
+                                    <p style="font-weight: 600;">Preference Cookies</p>
+                                    <p style="color: var(--gray); font-size: 0.9rem;">Remember your settings like language and theme preferences.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); padding: 20px; border-radius: 12px; color: white; text-align: center;">
+                        <h4 style="margin-bottom: 15px;"><i class="fas fa-cookie" style="margin-right: 8px;"></i>Your Cookie Preferences</h4>
+                        <p style="opacity: 0.9; margin-bottom: 15px;">Choose which cookies you want to accept:</p>
+                        <div style="display: flex; gap: 10px; justify-content: center;">
+                            <button class="btn btn-secondary" style="flex: 1; max-width: 150px;" onclick="acceptCookies()">Accept All</button>
+                            <button class="btn" style="flex: 1; max-width: 150px; background: rgba(255,255,255,0.2); color: white;" onclick="rejectCookies()">Essential Only</button>
                         </div>
                     </div>
                 </div>
@@ -1814,6 +2173,192 @@
             document.getElementById('authModal').classList.add('show');
         }
 
+        // Network Selection and Validation for Buy Airtime
+        let selectedNetworkValue = '';
+        let selectedSendNetworkValue = '';
+
+        window.selectNetwork = function(network) {
+            // Remove selected class from Buy Airtime options only
+            document.querySelectorAll('#buyAirtimeForm .network-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            // Add selected class to clicked option
+            document.querySelector(`#buyAirtimeForm .network-option[data-network="${network}"]`).classList.add('selected');
+            selectedNetworkValue = network;
+            document.getElementById('selectedNetwork').value = network;
+            // Hide network error
+            document.getElementById('networkError').classList.remove('show');
+            // Validate form
+            validateAirtimeForm();
+        };
+
+        // Network Selection and Validation for Send Airtime
+        window.selectSendNetwork = function(network) {
+            // Remove selected class from Send Airtime options only
+            document.querySelectorAll('#sellAirtimeForm .network-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            // Add selected class to clicked option
+            document.querySelector(`#sellAirtimeForm .network-option[data-network="${network}"]`).classList.add('selected');
+            selectedSendNetworkValue = network;
+            document.getElementById('selectedSendNetwork').value = network;
+            // Hide network error
+            document.getElementById('sendNetworkError').classList.remove('show');
+            // Validate form
+            validateSendForm();
+        };
+
+        window.validateSendPhone = function() {
+            const phoneInput = document.getElementById('sellAirtimePhone');
+            const phoneError = document.getElementById('sendPhoneError');
+            const phone = phoneInput.value.trim();
+            
+            const isValid = /^[71][0-9]{8}$/.test(phone);
+            
+            if (phone.length === 0) {
+                phoneInput.classList.remove('valid', 'invalid');
+                phoneError.classList.remove('show');
+            } else if (isValid) {
+                phoneInput.classList.remove('invalid');
+                phoneInput.classList.add('valid');
+                phoneError.classList.remove('show');
+            } else {
+                phoneInput.classList.remove('valid');
+                phoneInput.classList.add('invalid');
+                phoneError.classList.add('show');
+            }
+            validateSendForm();
+            return isValid;
+        };
+
+        window.validateSendAmount = function() {
+            const amountInput = document.getElementById('sellAirtimeAmount');
+            const amountError = document.getElementById('sendAmountError');
+            const amount = parseInt(amountInput.value) || 0;
+            
+            const isValid = amount >= 10;
+            
+            if (amountInput.value === '') {
+                amountInput.classList.remove('valid', 'invalid');
+                amountError.classList.remove('show');
+            } else if (isValid) {
+                amountInput.classList.remove('invalid');
+                amountInput.classList.add('valid');
+                amountError.classList.remove('show');
+            } else {
+                amountInput.classList.remove('valid');
+                amountInput.classList.add('invalid');
+                amountError.classList.add('show');
+            }
+            validateSendForm();
+            return isValid;
+        };
+
+        function validateSendForm() {
+            const network = document.getElementById('selectedSendNetwork').value;
+            const phone = document.getElementById('sellAirtimePhone').value.trim();
+            const amount = parseInt(document.getElementById('sellAirtimeAmount').value) || 0;
+            
+            const isNetworkSelected = network !== '';
+            const isPhoneValid = /^[71][0-9]{8}$/.test(phone);
+            const isAmountValid = amount >= 10;
+            
+            const isFormValid = isNetworkSelected && isPhoneValid && isAmountValid;
+            
+            // Enable/disable send buttons
+            document.getElementById('sellAirtimeBalanceBtn').disabled = !isFormValid;
+            const stkBtn = document.getElementById('sellAirtimeStkBtn');
+            stkBtn.disabled = !isFormValid || !floatAvailable;
+            
+            return isFormValid;
+        }
+
+        window.validateAirtimePhone = function() {
+            const phoneInput = document.getElementById('airtimePhone');
+            const phoneError = document.getElementById('phoneError');
+            const phone = phoneInput.value.trim();
+            
+            // Kenyan phone numbers start with 7 or 1 and have 9 digits
+            const isValid = /^[71][0-9]{8}$/.test(phone);
+            
+            if (phone.length === 0) {
+                phoneInput.classList.remove('valid', 'invalid');
+                phoneError.classList.remove('show');
+            } else if (isValid) {
+                phoneInput.classList.remove('invalid');
+                phoneInput.classList.add('valid');
+                phoneError.classList.remove('show');
+            } else {
+                phoneInput.classList.remove('valid');
+                phoneInput.classList.add('invalid');
+                phoneError.classList.add('show');
+            }
+            validateAirtimeForm();
+            return isValid;
+        };
+
+        window.validateAirtimeAmount = function() {
+            const amountInput = document.getElementById('airtimeAmount');
+            const amountError = document.getElementById('amountError');
+            const amount = parseInt(amountInput.value) || 0;
+            
+            const isValid = amount >= 10;
+            
+            if (amountInput.value === '') {
+                amountInput.classList.remove('valid', 'invalid');
+                amountError.classList.remove('show');
+            } else if (isValid) {
+                amountInput.classList.remove('invalid');
+                amountInput.classList.add('valid');
+                amountError.classList.remove('show');
+            } else {
+                amountInput.classList.remove('valid');
+                amountInput.classList.add('invalid');
+                amountError.classList.add('show');
+            }
+            validateAirtimeForm();
+            return isValid;
+        };
+
+        function validateAirtimeForm() {
+            const network = document.getElementById('selectedNetwork').value;
+            const phone = document.getElementById('airtimePhone').value.trim();
+            const amount = parseInt(document.getElementById('airtimeAmount').value) || 0;
+            
+            const isNetworkSelected = network !== '';
+            const isPhoneValid = /^[71][0-9]{8}$/.test(phone);
+            const isAmountValid = amount >= 10;
+            
+            const isFormValid = isNetworkSelected && isPhoneValid && isAmountValid;
+            
+            // Enable/disable all buy buttons
+            document.getElementById('buyAirtimeBtn').disabled = !isFormValid;
+            document.getElementById('directPurchaseBtn').disabled = !isFormValid;
+            document.getElementById('linkPurchaseBtn').disabled = !isFormValid;
+            
+            return isFormValid;
+        }
+
+        // Override form submit to check network selection
+        document.addEventListener('DOMContentLoaded', function() {
+            const buyAirtimeForm = document.getElementById('buyAirtimeForm');
+            if (buyAirtimeForm) {
+                buyAirtimeForm.addEventListener('submit', function(e) {
+                    if (!selectedNetworkValue) {
+                        e.preventDefault();
+                        document.getElementById('networkError').classList.add('show');
+                        showToast('Please select a network first', 'error');
+                        return false;
+                    }
+                    if (!validateAirtimeForm()) {
+                        e.preventDefault();
+                        showToast('Please fill all fields correctly', 'error');
+                        return false;
+                    }
+                });
+            }
+        });
+
         function formatPhoneNumber(phone) {
             let cleaned = phone.replace(/\s+/g, '').replace(/[^0-9]/g, '');
             if (cleaned.startsWith('0')) {
@@ -1970,9 +2515,14 @@
         document.getElementById('buyAirtimeForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             if (!currentUser) { showAuthModal(); return; }
+            if (!selectedNetworkValue) { 
+                document.getElementById('networkError').classList.add('show');
+                showToast('Please select a network first', 'error'); 
+                return; 
+            }
             const phone = '254' + document.getElementById('airtimePhone').value;
             const amount = parseInt(document.getElementById('airtimeAmount').value);
-            if (amount < 5) { showToast('Minimum airtime is KES 5', 'error'); return; }
+            if (amount < 10) { showToast('Minimum airtime is KES 10', 'error'); return; }
             const btn = document.getElementById('buyAirtimeBtn');
             btn.disabled = true;
             btn.innerHTML = '<div class="spinner"></div> Processing...';
@@ -2007,9 +2557,11 @@
         });
 
         window.directAirtimePurchase = async function() {
+            if (!selectedNetworkValue) { showToast('Please select a network first', 'error'); return; }
             const phone = document.getElementById('airtimePhone').value;
             const amount = document.getElementById('airtimeAmount').value;
             if (!phone || !amount) { showToast('Please enter phone number and amount', 'error'); return; }
+            if (parseInt(amount) < 10) { showToast('Minimum airtime is KES 10', 'error'); return; }
             try {
                 const response = await fetch(`${API_BASE}/api/airtime/direct`, {
                     method: 'POST',
@@ -2028,10 +2580,12 @@
         };
 
         window.buyAirtimeWithLink = function() {
+            if (!selectedNetworkValue) { showToast('Please select a network first', 'error'); return; }
             const phone = document.getElementById('airtimePhone').value;
             const amount = document.getElementById('airtimeAmount').value;
             const email = currentUser?.email || 'Guest';
             if (!phone || !amount) { showToast('Please enter phone number and amount', 'error'); return; }
+            if (parseInt(amount) < 10) { showToast('Minimum airtime is KES 10', 'error'); return; }
             const url = `https://short.payhero.co.ke/s/oEvAxA8Xx6cDoBLxntShmF?phone=254${phone}&customer_name=${encodeURIComponent(email)}&amount=${amount}&reference=${encodeURIComponent('#airtime purchase')}`;
             window.open(url, '_blank');
         };
@@ -2061,9 +2615,14 @@
         document.getElementById('sellAirtimeForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             if (!currentUser) { showAuthModal(); return; }
+            if (!selectedSendNetworkValue) { 
+                document.getElementById('sendNetworkError').classList.add('show');
+                showToast('Please select a network first', 'error'); 
+                return; 
+            }
             const phone = '254' + document.getElementById('sellAirtimePhone').value;
             const amount = parseInt(document.getElementById('sellAirtimeAmount').value);
-            if (amount < 5) { showToast('Minimum airtime is KES 5', 'error'); return; }
+            if (amount < 10) { showToast('Minimum airtime is KES 10', 'error'); return; }
             const btn = document.getElementById('sellAirtimeBalanceBtn');
             btn.disabled = true;
             btn.innerHTML = '<div class="spinner"></div> Processing...';
@@ -2095,10 +2654,12 @@
         });
 
         window.sellAirtimeWithStk = function() {
+            if (!selectedSendNetworkValue) { showToast('Please select a network first', 'error'); return; }
             const phone = document.getElementById('sellAirtimePhone').value;
             const amount = document.getElementById('sellAirtimeAmount').value;
             const email = currentUser?.email || 'Guest';
             if (!phone || !amount) { showToast('Please enter phone number and amount', 'error'); return; }
+            if (parseInt(amount) < 10) { showToast('Minimum airtime is KES 10', 'error'); return; }
             if (!floatAvailable) { showToast('Airtime service temporarily unavailable.', 'error'); return; }
             const url = `https://short.payhero.co.ke/s/oEvAxA8Xx6cDoBLxntShmF?phone=254${phone}&customer_name=${encodeURIComponent(email)}&amount=${amount}&reference=${encodeURIComponent('#airtime purchase')}`;
             window.open(url, '_blank');
@@ -2210,9 +2771,107 @@
             showToast('Profile saved locally!', 'success');
         });
 
+        // Translation object for English and Kiswahili
+        const translations = {
+            en: {
+                yourBalance: 'Your Balance',
+                deposit: 'Deposit',
+                buyAirtime: 'Buy Airtime',
+                sendAirtime: 'Send Airtime',
+                airtimeToCash: 'Airtime to Cash',
+                history: 'History',
+                whyChooseUs: 'Why Choose Us',
+                faq: 'Frequently Asked Questions',
+                recentTransactions: 'Recent Transactions',
+                dashboard: 'Dashboard',
+                transactions: 'Transactions',
+                settings: 'Settings',
+                aboutUs: 'About Us',
+                contactUs: 'Contact Us',
+                privacyPolicy: 'Privacy Policy',
+                termsOfService: 'Terms of Service',
+                logout: 'Logout'
+            },
+            sw: {
+                yourBalance: 'Salio Lako',
+                deposit: 'Weka Pesa',
+                buyAirtime: 'Nunua Airtime',
+                sendAirtime: 'Tuma Airtime',
+                airtimeToCash: 'Airtime kwa Pesa',
+                history: 'Historia',
+                whyChooseUs: 'Kwa Nini Uchague Sisi',
+                faq: 'Maswali Yanayoulizwa Mara Kwa Mara',
+                recentTransactions: 'Miamala ya Hivi Karibuni',
+                dashboard: 'Dashibodi',
+                transactions: 'Miamala',
+                settings: 'Mipangilio',
+                aboutUs: 'Kuhusu Sisi',
+                contactUs: 'Wasiliana Nasi',
+                privacyPolicy: 'Sera ya Faragha',
+                termsOfService: 'Masharti ya Huduma',
+                logout: 'Ondoka'
+            }
+        };
+
         window.changeLanguage = function(lang) {
             localStorage.setItem('language', lang);
+            const trans = translations[lang] || translations.en;
+            
+            // Update all elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (trans[key]) {
+                    el.textContent = trans[key];
+                }
+            });
+            
             showToast(lang === 'sw' ? 'Lugha imebadilishwa kuwa Kiswahili' : 'Language changed to English', 'success');
+        };
+
+        // Profile Phone Validation
+        let profilePhoneCheckTimeout = null;
+
+        window.validateProfilePhone = function() {
+            const phoneInput = document.getElementById('profilePhone');
+            const phoneError = document.getElementById('profilePhoneError');
+            const duplicateError = document.getElementById('profilePhoneDuplicateError');
+            const phone = phoneInput.value.trim();
+            
+            // Hide duplicate error initially
+            duplicateError.classList.remove('show');
+            
+            // Basic format validation
+            const isValid = /^[71][0-9]{8}$/.test(phone);
+            
+            if (phone.length === 0) {
+                phoneInput.classList.remove('valid', 'invalid');
+                phoneError.classList.remove('show');
+            } else if (isValid) {
+                phoneInput.classList.remove('invalid');
+                phoneInput.classList.add('valid');
+                phoneError.classList.remove('show');
+                
+                // Check for duplicate phone in database
+                clearTimeout(profilePhoneCheckTimeout);
+                profilePhoneCheckTimeout = setTimeout(async () => {
+                    try {
+                        const response = await fetch(`${API_BASE}/api/users/check-phone/254${phone}`);
+                        const data = await response.json();
+                        if (data.exists && data.email !== currentUser?.email) {
+                            duplicateError.classList.add('show');
+                            phoneInput.classList.remove('valid');
+                            phoneInput.classList.add('invalid');
+                        }
+                    } catch (error) {
+                        console.log('Phone check error:', error);
+                    }
+                }, 500);
+            } else {
+                phoneInput.classList.remove('valid');
+                phoneInput.classList.add('invalid');
+                phoneError.classList.add('show');
+            }
+            return isValid;
         };
 
         window.changeTheme = function(theme) {
