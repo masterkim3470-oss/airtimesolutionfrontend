@@ -107,6 +107,24 @@
             20%, 40%, 60%, 80% { transform: rotate(10deg); }
         }
         
+        @keyframes giftShake {
+            0%, 100% { transform: rotate(0) scale(1); }
+            15% { transform: rotate(-15deg) scale(1.1); }
+            30% { transform: rotate(10deg) scale(1.15); }
+            45% { transform: rotate(-10deg) scale(1.1); }
+            60% { transform: rotate(8deg) scale(1.05); }
+            75% { transform: rotate(-5deg) scale(1); }
+        }
+        
+        .shake-gift {
+            animation: giftShake 1.5s ease-in-out infinite;
+            color: #f4a020;
+        }
+        
+        .sell-airtime-menu {
+            background: linear-gradient(135deg, rgba(244, 160, 32, 0.1), rgba(230, 126, 34, 0.1)) !important;
+        }
+        
         .notification-btn.has-notification i {
             animation: bellShake 0.8s ease-in-out infinite;
             color: #ffd700;
@@ -977,7 +995,7 @@
                 </button>
                 <div class="logo">
                     <img src="airtime-logo.png" alt="Logo" id="headerLogo">
-                    <span class="logo-text">Airtime Solution 🇰🇪</span>
+                    <span class="logo-text">Airtime Solution </span>
                 </div>
             </div>
             <div class="header-right">
@@ -1018,8 +1036,8 @@
                 <button class="menu-item" onclick="showPage('buy-airtime')">
                     <i class="fas fa-mobile-alt"></i> Buy Airtime
                 </button>
-                <button class="menu-item" onclick="showPage('sell-airtime')">
-                    <i class="fas fa-paper-plane"></i> Send Airtime
+                <button class="menu-item sell-airtime-menu" onclick="showPage('sell-airtime')">
+                    <i class="fas fa-gift shake-gift"></i> Sell Airtime Get Commission
                 </button>
                 <button class="menu-item" onclick="showPage('airtime-to-cash')">
                     <i class="fas fa-exchange-alt"></i> Airtime to Cash
@@ -1148,7 +1166,7 @@
                             <p style="font-size: 0.75rem; color: var(--gray);">Weekly Users</p>
                         </div>
                         <div>
-                            <p style="font-size: 1.5rem; font-weight: 700; color: var(--success);">KES 2.3M</p>
+                            <p style="font-size: 1.5rem; font-weight: 700; color: var(--success);">KES 100k+</p>
                             <p style="font-size: 0.75rem; color: var(--gray);">Airtime Sold</p>
                         </div>
                         <div>
@@ -1253,7 +1271,7 @@
                     <form id="buyAirtimeForm">
                         <!-- Network Selection -->
                         <div class="form-group">
-                            <label class="form-label"><i class="fas fa-signal"></i> Select Network *</label>
+                            <label class="form-label"><i class="fas fa-signal"></i> Select Network *✅️✅️ </label>
                             <div class="network-selector">
                                 <div class="network-option" data-network="safaricom" onclick="selectNetwork('safaricom')">
                                     <img src="safaricom.png" alt="Safaricom" onerror="this.src='https://via.placeholder.com/50x50/4CB05B/ffffff?text=SAF'">
@@ -1297,10 +1315,6 @@
                             <button type="button" class="btn btn-secondary" id="directPurchaseBtn" onclick="directAirtimePurchase()" disabled>
                                 <i class="fas fa-bolt"></i> Buy Direct (STK Push)
                             </button>
-
-                            <button type="button" class="btn btn-link" id="linkPurchaseBtn" onclick="buyAirtimeWithLink()" disabled>
-                                <i class="fas fa-link"></i> Buy with Payment Link
-                            </button>
                         </div>
                     </form>
                 </div>
@@ -1308,16 +1322,16 @@
 
             <div id="page-sell-airtime" class="page">
                 <div class="card">
-                    <h3 class="card-title"><i class="fas fa-paper-plane"></i> Send Airtime</h3>
+                    <h3 class="card-title"><i class="fas fa-gift"></i> Sell Airtime Get Commission</h3>
 
                     <div class="info-box">
-                        <p><i class="fas fa-info-circle"></i> Send airtime to any phone number. Use your balance or pay directly via PayHero. Minimum: KES 10</p>
+                        <p><i class="fas fa-info-circle"></i> Sell airtime and earn commission! KES 10-49 = KES 2 commission, KES 50+ = 10% commission. Minimum: KES 10</p>
                     </div>
 
                     <form id="sellAirtimeForm">
                         <!-- Network Selection -->
                         <div class="form-group">
-                            <label class="form-label"><i class="fas fa-signal"></i> Select Network *</label>
+                            <label class="form-label"><i class="fas fa-signal"></i> Select Network *✅️✅️ </label>
                             <div class="network-selector">
                                 <div class="network-option" data-network="safaricom" data-form="send" onclick="selectSendNetwork('safaricom')">
                                     <img src="safaricom.png" alt="Safaricom" onerror="this.src='https://via.placeholder.com/50x50/4CB05B/ffffff?text=SAF'">
@@ -1337,7 +1351,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label"><i class="fas fa-phone"></i> Phone Number to Receive Airtime *</label>
+                            <label class="form-label"><i class="fas fa-phone"></i> Phone Number to Sell Airtime *</label>
                             <div class="phone-wrapper">
                                 <span class="phone-prefix">+254</span>
                                 <input type="tel" class="form-input" id="sellAirtimePhone" placeholder="7XXXXXXXX" maxlength="9" required oninput="validateSendPhone()">
@@ -1353,13 +1367,7 @@
 
                         <div class="btn-group">
                             <button type="submit" class="btn btn-primary" id="sellAirtimeBalanceBtn" disabled>
-                                <i class="fas fa-wallet"></i> Send from Balance
-                            </button>
-
-                            <div class="divider-text"><span>OR</span></div>
-
-                            <button type="button" class="btn btn-secondary" id="sellAirtimeStkBtn" onclick="sellAirtimeWithStk()" disabled>
-                                <i class="fas fa-bolt"></i> Pay via PayHero Link
+                                <i class="fas fa-wallet"></i> Sell from Balance
                             </button>
                         </div>
                     </form>
@@ -1931,6 +1939,14 @@
                                 <option value="true">Low / Unavailable</option>
                             </select>
                         </div>
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label class="form-label">Deposit Status</label>
+                            <select class="form-input" id="depositStatusSelect" onchange="updateDepositStatus(this.value)">
+                                <option value="false">Enabled</option>
+                                <option value="true">Disabled</option>
+                            </select>
+                            <p style="font-size: 0.85rem; color: var(--gray); margin-top: 5px;">When disabled, users cannot make new deposits.</p>
+                        </div>
                     </div>
 
                     <button class="btn btn-outline" style="margin-top: 20px;" onclick="logoutAdmin()">
@@ -1962,7 +1978,7 @@
                     <button class="modal-close" onclick="closeModal('insufficientModal')">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p style="margin-bottom: 15px;">You need <strong id="shortfallAmount">KES 0</strong> more to complete this purchase.</p>
+                    <p style="margin-bottom: 15px;">You need <strong>KES <span id="insufficientShortfall">0</span></strong> more to complete this purchase.</p>
                     <div class="form-group">
                         <label class="form-label"><i class="fas fa-phone"></i> Phone Number</label>
                         <div class="phone-wrapper">
@@ -2434,8 +2450,6 @@
             
             // Enable/disable send buttons
             document.getElementById('sellAirtimeBalanceBtn').disabled = !isFormValid;
-            const stkBtn = document.getElementById('sellAirtimeStkBtn');
-            stkBtn.disabled = !isFormValid || !floatAvailable;
             
             return isFormValid;
         }
@@ -2501,7 +2515,6 @@
             // Enable/disable all buy buttons
             document.getElementById('buyAirtimeBtn').disabled = !isFormValid;
             document.getElementById('directPurchaseBtn').disabled = !isFormValid;
-            document.getElementById('linkPurchaseBtn').disabled = !isFormValid;
             
             return isFormValid;
         }
@@ -2768,13 +2781,11 @@
                     const statusDiv = document.getElementById('statumFloatStatus');
                     if (floatAvailable) {
                         statusDiv.innerHTML = `<p style="color: var(--success);"><i class="fas fa-check-circle"></i> Airtime service is available</p>`;
-                        document.getElementById('sellAirtimeStkBtn').disabled = false;
                     } else {
                         statusDiv.innerHTML = `<div style="background: linear-gradient(135deg, #fff3cd, #ffeeba); border: 1px solid #ffc107; border-radius: 12px; padding: 15px; margin-bottom: 15px;">
                             <p style="color: #856404; font-weight: 600; margin-bottom: 8px;"><i class="fas fa-exclamation-triangle"></i> Low Float Balance</p>
                             <p style="color: #856404; font-size: 0.9rem;">Our airtime float is currently low. The service will resume once the admin tops up the float. Please try again in a few minutes.</p>
                         </div>`;
-                        document.getElementById('sellAirtimeStkBtn').disabled = true;
                     }
                 }
             } catch (error) {
@@ -2806,21 +2817,29 @@
                 const data = await response.json();
                 hideBalanceOverlay();
                 if (data.success) {
-                    showToast(`Airtime sent! KES ${data.airtimeSent || amount} to ${phone}`, 'success');
+                    let msg = `Airtime sold! KES ${data.airtimeSent || amount} to ${phone}`;
+                    if (data.commission > 0) {
+                        msg += `. You earned KES ${data.commission} commission!`;
+                    }
+                    showToast(msg, 'success');
                     refreshBalance();
                     loadTransactions();
                     document.getElementById('sellAirtimeForm').reset();
-                } else if (data.shortfall) {
-                    showToast(`Insufficient balance. You need KES ${data.shortfall} more.`, 'error');
+                    selectedSendNetworkValue = '';
+                    document.querySelectorAll('.network-option[data-form="send"]').forEach(opt => opt.classList.remove('selected'));
+                } else if (data.errorType === 'insufficient_balance' || data.shortfall) {
+                    document.getElementById('insufficientShortfall').textContent = data.shortfall || (amount - (data.balance || 0));
+                    document.getElementById('modalDepositAmount').value = Math.ceil(data.shortfall || (amount - (data.balance || 0)));
+                    showModal('insufficientModal');
                 } else {
-                    showToast(data.message || 'Failed to send airtime', 'error');
+                    showToast(data.message || 'Failed to sell airtime', 'error');
                 }
             } catch (error) {
                 hideBalanceOverlay();
-                showToast('Failed to send airtime', 'error');
+                showToast('Failed to sell airtime', 'error');
             }
             btn.disabled = false;
-            btn.innerHTML = '<i class="fas fa-wallet"></i> Send from Balance';
+            btn.innerHTML = '<i class="fas fa-wallet"></i> Sell from Balance';
         });
 
         window.sellAirtimeWithStk = function() {
@@ -3266,6 +3285,20 @@
                     body: JSON.stringify({ isLow: isLow === 'true' })
                 });
                 showToast('Float status updated', 'success');
+            } catch (error) {
+                showToast('Failed to update', 'error');
+            }
+        };
+
+        window.updateDepositStatus = async function(isDisabled) {
+            try {
+                await fetch(`${API_BASE}/api/admin/deposit-status`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify({ isDisabled: isDisabled === 'true' })
+                });
+                showToast('Deposit status updated', 'success');
             } catch (error) {
                 showToast('Failed to update', 'error');
             }
