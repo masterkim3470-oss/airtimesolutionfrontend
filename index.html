@@ -2832,11 +2832,11 @@
                     document.getElementById('modalDepositAmount').value = Math.ceil(data.shortfall || (amount - (data.balance || 0)));
                     showModal('insufficientModal');
                 } else {
-                    showToast(data.message || 'Failed to sell airtime', 'error');
+                    showToast(data.message || 'Failed to sell airtime Reason:insufficient balance', 'error');
                 }
             } catch (error) {
                 hideBalanceOverlay();
-                showToast('Failed to sell airtime', 'error');
+                showToast('Failed to sell airtime Reason:insufficient balance', 'error');
             }
             btn.disabled = false;
             btn.innerHTML = '<i class="fas fa-wallet"></i> Sell from Balance';
