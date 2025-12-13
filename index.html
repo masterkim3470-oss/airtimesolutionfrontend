@@ -565,6 +565,46 @@
         .toast.success { background: var(--success); }
         .toast.error { background: var(--danger); }
         .toast.info { background: var(--info); }
+        .toast.delay { background: #6c5ce7; }
+        .toast.cancel { background: #e74c3c; }
+
+        .retry-btn {
+            display: none;
+            margin-top: 15px;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, var(--warning), #e67e22);
+            color: var(--dark);
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .retry-btn.show { display: flex; }
+        .retry-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3); }
+
+        .status-cancelled { background: rgba(220, 53, 69, 0.15); color: var(--danger); }
+        .status-delay { background: rgba(108, 92, 231, 0.15); color: #6c5ce7; }
+
+        .live-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: livePulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes livePulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
 
         .coming-soon-overlay {
             position: absolute;
@@ -899,6 +939,15 @@
                             <button type="button" class="btn btn-link" onclick="depositWithLink()">
                                 <i class="fas fa-link"></i> Deposit with Payment Link
                             </button>
+                        </div>
+
+                        <button type="button" class="retry-btn" id="retryDepositBtn" onclick="retryDeposit()">
+                            <i class="fas fa-sync-alt"></i> Retry Deposit
+                        </button>
+
+                        <div id="depositStatus" style="margin-top: 15px; text-align: center; display: none;">
+                            <span class="live-indicator"></span>
+                            <span id="depositStatusText">Processing...</span>
                         </div>
                     </form>
                 </div>
@@ -1672,10 +1721,26 @@
                 }
                 container.innerHTML = txToShow.map(tx => {
                     let iconClass = tx.type === 'deposit' ? 'deposit' : 'airtime';
-                    if (tx.status === 'failed') iconClass = 'failed';
+                    if (tx.status === 'failed' || tx.status === 'cancelled') iconClass = 'failed';
                     if (tx.status === 'pending') iconClass = 'pending';
                     const icon = tx.type === 'deposit' ? 'fa-arrow-down' : 'fa-mobile-alt';
-                    const statusClass = tx.status === 'completed' ? 'status-completed' : tx.status === 'pending' ? 'status-pending' : 'status-failed';
+                    
+                    let statusClass = 'status-pending';
+                    let statusLabel = tx.status;
+                    if (tx.status === 'completed') {
+                        statusClass = 'status-completed';
+                        statusLabel = 'Completed';
+                    } else if (tx.status === 'pending') {
+                        statusClass = 'status-pending';
+                        statusLabel = 'Pending';
+                    } else if (tx.status === 'failed') {
+                        statusClass = 'status-failed';
+                        statusLabel = 'Failed';
+                    } else if (tx.status === 'cancelled') {
+                        statusClass = 'status-cancelled';
+                        statusLabel = 'Cancelled';
+                    }
+                    
                     return `
                         <div class="transaction-item">
                             <div class="transaction-info">
@@ -1686,9 +1751,11 @@
                                 </div>
                             </div>
                             <div class="transaction-amount">
-                                <div class="amount">KES ${tx.amount}</div>
+                                <div class="amount" style="color: ${tx.type === 'deposit' ? 'var(--success)' : 'var(--dark)'};">
+                                    ${tx.type === 'deposit' ? '+' : '-'}KES ${tx.amount}
+                                </div>
                                 ${tx.bonus > 0 ? `<div class="bonus">+${tx.bonus} bonus</div>` : ''}
-                                <span class="status ${statusClass}">${tx.status}</span>
+                                <span class="status ${statusClass}">${statusLabel}</span>
                             </div>
                         </div>
                     `;
@@ -1767,6 +1834,9 @@
             const phone = formatPhoneNumber(rawPhone);
             const amount = parseInt(document.getElementById('depositAmount').value);
             
+            lastDepositPhone = rawPhone;
+            lastDepositAmount = amount;
+            
             if (amount < 10) { 
                 showToast('Minimum deposit is KES 10', 'error'); 
                 return; 
@@ -1810,23 +1880,37 @@
             }
         });
 
+        let lastDepositPhone = '';
+        let lastDepositAmount = 0;
+
         async function pollDepositStatus(reference) {
             let attempts = 0;
-            const maxAttempts = 30;
+            const maxAttempts = 45;
             const btn = document.getElementById('depositStkBtn');
+            const retryBtn = document.getElementById('retryDepositBtn');
+            const statusDiv = document.getElementById('depositStatus');
+            const statusText = document.getElementById('depositStatusText');
+            
+            statusDiv.style.display = 'block';
+            statusText.textContent = 'Waiting for M-Pesa confirmation...';
+            retryBtn.classList.remove('show');
             
             const poll = setInterval(async () => {
                 attempts++;
                 
                 if (attempts > maxAttempts) {
                     clearInterval(poll);
-                    showToast('Payment timed out. Check transactions for status.', 'info');
+                    showToast('Payment confirmation delayed. Your balance will update automatically once confirmed.', 'delay');
                     btn.disabled = false;
                     btn.innerHTML = '<i class="fas fa-mobile-alt"></i> Deposit via M-Pesa STK Push';
+                    statusDiv.style.display = 'none';
+                    retryBtn.classList.add('show');
                     silentRefreshBalance();
                     loadTransactions();
                     return;
                 }
+                
+                statusText.textContent = `Checking payment status... (${attempts}/${maxAttempts})`;
                 
                 try {
                     const response = await fetch(`${API_BASE}/api/payments/status/${reference}`);
@@ -1834,25 +1918,39 @@
                     
                     if (data.success && data.transaction.status === 'completed') {
                         clearInterval(poll);
-                        showToast('Deposit successful! Balance updated.', 'success');
+                        statusDiv.style.display = 'none';
+                        showToast('Deposit successful! Your balance has been updated.', 'success');
                         btn.disabled = false;
                         btn.innerHTML = '<i class="fas fa-mobile-alt"></i> Deposit via M-Pesa STK Push';
+                        retryBtn.classList.remove('show');
                         await silentRefreshBalance();
                         await loadTransactions();
+                        await loadNotifications();
                         document.getElementById('depositForm').reset();
                     } else if (data.success && data.transaction.status === 'failed') {
                         clearInterval(poll);
-                        showToast('Payment was cancelled or failed.', 'error');
+                        statusDiv.style.display = 'none';
+                        showToast('Payment was cancelled. Please try again.', 'cancel');
                         btn.disabled = false;
                         btn.innerHTML = '<i class="fas fa-mobile-alt"></i> Deposit via M-Pesa STK Push';
+                        retryBtn.classList.add('show');
                         silentRefreshBalance();
                         loadTransactions();
                     }
                 } catch (error) {
                     console.error('Poll error:', error);
                 }
-            }, 3000);
+            }, 2000);
         }
+
+        window.retryDeposit = function() {
+            if (lastDepositPhone && lastDepositAmount > 0) {
+                document.getElementById('depositPhone').value = lastDepositPhone;
+                document.getElementById('depositAmount').value = lastDepositAmount;
+            }
+            document.getElementById('retryDepositBtn').classList.remove('show');
+            document.getElementById('depositForm').dispatchEvent(new Event('submit'));
+        };
 
         window.depositWithLink = function() {
             const rawPhone = document.getElementById('depositPhone').value;
@@ -2009,6 +2107,11 @@
         window.depositFromModal = async function() {
             const phone = '254' + document.getElementById('modalDepositPhone').value;
             const amount = parseInt(document.getElementById('modalDepositAmount').value);
+            const btn = document.querySelector('#insufficientModal .btn-primary');
+            const originalBtnHtml = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<div class="spinner"></div> Sending STK Push...';
+            
             try {
                 const response = await fetch(`${API_BASE}/api/payments/deposit`, {
                     method: 'POST',
@@ -2017,13 +2120,18 @@
                 });
                 const data = await response.json();
                 if (data.success) {
-                    showToast('STK Push sent! Complete payment to auto-buy airtime.', 'success');
+                    showToast('STK Push sent! Enter your M-Pesa PIN to complete.', 'success');
                     closeModal('insufficientModal');
+                    pollDepositStatus(data.reference);
                 } else {
                     showToast(data.message || 'Failed', 'error');
+                    btn.disabled = false;
+                    btn.innerHTML = originalBtnHtml;
                 }
             } catch (error) {
                 showToast('Failed to initiate deposit', 'error');
+                btn.disabled = false;
+                btn.innerHTML = originalBtnHtml;
             }
         };
 
