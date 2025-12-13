@@ -440,7 +440,6 @@
         .transaction-icon.deposit { background: rgba(40, 167, 69, 0.15); color: var(--success); }
         .transaction-icon.airtime { background: rgba(23, 162, 184, 0.15); color: var(--info); }
         .transaction-icon.failed { background: rgba(220, 53, 69, 0.15); color: var(--danger); }
-        .transaction-icon.pending { background: rgba(255, 193, 7, 0.15); color: var(--warning); }
         .transaction-details h4 { font-size: 0.95rem; font-weight: 500; margin-bottom: 3px; }
         .transaction-details p { font-size: 0.8rem; color: var(--gray); }
         .transaction-amount { text-align: right; }
@@ -448,7 +447,7 @@
         .transaction-amount .bonus { color: var(--success); font-size: 0.8rem; }
         .transaction-amount .status { font-size: 0.75rem; padding: 3px 8px; border-radius: 20px; }
         .status-completed { background: rgba(40, 167, 69, 0.15); color: var(--success); }
-        .status-pending { background: rgba(255, 193, 7, 0.15); color: #856404; }
+        .status-pending { background: rgba(255, 193, 7, 0.15); color: var(--warning); }
         .status-failed { background: rgba(220, 53, 69, 0.15); color: var(--danger); }
 
         .modal {
@@ -880,8 +879,10 @@
                     <form id="depositForm">
                         <div class="form-group">
                             <label class="form-label"><i class="fas fa-phone"></i> Phone Number *</label>
-                            <input type="tel" class="form-input" id="depositPhone" placeholder="e.g. 0718369524" maxlength="10" required>
-                            <small style="color: var(--gray); font-size: 0.8rem;">Enter your M-Pesa number (starts with 07 or 01)</small>
+                            <div class="phone-wrapper">
+                                <span class="phone-prefix">+254</span>
+                                <input type="tel" class="form-input" id="depositPhone" placeholder="7XXXXXXXX" maxlength="9" required>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -891,7 +892,7 @@
 
                         <div class="btn-group">
                             <button type="submit" class="btn btn-primary" id="depositStkBtn">
-                                <i class="fas fa-mobile-alt"></i> Deposit via M-Pesa STK Push
+                                <i class="fas fa-mobile-alt"></i> Deposit via M-Pesa STK
                             </button>
 
                             <div class="divider-text"><span>OR</span></div>
@@ -1448,22 +1449,21 @@
             authDomain: "swiftauth-5fcb5.firebaseapp.com",
             projectId: "swiftauth-5fcb5",
             storageBucket: "swiftauth-5fcb5.firebasestorage.app",
-            messagingSenderId: "441294638654",
-            appId: "1:441294638654:web:0bf7a76ed7c42b8f7e6834"
+            messagingSenderId: "990160652137",
+            appId: "1:990160652137:web:abac238567edfdb5671ff8",
+            measurementId: "G-5C1DS28B5S"
         };
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
         const API_BASE = 'https://airtimesolutionbackend2.onrender.com';
-
         let currentUser = null;
         let adminLoggedIn = false;
+        let pendingPurchase = null;
         let deferredPrompt = null;
         let balanceRefreshInterval = null;
         let depositRefreshInterval = null;
-        let pendingPurchase = null;
-        let currentDepositReference = null;
 
         function showLoading(text = 'Loading...') {
             document.getElementById('loadingText').textContent = text;
@@ -1545,9 +1545,8 @@
             depositRefreshInterval = setInterval(() => {
                 if (currentUser) {
                     silentRefreshBalance();
-                    silentRefreshTransactions();
                 }
-            }, 2000);
+            }, 1000);
         }
 
         function stopDepositRefresh() {
@@ -1578,19 +1577,6 @@
             }
         }
 
-        async function silentRefreshTransactions() {
-            if (!currentUser) return;
-            try {
-                const response = await fetch(`${API_BASE}/api/transactions/${encodeURIComponent(currentUser.email)}`);
-                const data = await response.json();
-                if (data.success) {
-                    renderTransactions(data.transactions);
-                }
-            } catch (error) {
-                console.error('Silent transaction refresh error:', error);
-            }
-        }
-
         window.refreshBalance = async function() {
             if (!currentUser) return;
             const btn = document.getElementById('refreshBtn');
@@ -1602,7 +1588,7 @@
                     currentUser.balance = data.balance;
                     currentUser.bonus_balance = data.bonus;
                     updateUI();
-                    showToast('Balance refreshed successfully!', 'success');
+                    showToast('Balance updated!', 'success');
                 }
             } catch (error) {
                 showToast('Failed to refresh balance', 'error');
@@ -1671,9 +1657,7 @@
                     return;
                 }
                 container.innerHTML = txToShow.map(tx => {
-                    let iconClass = tx.type === 'deposit' ? 'deposit' : 'airtime';
-                    if (tx.status === 'failed') iconClass = 'failed';
-                    if (tx.status === 'pending') iconClass = 'pending';
+                    const iconClass = tx.type === 'deposit' ? 'deposit' : tx.status === 'failed' ? 'failed' : 'airtime';
                     const icon = tx.type === 'deposit' ? 'fa-arrow-down' : 'fa-mobile-alt';
                     const statusClass = tx.status === 'completed' ? 'status-completed' : tx.status === 'pending' ? 'status-pending' : 'status-failed';
                     return `
@@ -1747,41 +1731,16 @@
             document.getElementById('authModal').classList.add('show');
         }
 
-        function formatPhoneNumber(phone) {
-            let cleaned = phone.replace(/\s+/g, '').replace(/[^0-9]/g, '');
-            if (cleaned.startsWith('0')) {
-                cleaned = '254' + cleaned.substring(1);
-            } else if (cleaned.startsWith('+254')) {
-                cleaned = cleaned.substring(1);
-            } else if (!cleaned.startsWith('254')) {
-                cleaned = '254' + cleaned;
-            }
-            return cleaned;
-        }
-
         document.getElementById('depositForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             if (!currentUser) { showAuthModal(); return; }
-            
-            const rawPhone = document.getElementById('depositPhone').value;
-            const phone = formatPhoneNumber(rawPhone);
+            const phone = '254' + document.getElementById('depositPhone').value;
             const amount = parseInt(document.getElementById('depositAmount').value);
-            
-            if (amount < 10) { 
-                showToast('Minimum deposit is KES 10', 'error'); 
-                return; 
-            }
-            
-            if (phone.length !== 12) {
-                showToast('Please enter a valid phone number', 'error');
-                return;
-            }
-            
+            if (amount < 10) { showToast('Minimum deposit is KES 10', 'error'); return; }
             const btn = document.getElementById('depositStkBtn');
             btn.disabled = true;
-            btn.innerHTML = '<div class="spinner"></div> Sending STK Push...';
-            showLoading('Sending STK Push to ' + phone.substring(0, 6) + '...');
-            
+            btn.innerHTML = '<div class="spinner"></div> Processing...';
+            showBalanceOverlay();
             try {
                 const response = await fetch(`${API_BASE}/api/payments/deposit`, {
                     method: 'POST',
@@ -1789,83 +1748,57 @@
                     body: JSON.stringify({ email: currentUser.email, phone: phone, amount: amount })
                 });
                 const data = await response.json();
-                
-                hideLoading();
-                
                 if (data.success) {
-                    currentDepositReference = data.reference;
-                    showToast('STK Push sent! Enter your M-Pesa PIN.', 'success');
-                    btn.innerHTML = '<div class="spinner"></div> Waiting for payment...';
+                    showToast(`STK Push sent! Check your phone. Bonus: +${data.bonus}`, 'success');
                     pollDepositStatus(data.reference);
                 } else {
-                    showToast(data.message || 'Failed to send STK Push', 'error');
-                    btn.disabled = false;
-                    btn.innerHTML = '<i class="fas fa-mobile-alt"></i> Deposit via M-Pesa STK Push';
+                    showToast(data.message || 'Deposit failed', 'error');
+                    hideBalanceOverlay();
                 }
             } catch (error) {
-                hideLoading();
-                showToast('Failed to initiate deposit. Please try again.', 'error');
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-mobile-alt"></i> Deposit via M-Pesa STK Push';
+                showToast('Failed to initiate deposit', 'error');
+                hideBalanceOverlay();
             }
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-mobile-alt"></i> Deposit via M-Pesa STK';
         });
 
         async function pollDepositStatus(reference) {
             let attempts = 0;
-            const maxAttempts = 30;
-            const btn = document.getElementById('depositStkBtn');
-            
+            const maxAttempts = 24;
             const poll = setInterval(async () => {
                 attempts++;
-                
                 if (attempts > maxAttempts) {
                     clearInterval(poll);
-                    showToast('Payment timed out. Check transactions for status.', 'info');
-                    btn.disabled = false;
-                    btn.innerHTML = '<i class="fas fa-mobile-alt"></i> Deposit via M-Pesa STK Push';
-                    silentRefreshBalance();
-                    loadTransactions();
+                    hideBalanceOverlay();
                     return;
                 }
-                
                 try {
                     const response = await fetch(`${API_BASE}/api/payments/status/${reference}`);
                     const data = await response.json();
-                    
                     if (data.success && data.transaction.status === 'completed') {
                         clearInterval(poll);
+                        hideBalanceOverlay();
                         showToast('Deposit successful! Balance updated.', 'success');
-                        btn.disabled = false;
-                        btn.innerHTML = '<i class="fas fa-mobile-alt"></i> Deposit via M-Pesa STK Push';
-                        await silentRefreshBalance();
-                        await loadTransactions();
-                        document.getElementById('depositForm').reset();
+                        refreshBalance();
+                        loadTransactions();
                     } else if (data.success && data.transaction.status === 'failed') {
                         clearInterval(poll);
-                        showToast('Payment was cancelled or failed.', 'error');
-                        btn.disabled = false;
-                        btn.innerHTML = '<i class="fas fa-mobile-alt"></i> Deposit via M-Pesa STK Push';
-                        silentRefreshBalance();
-                        loadTransactions();
+                        hideBalanceOverlay();
+                        showToast('Deposit failed', 'error');
                     }
                 } catch (error) {
                     console.error('Poll error:', error);
                 }
-            }, 3000);
+            }, 5000);
         }
 
         window.depositWithLink = function() {
-            const rawPhone = document.getElementById('depositPhone').value;
+            const phone = document.getElementById('depositPhone').value;
             const amount = document.getElementById('depositAmount').value;
             const email = currentUser?.email || 'Guest';
-            
-            if (!rawPhone || !amount) { 
-                showToast('Please enter phone number and amount', 'error'); 
-                return; 
-            }
-            
-            const phone = formatPhoneNumber(rawPhone);
-            const url = `https://short.payhero.co.ke/s/oEvAxA8Xx6cDoBLxntShmF?phone=${phone}&customer_name=${encodeURIComponent(email)}&amount=${amount}&reference=${encodeURIComponent('#airtime deposit')}`;
+            if (!phone || !amount) { showToast('Please enter phone number and amount', 'error'); return; }
+            const url = `https://short.payhero.co.ke/s/oEvAxA8Xx6cDoBLxntShmF?phone=254${phone}&customer_name=${encodeURIComponent(email)}&amount=${amount}&reference=${encodeURIComponent('#airtime deposit')}`;
             window.open(url, '_blank');
         };
 
@@ -2036,7 +1969,7 @@
             closeModal('insufficientModal');
         };
 
-        document.getElementById('airtimeToCashForm').addEventListener('submit', (e) => {
+        document.getElementById('airtimeToCashForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const amount = document.getElementById('a2cAmount').value;
             const phone = document.getElementById('a2cPhone').value;
