@@ -1207,7 +1207,7 @@
                     <i class="fas fa-exchange-alt"></i> Airtime to Cash
                 </button>
                 <button class="menu-item" onclick="closeSidebar(); scrollToDirectBuy();">
-                    <i class="fas fa-bolt"></i> Buy Airtime Directly
+                    <i class="fas fa-bolt"></i> Buy Airtime without account
                 </button>
                 <button class="menu-item" onclick="showPage('transactions')">
                     <i class="fas fa-history"></i> Transactions
@@ -1323,7 +1323,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label"><i class="fas fa-signal"></i> Select Network *</label>
+                            <label class="form-label"><i class="fas fa-signal"></i> Select Network To receive airtime*✅️✅️</label>
                             <div class="network-selector" id="directNetworkSelector">
                                 <div class="network-option" data-network="safaricom" onclick="selectDirectNetwork('safaricom')">
                                     <img src="safaricom.png" alt="Safaricom" onerror="this.src='https://via.placeholder.com/50x50/4CB05B/ffffff?text=SAF'">
@@ -1523,7 +1523,7 @@
                     <h3 class="card-title"><i class="fas fa-mobile-alt"></i> Buy Airtime</h3>
 
                     <div class="info-box">
-                        <p><i class="fas fa-info-circle"></i> Buy KES 20 and receive KES 18 airtime. Minimum purchase: KES 10</p>
+                        <p><i class="fas fa-info-circle"></i> Buy KES 20 and above and receive Commissions . Minimum purchase: KES 10</p>
                     </div>
 
                     <form id="buyAirtimeForm">
@@ -1569,7 +1569,7 @@
                             </button>
 
                             <button type="button" class="btn btn-outline" onclick="goToDirectBuyFromBuyPage()" style="flex: 1; border-color: var(--secondary); color: var(--secondary);">
-                                <i class="fas fa-bolt"></i> Buy Without Account
+                                <i class="fas fa-bolt"></i> Buy With mpesa stk push
                             </button>
                         </div>
                     </form>
@@ -1638,7 +1638,14 @@
             </div>
 
             <div id="page-airtime-to-cash" class="page">
-                <div class="card">
+                <div class="card" style="position: relative;">
+                    <div class="coming-soon-overlay" id="a2cOverlay">
+                        <div class="coming-soon-badge">
+                            <i class="fas fa-clock"></i>
+                            Coming Soon!
+                        </div>
+                    </div>
+
                     <h3 class="card-title"><i class="fas fa-exchange-alt"></i> Airtime to Cash</h3>
 
                     <div class="rate-display">
@@ -2258,14 +2265,14 @@
                     <button class="modal-close" onclick="closeModal('authModal')">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p style="margin-bottom: 20px;">Please login or create an account to continue.</p>
+                    <p style="margin-bottom: 20px;">Please login / create an account or use the USE WITHOUT ACCOUNT button below to buy airtime directly no account needed.</p>
                     <div class="btn-group">
                         <a href="login.html" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Login</a>
                         <a href="login.html" class="btn btn-outline"><i class="fas fa-user-plus"></i> Sign Up</a>
                     </div>
                     <div class="divider-text"><span>OR</span></div>
                     <button class="btn btn-secondary" onclick="closeModal('authModal'); scrollToDirectBuy();" style="margin-top: 10px;">
-                        <i class="fas fa-bolt"></i> Use Without Account
+                        <i class="fas fa-bolt"></i> Use Without Account  to buy airtime directly
                     </button>
                 </div>
             </div>
@@ -3026,10 +3033,10 @@
                 }
             } catch (error) {
                 hideBalanceOverlay();
-                showToast('Failed to buy airtime', 'error');
+                showToast('Failed to buy airtime check balance or contact us', 'error');
             }
             btn.disabled = false;
-            btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Buy Now (From Balance)';
+            btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Buy Now (From your account balance)';
         });
 
         window.directAirtimePurchase = async function() {
