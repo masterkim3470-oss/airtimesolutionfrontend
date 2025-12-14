@@ -1141,181 +1141,6 @@
             .notification-panel { right: 5px; left: 5px; width: auto; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
-
-        .direct-buy-section {
-            background: linear-gradient(135deg, rgba(26, 95, 42, 0.05), rgba(244, 160, 32, 0.05));
-            border: 2px solid var(--primary);
-            border-radius: 20px;
-            padding: 25px;
-            margin-top: 20px;
-        }
-
-        .direct-buy-section .section-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .direct-buy-section .section-header h3 {
-            color: var(--primary);
-            font-size: 1.3rem;
-            margin-bottom: 8px;
-        }
-
-        .direct-buy-section .section-header p {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .direct-buy-section .network-dropdown {
-            width: 100%;
-            padding: 14px 16px;
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            font-size: 1rem;
-            font-family: inherit;
-            background: var(--white);
-            color: var(--dark);
-            cursor: pointer;
-        }
-
-        .direct-buy-section .network-dropdown:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .amount-options {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .amount-option {
-            padding: 12px;
-            border: 2px solid var(--border);
-            border-radius: 10px;
-            background: var(--white);
-            cursor: pointer;
-            text-align: center;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .amount-option:hover {
-            border-color: var(--primary);
-            background: rgba(26, 95, 42, 0.05);
-        }
-
-        .amount-option.selected {
-            border-color: var(--primary);
-            background: var(--primary);
-            color: white;
-        }
-
-        .phone-validation-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 8px;
-            font-size: 0.85rem;
-        }
-
-        .phone-validation-status.valid {
-            color: var(--success);
-        }
-
-        .phone-validation-status.invalid {
-            color: var(--danger);
-        }
-
-        .direct-buy-btn {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .direct-buy-btn.loading {
-            pointer-events: none;
-        }
-
-        .direct-buy-btn .btn-text {
-            transition: opacity 0.3s;
-        }
-
-        .direct-buy-btn.loading .btn-text {
-            opacity: 0;
-        }
-
-        .direct-buy-btn .btn-loader {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: none;
-        }
-
-        .direct-buy-btn.loading .btn-loader {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .receipt-modal-content {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .receipt-icon {
-            font-size: 4rem;
-            margin-bottom: 15px;
-        }
-
-        .receipt-icon.success {
-            color: var(--success);
-        }
-
-        .receipt-icon.failed {
-            color: var(--danger);
-        }
-
-        .receipt-details {
-            background: var(--light);
-            border-radius: 12px;
-            padding: 15px;
-            margin: 20px 0;
-            text-align: left;
-        }
-
-        .receipt-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .receipt-row:last-child {
-            border-bottom: none;
-        }
-
-        .receipt-row .label {
-            color: var(--gray);
-        }
-
-        .receipt-row .value {
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        .use-without-account-btn {
-            background: linear-gradient(135deg, var(--secondary), #e67e22);
-            color: var(--dark);
-            font-weight: 600;
-            margin-top: 15px;
-        }
-
-        .use-without-account-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(244, 160, 32, 0.3);
-        }
     </style>
 </head>
 <body>
@@ -1375,14 +1200,14 @@
                 <button class="menu-item" onclick="showPage('buy-airtime')">
                     <i class="fas fa-mobile-alt"></i> Buy Airtime
                 </button>
-                <button class="menu-item" onclick="scrollToDirectBuy()">
-                    <i class="fas fa-bolt"></i> Buy Airtime Directly
-                </button>
                 <button class="menu-item sell-airtime-menu" onclick="showPage('sell-airtime')">
                     <i class="fas fa-gift shake-gift"></i> Sell Airtime Get Commission
                 </button>
                 <button class="menu-item" onclick="showPage('airtime-to-cash')">
                     <i class="fas fa-exchange-alt"></i> Airtime to Cash
+                </button>
+                <button class="menu-item" onclick="closeSidebar(); scrollToDirectBuy();" style="background: linear-gradient(135deg, rgba(244, 160, 32, 0.15), rgba(230, 126, 34, 0.15));">
+                    <i class="fas fa-bolt" style="color: var(--secondary);"></i> Buy Airtime Directly
                 </button>
                 <button class="menu-item" onclick="showPage('transactions')">
                     <i class="fas fa-history"></i> Transactions
@@ -1449,9 +1274,9 @@
                             <i class="fas fa-history"></i>
                             <span data-translate="history">History</span>
                         </button>
-                        <button class="action-card" onclick="scrollToDirectBuy()" style="background: linear-gradient(135deg, rgba(244, 160, 32, 0.3), rgba(230, 126, 34, 0.3));">
-                            <i class="fas fa-bolt" style="color: #fff;"></i>
-                            <span>Buy Directly</span>
+                        <button class="action-card" onclick="scrollToDirectBuy()" style="background: linear-gradient(135deg, rgba(244, 160, 32, 0.3), rgba(230, 126, 34, 0.3)); grid-column: span 2;">
+                            <i class="fas fa-bolt"></i>
+                            <span>Buy Airtime Directly (No Account)</span>
                         </button>
                     </div>
 
@@ -1475,56 +1300,80 @@
                 <!-- Scrolling Announcement -->
                 <div class="scrolling-text-container" style="margin-top: 15px;">
                     <div class="scrolling-text">
-                        📢 IMPORTANT UPDATE: Enjoy instant airtime delivery! Deposit KES 50+ and get KES 6 bonus! 🎁 NEW: Buy airtime directly without account! Just pay via M-Pesa and receive airtime instantly! 💰 Sell airtime and earn up to 10% commission! ⚡ Fast, secure, reliable! 24/7 Support available! Contact us: 0718369524 🎉
+                        📢 IMPORTANT UPDATE: Enjoy instant airtime delivery! Deposit KES 50+ and get KES 6 bonus! New features coming soon! 24/7 Support available! Buy airtime directly without an account - just pay via M-Pesa! All networks supported: Safaricom, Airtel, Telkom! Fast, secure, and reliable service! 🎉
                     </div>
                 </div>
 
-                <!-- Direct Buy Section (No Account Required) -->
-                <div class="direct-buy-section card" id="directBuySection" style="margin-top: 20px;">
-                    <div class="section-header">
-                        <h3><i class="fas fa-bolt"></i> Buy Airtime Directly</h3>
-                        <p>No account needed! Pay via M-Pesa and receive airtime instantly</p>
+                <!-- Direct Buy Section -->
+                <div class="card" id="directBuySection" style="margin-top: 20px; border: 2px solid var(--secondary); background: linear-gradient(135deg, rgba(244, 160, 32, 0.05), rgba(255, 255, 255, 1));">
+                    <h3 class="card-title" style="color: var(--secondary);"><i class="fas fa-bolt"></i> Buy Airtime Directly (No Account Needed)</h3>
+                    
+                    <div class="info-box" style="background: rgba(244, 160, 32, 0.1); border-left-color: var(--secondary);">
+                        <p><i class="fas fa-info-circle"></i> Purchase airtime instantly via M-Pesa STK Push. No registration required! Works for all networks.</p>
                     </div>
 
-                    <form id="directBuyForm">
+                    <form id="directBuyForm" onsubmit="event.preventDefault(); initiateDirectBuy();">
                         <div class="form-group">
-                            <label class="form-label"><i class="fas fa-phone"></i> Phone Number *</label>
+                            <label class="form-label"><i class="fas fa-phone"></i> Phone to Receive Airtime *</label>
                             <div class="phone-wrapper">
                                 <span class="phone-prefix">+254</span>
-                                <input type="tel" class="form-input" id="directBuyPhone" placeholder="7XXXXXXXX" maxlength="9" required oninput="validateDirectBuyPhone()">
+                                <input type="tel" class="form-input" id="directBuyPhone" placeholder="7XXXXXXXX" maxlength="9" required oninput="validateDirectPhone()">
                             </div>
-                            <div class="phone-validation-status" id="directPhoneStatus"></div>
+                            <p class="validation-error" id="directPhoneError" style="display: none;">Enter a valid 9-digit phone number starting with 7 or 1</p>
                         </div>
 
                         <div class="form-group">
                             <label class="form-label"><i class="fas fa-signal"></i> Select Network *</label>
-                            <select class="network-dropdown form-input" id="directBuyNetwork" required>
-                                <option value="">-- Select Network --</option>
-                                <option value="safaricom">Safaricom</option>
-                                <option value="airtel">Airtel</option>
-                                <option value="telkom">Telkom</option>
-                            </select>
+                            <div class="network-selector" id="directNetworkSelector">
+                                <div class="network-option" data-network="safaricom" onclick="selectDirectNetwork('safaricom')">
+                                    <img src="safaricom.png" alt="Safaricom" onerror="this.src='https://via.placeholder.com/50x50/4CB05B/ffffff?text=SAF'">
+                                    <span>Safaricom</span>
+                                </div>
+                                <div class="network-option" data-network="airtel" onclick="selectDirectNetwork('airtel')">
+                                    <img src="airtel.png" alt="Airtel" onerror="this.src='https://via.placeholder.com/50x50/ED1C24/ffffff?text=AIR'">
+                                    <span>Airtel</span>
+                                </div>
+                                <div class="network-option" data-network="telcom" onclick="selectDirectNetwork('telcom')">
+                                    <img src="telcom.png" alt="Telcom" onerror="this.src='https://via.placeholder.com/50x50/0066B3/ffffff?text=TEL'">
+                                    <span>Telcom</span>
+                                </div>
+                            </div>
+                            <p class="network-error" id="directNetworkError" style="display: none;">Please select a network</p>
+                            <input type="hidden" id="selectedDirectNetwork" value="">
                         </div>
 
                         <div class="form-group">
                             <label class="form-label"><i class="fas fa-money-bill"></i> Amount (KES) *</label>
-                            <div class="amount-options">
-                                <div class="amount-option" data-amount="10" onclick="selectDirectAmount(10)">10</div>
-                                <div class="amount-option" data-amount="20" onclick="selectDirectAmount(20)">20</div>
-                                <div class="amount-option" data-amount="50" onclick="selectDirectAmount(50)">50</div>
-                                <div class="amount-option" data-amount="100" onclick="selectDirectAmount(100)">100</div>
+                            <input type="number" class="form-input" id="directBuyAmount" placeholder="Minimum: 10" min="10" required oninput="validateDirectAmount()">
+                            <p class="validation-error" id="directAmountError" style="display: none;">Minimum amount is KES 10</p>
+                            <div style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">
+                                <button type="button" class="btn btn-outline" style="flex: 1; min-width: 60px; padding: 10px;" onclick="document.getElementById('directBuyAmount').value = 10; validateDirectAmount();">10</button>
+                                <button type="button" class="btn btn-outline" style="flex: 1; min-width: 60px; padding: 10px;" onclick="document.getElementById('directBuyAmount').value = 20; validateDirectAmount();">20</button>
+                                <button type="button" class="btn btn-outline" style="flex: 1; min-width: 60px; padding: 10px;" onclick="document.getElementById('directBuyAmount').value = 50; validateDirectAmount();">50</button>
+                                <button type="button" class="btn btn-outline" style="flex: 1; min-width: 60px; padding: 10px;" onclick="document.getElementById('directBuyAmount').value = 100; validateDirectAmount();">100</button>
+                                <button type="button" class="btn btn-outline" style="flex: 1; min-width: 60px; padding: 10px;" onclick="document.getElementById('directBuyAmount').value = 200; validateDirectAmount();">200</button>
+                                <button type="button" class="btn btn-outline" style="flex: 1; min-width: 60px; padding: 10px;" onclick="document.getElementById('directBuyAmount').value = 500; validateDirectAmount();">500</button>
                             </div>
-                            <input type="number" class="form-input" id="directBuyAmount" placeholder="Or enter custom amount (min 10)" min="10" oninput="validateDirectBuyAmount()">
                         </div>
 
-                        <button type="submit" class="btn btn-primary direct-buy-btn" id="directBuyBtn" disabled>
-                            <span class="btn-text"><i class="fas fa-bolt"></i> Buy Now via M-Pesa</span>
-                            <span class="btn-loader"><div class="spinner"></div> Processing...</span>
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-mobile-alt"></i> Phone to Pay With (M-Pesa) *</label>
+                            <div class="phone-wrapper">
+                                <span class="phone-prefix">+254</span>
+                                <input type="tel" class="form-input" id="directPayPhone" placeholder="7XXXXXXXX" maxlength="9" required oninput="validateDirectPayPhone()">
+                            </div>
+                            <p class="validation-error" id="directPayPhoneError" style="display: none;">Enter a valid Safaricom number starting with 7 or 1</p>
+                            <p style="font-size: 0.8rem; color: var(--gray); margin-top: 5px;"><i class="fas fa-info-circle"></i> STK Push will be sent to this number</p>
+                        </div>
+
+                        <button type="submit" class="btn btn-secondary" id="directBuyBtn" disabled style="font-size: 1.1rem; padding: 16px;">
+                            <i class="fas fa-bolt"></i> Buy Now via M-Pesa
                         </button>
 
-                        <p style="text-align: center; margin-top: 15px; font-size: 0.85rem; color: var(--gray);">
-                            <i class="fas fa-info-circle"></i> You'll receive an STK push on your phone. Enter your M-Pesa PIN to complete payment.
-                        </p>
+                        <div id="directBuyStatus" style="margin-top: 15px; text-align: center; display: none;">
+                            <span class="live-indicator"></span>
+                            <span id="directBuyStatusText">Processing...</span>
+                        </div>
                     </form>
                 </div>
 
@@ -1727,8 +1576,8 @@
 
                             <div class="divider-text"><span>OR</span></div>
 
-                            <button type="button" class="btn btn-secondary" onclick="redirectToDirectBuyWithDetails()" style="background: linear-gradient(135deg, var(--secondary), #e67e22); color: var(--dark);">
-                                <i class="fas fa-external-link-alt"></i> Buy Directly (from STK Push)
+                            <button type="button" class="btn btn-outline" onclick="goToDirectBuyFromBuyPage()" style="border-color: var(--secondary); color: var(--secondary);">
+                                <i class="fas fa-bolt"></i> Buy Without Account (Go to Direct Buy)
                             </button>
                         </div>
                     </form>
@@ -2428,10 +2277,11 @@
                     <div class="btn-group">
                         <a href="login.html" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Login</a>
                         <a href="login.html" class="btn btn-outline"><i class="fas fa-user-plus"></i> Sign Up</a>
-                        <button class="btn use-without-account-btn" onclick="useWithoutAccount()">
-                            <i class="fas fa-bolt"></i> Use Without Account
-                        </button>
                     </div>
+                    <div class="divider-text"><span>OR</span></div>
+                    <button class="btn btn-secondary" onclick="closeModal('authModal'); scrollToDirectBuy();" style="margin-top: 10px;">
+                        <i class="fas fa-bolt"></i> Use Without Account
+                    </button>
                 </div>
             </div>
         </div>
@@ -2442,19 +2292,37 @@
                     <h3><i class="fas fa-receipt"></i> Transaction Receipt</h3>
                     <button class="modal-close" onclick="closeModal('directBuyReceiptModal')">&times;</button>
                 </div>
-                <div class="modal-body receipt-modal-content">
-                    <div id="receiptIconContainer"></div>
-                    <h3 id="receiptTitle"></h3>
-                    <p id="receiptMessage" style="color: var(--gray); margin-bottom: 15px;"></p>
-                    <div class="receipt-details" id="receiptDetails"></div>
-                    <div class="btn-group">
-                        <button class="btn btn-primary" onclick="closeModal('directBuyReceiptModal')">
-                            <i class="fas fa-check"></i> Done
-                        </button>
-                        <button class="btn btn-outline" onclick="retryDirectBuy()">
-                            <i class="fas fa-redo"></i> Buy Again
-                        </button>
+                <div class="modal-body">
+                    <div id="receiptContent" style="text-align: center;">
+                        <div id="receiptIcon" style="font-size: 4rem; margin-bottom: 20px;"></div>
+                        <h4 id="receiptStatus" style="font-size: 1.3rem; margin-bottom: 15px;"></h4>
+                        <div style="background: var(--light); border-radius: 12px; padding: 20px; margin: 20px 0;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="color: var(--gray);">Phone:</span>
+                                <span id="receiptPhone" style="font-weight: 600;"></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="color: var(--gray);">Amount:</span>
+                                <span id="receiptAmount" style="font-weight: 600;"></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="color: var(--gray);">Network:</span>
+                                <span id="receiptNetwork" style="font-weight: 600;"></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="color: var(--gray);">Transaction ID:</span>
+                                <span id="receiptTxId" style="font-weight: 600; font-size: 0.85rem;"></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: var(--gray);">Date:</span>
+                                <span id="receiptDate" style="font-weight: 600;"></span>
+                            </div>
+                        </div>
+                        <p id="receiptMessage" style="color: var(--gray); font-size: 0.9rem;"></p>
                     </div>
+                    <button class="btn btn-primary" onclick="closeModal('directBuyReceiptModal')" style="margin-top: 15px;">
+                        <i class="fas fa-check"></i> Done
+                    </button>
                 </div>
             </div>
         </div>
@@ -3213,225 +3081,6 @@
             window.open(url, '_blank');
         };
 
-        let directBuyPollingInterval = null;
-
-        window.validateDirectBuyPhone = function() {
-            const phoneInput = document.getElementById('directBuyPhone');
-            const statusDiv = document.getElementById('directPhoneStatus');
-            const phone = phoneInput.value.trim();
-            const isValid = /^[71][0-9]{8}$/.test(phone);
-            
-            if (phone.length === 0) {
-                statusDiv.innerHTML = '';
-                statusDiv.className = 'phone-validation-status';
-            } else if (isValid) {
-                statusDiv.innerHTML = '<i class="fas fa-check-circle"></i> Valid phone number';
-                statusDiv.className = 'phone-validation-status valid';
-            } else {
-                statusDiv.innerHTML = '<i class="fas fa-times-circle"></i> Enter valid 9 digits starting with 7 or 1';
-                statusDiv.className = 'phone-validation-status invalid';
-            }
-            validateDirectBuyForm();
-            return isValid;
-        };
-
-        window.selectDirectAmount = function(amount) {
-            document.querySelectorAll('.amount-option').forEach(opt => opt.classList.remove('selected'));
-            document.querySelector(`.amount-option[data-amount="${amount}"]`).classList.add('selected');
-            document.getElementById('directBuyAmount').value = amount;
-            validateDirectBuyForm();
-        };
-
-        window.validateDirectBuyAmount = function() {
-            document.querySelectorAll('.amount-option').forEach(opt => opt.classList.remove('selected'));
-            validateDirectBuyForm();
-        };
-
-        function validateDirectBuyForm() {
-            const phone = document.getElementById('directBuyPhone').value.trim();
-            const network = document.getElementById('directBuyNetwork').value;
-            const amount = parseInt(document.getElementById('directBuyAmount').value) || 0;
-            const isValid = /^[71][0-9]{8}$/.test(phone) && network && amount >= 10;
-            document.getElementById('directBuyBtn').disabled = !isValid;
-        }
-
-        window.scrollToDirectBuy = function() {
-            closeSidebar();
-            showPage('dashboard');
-            setTimeout(() => {
-                document.getElementById('directBuySection').scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 300);
-        };
-
-        window.useWithoutAccount = function() {
-            closeModal('authModal');
-            scrollToDirectBuy();
-        };
-
-        window.redirectToDirectBuyWithDetails = function() {
-            const phone = document.getElementById('airtimePhone').value;
-            const amount = document.getElementById('airtimeAmount').value;
-            const network = selectedNetworkValue;
-            
-            localStorage.setItem('directBuyPrefill', JSON.stringify({ phone, amount, network }));
-            showToast('Check details and confirm purchase', 'info');
-            scrollToDirectBuy();
-            
-            setTimeout(() => {
-                if (phone) document.getElementById('directBuyPhone').value = phone;
-                if (amount) document.getElementById('directBuyAmount').value = amount;
-                if (network) document.getElementById('directBuyNetwork').value = network;
-                validateDirectBuyPhone();
-                validateDirectBuyForm();
-            }, 500);
-        };
-
-        window.retryDirectBuy = function() {
-            closeModal('directBuyReceiptModal');
-            document.getElementById('directBuyForm').reset();
-            document.querySelectorAll('.amount-option').forEach(opt => opt.classList.remove('selected'));
-            document.getElementById('directBuyBtn').disabled = true;
-            scrollToDirectBuy();
-        };
-
-        function showDirectBuyReceipt(success, data) {
-            const iconContainer = document.getElementById('receiptIconContainer');
-            const title = document.getElementById('receiptTitle');
-            const message = document.getElementById('receiptMessage');
-            const details = document.getElementById('receiptDetails');
-            
-            if (success) {
-                iconContainer.innerHTML = '<i class="fas fa-check-circle receipt-icon success"></i>';
-                title.textContent = 'Payment Initiated!';
-                message.textContent = 'Complete the M-Pesa payment on your phone to receive airtime.';
-            } else {
-                iconContainer.innerHTML = '<i class="fas fa-times-circle receipt-icon failed"></i>';
-                title.textContent = 'Transaction Failed';
-                message.textContent = data.message || 'Please try again.';
-            }
-            
-            details.innerHTML = `
-                <div class="receipt-row"><span class="label">Transaction ID</span><span class="value">${data.reference || 'N/A'}</span></div>
-                <div class="receipt-row"><span class="label">Phone</span><span class="value">+254${data.phone || ''}</span></div>
-                <div class="receipt-row"><span class="label">Network</span><span class="value">${data.network || ''}</span></div>
-                <div class="receipt-row"><span class="label">Amount Paid</span><span class="value">KES ${data.amount || 0}</span></div>
-                <div class="receipt-row"><span class="label">Airtime to Receive</span><span class="value">KES ${data.airtime || 0}</span></div>
-                <div class="receipt-row"><span class="label">Status</span><span class="value">${success ? 'Awaiting Payment' : 'Failed'}</span></div>
-                <div class="receipt-row"><span class="label">Date</span><span class="value">${new Date().toLocaleString()}</span></div>
-            `;
-            
-            const directBuyHistory = JSON.parse(localStorage.getItem('directBuyHistory') || '[]');
-            directBuyHistory.unshift({ ...data, success, timestamp: Date.now() });
-            localStorage.setItem('directBuyHistory', JSON.stringify(directBuyHistory.slice(0, 50)));
-            
-            showModal('directBuyReceiptModal');
-        }
-
-        document.getElementById('directBuyForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const phone = document.getElementById('directBuyPhone').value;
-            const network = document.getElementById('directBuyNetwork').value;
-            const amount = parseInt(document.getElementById('directBuyAmount').value);
-            
-            if (!phone || !network || amount < 10) {
-                showToast('Please fill all fields correctly', 'error');
-                return;
-            }
-            
-            const btn = document.getElementById('directBuyBtn');
-            btn.classList.add('loading');
-            showToast('Sending STK Push to your phone...', 'info');
-            
-            try {
-                const response = await fetch(`${API_BASE}/api/direct-buy/initiate`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        phone: '254' + phone, 
-                        network: network, 
-                        amount: amount 
-                    })
-                });
-                const data = await response.json();
-                btn.classList.remove('loading');
-                
-                if (data.success) {
-                    showToast('STK Push sent! Enter your M-Pesa PIN.', 'success');
-                    showDirectBuyReceipt(true, {
-                        reference: data.reference,
-                        phone: phone,
-                        network: network,
-                        amount: amount,
-                        airtime: data.airtime_to_receive || amount
-                    });
-                    pollDirectBuyStatus(data.reference);
-                } else {
-                    showToast(data.message || 'Failed to initiate purchase', 'error');
-                    showDirectBuyReceipt(false, {
-                        reference: data.reference || 'N/A',
-                        phone: phone,
-                        network: network,
-                        amount: amount,
-                        airtime: 0,
-                        message: data.message
-                    });
-                }
-            } catch (error) {
-                btn.classList.remove('loading');
-                showToast('Failed to initiate purchase. Please try again.', 'error');
-                showDirectBuyReceipt(false, {
-                    phone: phone,
-                    network: network,
-                    amount: amount,
-                    airtime: 0,
-                    message: 'Network error. Please try again.'
-                });
-            }
-        });
-
-        async function pollDirectBuyStatus(reference) {
-            if (directBuyPollingInterval) clearInterval(directBuyPollingInterval);
-            let attempts = 0;
-            const maxAttempts = 60;
-            
-            directBuyPollingInterval = setInterval(async () => {
-                attempts++;
-                if (attempts >= maxAttempts) {
-                    clearInterval(directBuyPollingInterval);
-                    return;
-                }
-                try {
-                    const response = await fetch(`${API_BASE}/api/direct-buy/status/${reference}`);
-                    const data = await response.json();
-                    if (data.status === 'completed') {
-                        clearInterval(directBuyPollingInterval);
-                        showToast('Airtime sent successfully!', 'success');
-                        updateReceiptStatus('completed', data);
-                    } else if (data.status === 'failed') {
-                        clearInterval(directBuyPollingInterval);
-                        showToast('Payment failed or cancelled', 'error');
-                        updateReceiptStatus('failed', data);
-                    }
-                } catch (error) {
-                    console.error('Polling error:', error);
-                }
-            }, 3000);
-        }
-
-        function updateReceiptStatus(status, data) {
-            const details = document.getElementById('receiptDetails');
-            const rows = details.querySelectorAll('.receipt-row');
-            if (rows.length >= 6) {
-                const statusRow = rows[5].querySelector('.value');
-                if (statusRow) {
-                    statusRow.textContent = status === 'completed' ? 'Completed - Airtime Sent!' : 'Failed';
-                    statusRow.style.color = status === 'completed' ? 'var(--success)' : 'var(--danger)';
-                }
-            }
-        }
-
-        document.getElementById('directBuyNetwork').addEventListener('change', validateDirectBuyForm);
-
         let floatAvailable = true;
 
         async function checkFloatStatus() {
@@ -4042,6 +3691,244 @@
                 document.getElementById('pwaInstall').style.display = 'none';
             }
             deferredPrompt = null;
+        };
+
+        // ===== DIRECT BUY AIRTIME FUNCTIONS =====
+        let directBuyPollingInterval = null;
+        let selectedDirectNetworkValue = '';
+
+        window.scrollToDirectBuy = function() {
+            showPage('dashboard');
+            setTimeout(() => {
+                const directBuySection = document.getElementById('directBuySection');
+                if (directBuySection) {
+                    directBuySection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    directBuySection.style.animation = 'pulse 0.5s ease-in-out 2';
+                }
+            }, 100);
+        };
+
+        window.validateDirectPhone = function() {
+            const phone = document.getElementById('directBuyPhone').value;
+            const error = document.getElementById('directPhoneError');
+            const isValid = /^[71]\d{8}$/.test(phone);
+            error.style.display = isValid || phone.length === 0 ? 'none' : 'block';
+            updateDirectBuyButton();
+            return isValid;
+        };
+
+        window.validateDirectPayPhone = function() {
+            const phone = document.getElementById('directPayPhone').value;
+            const error = document.getElementById('directPayPhoneError');
+            const isValid = /^[71]\d{8}$/.test(phone);
+            error.style.display = isValid || phone.length === 0 ? 'none' : 'block';
+            updateDirectBuyButton();
+            return isValid;
+        };
+
+        window.validateDirectAmount = function() {
+            const amount = parseFloat(document.getElementById('directBuyAmount').value);
+            const error = document.getElementById('directAmountError');
+            const isValid = amount >= 10;
+            error.style.display = isValid || isNaN(amount) ? 'none' : 'block';
+            updateDirectBuyButton();
+            return isValid;
+        };
+
+        window.selectDirectNetwork = function(network) {
+            selectedDirectNetworkValue = network;
+            document.getElementById('selectedDirectNetwork').value = network;
+            document.getElementById('directNetworkError').style.display = 'none';
+            
+            document.querySelectorAll('#directNetworkSelector .network-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            document.querySelector(`#directNetworkSelector .network-option[data-network="${network}"]`).classList.add('selected');
+            updateDirectBuyButton();
+        };
+
+        function updateDirectBuyButton() {
+            const phone = document.getElementById('directBuyPhone').value;
+            const payPhone = document.getElementById('directPayPhone').value;
+            const amount = parseFloat(document.getElementById('directBuyAmount').value);
+            const network = document.getElementById('selectedDirectNetwork').value;
+            
+            const phoneValid = /^[71]\d{8}$/.test(phone);
+            const payPhoneValid = /^[71]\d{8}$/.test(payPhone);
+            const amountValid = amount >= 10;
+            const networkValid = network !== '';
+            
+            document.getElementById('directBuyBtn').disabled = !(phoneValid && payPhoneValid && amountValid && networkValid);
+        }
+
+        window.initiateDirectBuy = async function() {
+            const phone = document.getElementById('directBuyPhone').value;
+            const payPhone = document.getElementById('directPayPhone').value;
+            const amount = parseFloat(document.getElementById('directBuyAmount').value);
+            const network = document.getElementById('selectedDirectNetwork').value;
+            
+            if (!validateDirectPhone() || !validateDirectPayPhone() || !validateDirectAmount()) {
+                showToast('Please fill all fields correctly', 'error');
+                return;
+            }
+            
+            if (!network) {
+                document.getElementById('directNetworkError').style.display = 'block';
+                showToast('Please select a network', 'error');
+                return;
+            }
+            
+            const btn = document.getElementById('directBuyBtn');
+            const statusDiv = document.getElementById('directBuyStatus');
+            const statusText = document.getElementById('directBuyStatusText');
+            
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Sending STK Push...';
+            statusDiv.style.display = 'block';
+            statusText.textContent = 'Initiating payment...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/airtime/direct`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        phone_to_receive: `254${phone}`,
+                        phone_to_pay: `254${payPhone}`,
+                        amount: amount,
+                        network: network
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showToast('STK Push sent! Enter your M-Pesa PIN', 'success');
+                    statusText.textContent = 'Waiting for M-Pesa payment...';
+                    pollDirectBuyStatus(data.reference, phone, amount, network);
+                } else {
+                    throw new Error(data.message || 'Failed to initiate purchase');
+                }
+            } catch (error) {
+                console.error('Direct buy error:', error);
+                showToast(error.message || 'Failed to initiate purchase', 'error');
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-bolt"></i> Buy Now via M-Pesa';
+                statusDiv.style.display = 'none';
+            }
+        };
+
+        function pollDirectBuyStatus(reference, phone, amount, network) {
+            let attempts = 0;
+            const maxAttempts = 60;
+            const statusText = document.getElementById('directBuyStatusText');
+            const btn = document.getElementById('directBuyBtn');
+            const statusDiv = document.getElementById('directBuyStatus');
+            
+            if (directBuyPollingInterval) clearInterval(directBuyPollingInterval);
+            
+            directBuyPollingInterval = setInterval(async () => {
+                attempts++;
+                
+                if (attempts > maxAttempts) {
+                    clearInterval(directBuyPollingInterval);
+                    statusDiv.style.display = 'none';
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-bolt"></i> Buy Now via M-Pesa';
+                    showDirectBuyReceipt('timeout', phone, amount, network, reference, 'Payment timed out. Please try again.');
+                    return;
+                }
+                
+                try {
+                    const response = await fetch(`${API_BASE}/api/airtime/direct/status/${reference}`);
+                    const data = await response.json();
+                    
+                    if (data.status === 'completed') {
+                        clearInterval(directBuyPollingInterval);
+                        statusDiv.style.display = 'none';
+                        btn.disabled = false;
+                        btn.innerHTML = '<i class="fas fa-bolt"></i> Buy Now via M-Pesa';
+                        showDirectBuyReceipt('success', phone, amount, network, data.transaction_id || reference, 'Airtime sent successfully!');
+                        saveDirectBuyHistory({ phone, amount, network, reference, status: 'completed', date: new Date().toISOString() });
+                        document.getElementById('directBuyForm').reset();
+                        selectedDirectNetworkValue = '';
+                        document.querySelectorAll('#directNetworkSelector .network-option').forEach(opt => opt.classList.remove('selected'));
+                    } else if (data.status === 'failed') {
+                        clearInterval(directBuyPollingInterval);
+                        statusDiv.style.display = 'none';
+                        btn.disabled = false;
+                        btn.innerHTML = '<i class="fas fa-bolt"></i> Buy Now via M-Pesa';
+                        showDirectBuyReceipt('failed', phone, amount, network, reference, data.message || 'Payment failed. Please try again.');
+                    } else {
+                        statusText.textContent = `Waiting for payment... (${attempts}s)`;
+                    }
+                } catch (error) {
+                    console.error('Polling error:', error);
+                }
+            }, 2000);
+        }
+
+        function showDirectBuyReceipt(status, phone, amount, network, txId, message) {
+            const iconEl = document.getElementById('receiptIcon');
+            const statusEl = document.getElementById('receiptStatus');
+            
+            if (status === 'success') {
+                iconEl.innerHTML = '<i class="fas fa-check-circle" style="color: var(--success);"></i>';
+                statusEl.textContent = 'Transaction Successful!';
+                statusEl.style.color = 'var(--success)';
+            } else if (status === 'failed') {
+                iconEl.innerHTML = '<i class="fas fa-times-circle" style="color: var(--danger);"></i>';
+                statusEl.textContent = 'Transaction Failed';
+                statusEl.style.color = 'var(--danger)';
+            } else {
+                iconEl.innerHTML = '<i class="fas fa-clock" style="color: var(--warning);"></i>';
+                statusEl.textContent = 'Transaction Timed Out';
+                statusEl.style.color = 'var(--warning)';
+            }
+            
+            document.getElementById('receiptPhone').textContent = '+254' + phone;
+            document.getElementById('receiptAmount').textContent = 'KES ' + amount;
+            document.getElementById('receiptNetwork').textContent = network.charAt(0).toUpperCase() + network.slice(1);
+            document.getElementById('receiptTxId').textContent = txId;
+            document.getElementById('receiptDate').textContent = new Date().toLocaleString();
+            document.getElementById('receiptMessage').textContent = message;
+            
+            document.getElementById('directBuyReceiptModal').classList.add('show');
+        }
+
+        function saveDirectBuyHistory(purchase) {
+            try {
+                const storageValue = localStorage.getItem('directBuyHistory');
+                let history = [];
+                if (storageValue) {
+                    try {
+                        history = JSON.parse(storageValue);
+                    } catch (parseError) {
+                        history = [];
+                    }
+                }
+                if (!Array.isArray(history)) history = [];
+                history.unshift(purchase);
+                if (history.length > 20) history = history.slice(0, 20);
+                localStorage.setItem('directBuyHistory', JSON.stringify(history));
+            } catch (e) {
+                console.error('Failed to save history:', e);
+            }
+        }
+
+        window.goToDirectBuyFromBuyPage = function() {
+            const phone = document.getElementById('airtimePhone').value;
+            const amount = document.getElementById('airtimeAmount').value;
+            const network = document.getElementById('selectedNetwork').value;
+            
+            scrollToDirectBuy();
+            
+            setTimeout(() => {
+                if (phone) document.getElementById('directBuyPhone').value = phone;
+                if (amount) document.getElementById('directBuyAmount').value = amount;
+                if (network) selectDirectNetwork(network);
+                validateDirectPhone();
+                validateDirectAmount();
+            }, 200);
         };
     </script>
 </body>
