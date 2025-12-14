@@ -2211,8 +2211,9 @@
             authDomain: "swiftauth-5fcb5.firebaseapp.com",
             projectId: "swiftauth-5fcb5",
             storageBucket: "swiftauth-5fcb5.firebasestorage.app",
-            messagingSenderId: "441294638654",
-            appId: "1:441294638654:web:0bf7a76ed7c42b8f7e6834"
+            messagingSenderId: "990160652137",
+            appId: "1:990160652137:web:abac238567edfdb5671ff8",
+            measurementId: "G-5C1DS28B5S"
         };
 
         const app = initializeApp(firebaseConfig);
@@ -3308,16 +3309,20 @@
 
         async function loadAdminData() {
             try {
-                const [statsRes, usersRes, txRes, verRes] = await Promise.all([
+                const [statsRes, usersRes, txRes, verRes, depositStatusRes, floatStatusRes] = await Promise.all([
                     fetch(`${API_BASE}/api/admin/stats`, { credentials: 'include' }),
                     fetch(`${API_BASE}/api/admin/users`, { credentials: 'include' }),
                     fetch(`${API_BASE}/api/admin/transactions`, { credentials: 'include' }),
-                    fetch(`${API_BASE}/api/admin/verifications`, { credentials: 'include' })
+                    fetch(`${API_BASE}/api/admin/verifications`, { credentials: 'include' }),
+                    fetch(`${API_BASE}/api/settings/deposit-status`, { credentials: 'include' }),
+                    fetch(`${API_BASE}/api/settings/float-status`, { credentials: 'include' })
                 ]);
                 const stats = await statsRes.json();
                 const users = await usersRes.json();
                 const tx = await txRes.json();
                 const ver = await verRes.json();
+                const depositStatus = await depositStatusRes.json();
+                const floatStatus = await floatStatusRes.json();
                 if (stats.success) {
                     document.getElementById('statTotalUsers').textContent = stats.stats.totalUsers;
                     document.getElementById('statTotalDeposits').textContent = `KES ${stats.stats.totalDeposits}`;
@@ -3327,6 +3332,12 @@
                 if (users.success) renderAdminUsers(users.users);
                 if (tx.success) renderAdminTransactions(tx.transactions);
                 if (ver.success) renderAdminVerifications(ver.verifications);
+                if (depositStatus.success) {
+                    document.getElementById('depositStatusSelect').value = depositStatus.depositDisabled ? 'true' : 'false';
+                }
+                if (floatStatus.success) {
+                    document.getElementById('floatStatusSelect').value = floatStatus.floatLow ? 'true' : 'false';
+                }
             } catch (error) {
                 console.error('Failed to load admin data:', error);
             }
