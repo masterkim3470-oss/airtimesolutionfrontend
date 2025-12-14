@@ -357,12 +357,16 @@
 
         .menu-item i { width: 25px; text-align: center; }
         .menu-divider { height: 1px; background: var(--border); margin: 15px 20px; }
-        .main-content { padding-top: 80px; padding-bottom: 20px; min-height: 100vh; }
+        .main-content { padding-top: 70px; padding-bottom: 20px; min-height: 100vh; }
 
         .page {
             display: none;
-            padding: 20px;
+            padding: 0;
             animation: fadeIn 0.4s ease;
+        }
+        
+        .page-content {
+            padding: 0 20px 20px 20px;
         }
 
         .page.active { display: block; }
@@ -374,9 +378,9 @@
 
         .hero-section {
             background: url('airtime-hero-bg.png') center center / cover no-repeat;
-            border-radius: 20px;
+            border-radius: 0;
             padding: 20px;
-            margin-bottom: 20px;
+            margin: 0 0 20px 0;
             position: relative;
         }
 
@@ -388,7 +392,7 @@
             right: 0;
             bottom: 0;
             background: rgba(0, 0, 0, 0.3);
-            border-radius: 20px;
+            border-radius: 0;
             z-index: 0;
         }
 
@@ -486,6 +490,52 @@
             flex-direction: column;
             gap: 12px; 
             margin-top: 20px; 
+        }
+
+        .quick-actions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .action-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 25px 15px;
+            background: rgba(13, 61, 24, 0.85);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--white);
+            gap: 12px;
+            font-family: inherit;
+        }
+
+        .action-card i {
+            font-size: 1.8rem;
+            color: var(--secondary);
+        }
+
+        .action-card span {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .action-card:hover {
+            background: rgba(13, 61, 24, 0.95);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            border-color: rgba(244, 160, 32, 0.3);
+        }
+
+        .action-card:active {
+            transform: translateY(0) scale(0.98);
         }
 
         .action-btn {
@@ -1204,30 +1254,28 @@
                         <p class="balance-bonus"><i class="fas fa-gift"></i> Deposit KES 50+ and receive KES 6 bonus instantly!</p>
                     </div>
 
-                    <div class="quick-actions">
-                        <button class="action-btn" onclick="showPage('deposit')">
+                    <div class="quick-actions-grid">
+                        <button class="action-card" onclick="showPage('deposit')">
                             <i class="fas fa-wallet"></i>
                             <span data-translate="deposit">Deposit</span>
-                            <i class="fas fa-chevron-right action-arrow"></i>
                         </button>
-                        <button class="action-btn" onclick="showPage('buy-airtime')">
+                        <button class="action-card" onclick="showPage('buy-airtime')">
                             <i class="fas fa-mobile-alt"></i>
                             <span data-translate="buyAirtime">Buy Airtime</span>
-                            <i class="fas fa-chevron-right action-arrow"></i>
                         </button>
-                        <button class="action-btn" onclick="showPage('airtime-to-cash')">
+                        <button class="action-card" onclick="showPage('airtime-to-cash')">
                             <i class="fas fa-exchange-alt"></i>
                             <span data-translate="airtimeToCash">Airtime to Cash</span>
-                            <i class="fas fa-chevron-right action-arrow"></i>
                         </button>
-                        <button class="action-btn" onclick="showPage('transactions')">
+                        <button class="action-card" onclick="showPage('transactions')">
                             <i class="fas fa-history"></i>
                             <span data-translate="history">History</span>
-                            <i class="fas fa-chevron-right action-arrow"></i>
                         </button>
                     </div>
+
                 </div>
 
+                <div class="page-content">
                 <button class="pwa-install" id="pwaInstall" onclick="installPWA()" title="Install App">
                     <p>Ease airtime purchase by installing app</p>
                     <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" style="height: 40px; width: auto;">
@@ -1342,6 +1390,7 @@
                     <span class="footer-link" onclick="showPage('contact')">Contact</span>
                     <span class="footer-link" onclick="showPage('privacy')">Privacy</span>
                     <span class="footer-link" onclick="showPage('terms')">Terms</span>
+                </div>
                 </div>
             </div>
 
@@ -2454,6 +2503,7 @@
             document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
             document.querySelector(`.menu-item[onclick*="${pageId}"]`)?.classList.add('active');
             closeSidebar();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
         window.toggleSidebar = function() {
