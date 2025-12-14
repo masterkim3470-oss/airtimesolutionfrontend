@@ -1200,14 +1200,14 @@
                 <button class="menu-item" onclick="showPage('buy-airtime')">
                     <i class="fas fa-mobile-alt"></i> Buy Airtime
                 </button>
-                <button class="menu-item sell-airtime-menu" onclick="showPage('sell-airtime')">
-                    <i class="fas fa-gift shake-gift"></i> Sell Airtime Get Commission
+                <button class="menu-item" onclick="showPage('sell-airtime')">
+                    <i class="fas fa-gift"></i> Sell Airtime Get Commission
                 </button>
                 <button class="menu-item" onclick="showPage('airtime-to-cash')">
                     <i class="fas fa-exchange-alt"></i> Airtime to Cash
                 </button>
-                <button class="menu-item" onclick="closeSidebar(); scrollToDirectBuy();" style="background: linear-gradient(135deg, rgba(244, 160, 32, 0.15), rgba(230, 126, 34, 0.15));">
-                    <i class="fas fa-bolt" style="color: var(--secondary);"></i> Buy Airtime Directly
+                <button class="menu-item" onclick="closeSidebar(); scrollToDirectBuy();">
+                    <i class="fas fa-bolt"></i> Buy Airtime Directly
                 </button>
                 <button class="menu-item" onclick="showPage('transactions')">
                     <i class="fas fa-history"></i> Transactions
@@ -1563,21 +1563,13 @@
                             <p class="validation-error" id="amountError">Minimum amount is KES 10</p>
                         </div>
 
-                        <div class="btn-group">
-                            <button type="submit" class="btn btn-primary" id="buyAirtimeBtn" disabled>
+                        <div class="btn-group" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <button type="submit" class="btn btn-primary" id="buyAirtimeBtn" disabled style="flex: 1;">
                                 <i class="fas fa-shopping-cart"></i> Buy Now (From Balance)
                             </button>
 
-                            <div class="divider-text"><span>OR</span></div>
-
-                            <button type="button" class="btn btn-secondary" id="directPurchaseBtn" onclick="directAirtimePurchase()" disabled>
-                                <i class="fas fa-bolt"></i> Buy Direct (STK Push)
-                            </button>
-
-                            <div class="divider-text"><span>OR</span></div>
-
-                            <button type="button" class="btn btn-outline" onclick="goToDirectBuyFromBuyPage()" style="border-color: var(--secondary); color: var(--secondary);">
-                                <i class="fas fa-bolt"></i> Buy Without Account (Go to Direct Buy)
+                            <button type="button" class="btn btn-outline" onclick="goToDirectBuyFromBuyPage()" style="flex: 1; border-color: var(--secondary); color: var(--secondary);">
+                                <i class="fas fa-bolt"></i> Buy Without Account
                             </button>
                         </div>
                     </form>
@@ -1646,14 +1638,7 @@
             </div>
 
             <div id="page-airtime-to-cash" class="page">
-                <div class="card" style="position: relative;">
-                    <div class="coming-soon-overlay" id="a2cOverlay">
-                        <div class="coming-soon-badge">
-                            <i class="fas fa-clock"></i>
-                            Coming Soon!
-                        </div>
-                    </div>
-
+                <div class="card">
                     <h3 class="card-title"><i class="fas fa-exchange-alt"></i> Airtime to Cash</h3>
 
                     <div class="rate-display">
@@ -3702,7 +3687,7 @@
             setTimeout(() => {
                 const directBuySection = document.getElementById('directBuySection');
                 if (directBuySection) {
-                    directBuySection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    directBuySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     directBuySection.style.animation = 'pulse 0.5s ease-in-out 2';
                 }
             }, 100);
