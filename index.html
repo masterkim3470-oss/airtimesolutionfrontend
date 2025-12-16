@@ -1141,6 +1141,499 @@
             .notification-panel { right: 5px; left: 5px; width: auto; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
+
+        /* ===== LOAN SYSTEM STYLES ===== */
+        .loan-terms-modal .modal-content {
+            max-width: 550px;
+            max-height: 85vh;
+        }
+        .loan-terms-content {
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 15px;
+            background: var(--light);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+        .loan-terms-content h4 { margin: 15px 0 10px; color: var(--primary); }
+        .loan-terms-content ul { padding-left: 20px; }
+        .loan-terms-content li { margin-bottom: 8px; }
+        .loan-agree-section { text-align: center; }
+        .loan-agree-btn {
+            background: linear-gradient(135deg, #4CAF50, #388E3C);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .loan-agree-btn.enabled { opacity: 1; pointer-events: auto; }
+        .loan-agree-btn.enabled:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4); }
+        .scroll-hint {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(255, 193, 7, 0.1);
+            border-radius: 8px;
+            border-left: 3px solid var(--warning);
+        }
+        .loan-dashboard-hero {
+            background: linear-gradient(135deg, #1a5f2a 0%, #0d3d18 50%, #0a2d12 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 25px 25px;
+            margin-bottom: 20px;
+        }
+        .loan-dashboard-hero h1 { font-size: 1.8rem; margin-bottom: 10px; }
+        .loan-dashboard-hero p { opacity: 0.9; font-size: 1rem; }
+        .loan-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 0 20px;
+            margin-bottom: 20px;
+        }
+        .loan-feature-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        .loan-feature-card:hover { transform: translateY(-5px); }
+        .loan-feature-card i { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
+        .loan-feature-card h4 { font-size: 0.95rem; margin-bottom: 5px; }
+        .loan-feature-card p { font-size: 0.8rem; color: var(--gray); }
+        .how-it-works-section { padding: 20px; }
+        .how-it-works-section h3 { text-align: center; margin-bottom: 20px; color: var(--primary); }
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .step-content h4 { font-size: 1rem; margin-bottom: 5px; }
+        .step-content p { font-size: 0.85rem; color: var(--gray); }
+        .why-choose-section { padding: 20px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(56, 142, 60, 0.05)); }
+        .why-choose-section h3 { text-align: center; margin-bottom: 20px; color: var(--primary); }
+        .testimonial-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        .testimonial-card .stars { color: #ffc107; margin-bottom: 10px; }
+        .testimonial-card p { font-style: italic; color: var(--dark); margin-bottom: 10px; }
+        .testimonial-card .author { font-weight: 600; font-size: 0.9rem; color: var(--primary); }
+        .faq-section { padding: 20px; }
+        .faq-section h3 { text-align: center; margin-bottom: 20px; color: var(--primary); }
+        .faq-item {
+            background: var(--white);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .faq-item h4 { font-size: 0.95rem; margin-bottom: 8px; color: var(--dark); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item p { font-size: 0.85rem; color: var(--gray); display: none; padding-top: 10px; border-top: 1px solid var(--border); }
+        .faq-item.open p { display: block; }
+        .loan-images-section { padding: 20px; display: flex; gap: 15px; overflow-x: auto; }
+        .loan-image-card { min-width: 200px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .loan-image-card img { width: 100%; height: 150px; object-fit: cover; }
+        .apply-loan-btn {
+            display: block;
+            margin: 20px;
+            padding: 18px;
+            background: linear-gradient(135deg, #4CAF50, #388E3C);
+            color: white;
+            text-align: center;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
+            cursor: pointer;
+            border: none;
+            width: calc(100% - 40px);
+        }
+        .apply-loan-btn:hover { transform: scale(1.02); }
+        .eligibility-form-container { padding: 20px; }
+        .form-section { margin-bottom: 25px; }
+        .form-section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+        .processing-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .processing-icon {
+            font-size: 5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        .processing-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--border);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 30px 0;
+        }
+        .processing-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            border-radius: 5px;
+            width: 0%;
+            animation: progressFill 10s linear forwards;
+        }
+        @keyframes progressFill { 0% { width: 0%; } 100% { width: 100%; } }
+        .loan-offer-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .loan-offer-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+        .loan-offer-card.selected { border-color: var(--primary); background: rgba(76, 175, 80, 0.05); }
+        .loan-offer-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .loan-company-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .loan-company-info h4 { font-size: 1.1rem; margin-bottom: 3px; }
+        .loan-company-info p { font-size: 0.85rem; color: var(--gray); }
+        .loan-amount-display {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(56, 142, 60, 0.05));
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+        .loan-amount-display .amount { font-size: 2rem; font-weight: 700; color: var(--primary); }
+        .loan-amount-display .label { font-size: 0.9rem; color: var(--gray); }
+        .loan-terms-list { display: flex; flex-wrap: wrap; gap: 10px; }
+        .loan-term-item {
+            background: var(--light);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .loan-term-item i { color: var(--primary); }
+        .loan-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .loan-detail-item {
+            background: var(--light);
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .loan-detail-item i {
+            color: var(--primary);
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .loan-detail-item .detail-label {
+            font-size: 0.75rem;
+            color: var(--gray);
+            display: block;
+        }
+        .loan-detail-item .detail-value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--dark);
+            display: block;
+        }
+        .select-offer-btn {
+            transition: all 0.3s;
+        }
+        .loan-offer-card.selected .select-offer-btn {
+            background: var(--success);
+        }
+        .loan-offer-card.selected .select-offer-btn::before {
+            content: "Selected - ";
+        }
+        .edit-section-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 5px 10px;
+            margin-left: auto;
+        }
+        .edit-section-btn:hover {
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 5px;
+        }
+        .approval-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .approval-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+        .approval-spinner {
+            width: 100%;
+            height: 100%;
+            border: 5px solid var(--border);
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        .approval-timer {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 20px 40px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 20px 0;
+        }
+        .approval-timer #approvalCountdown {
+            font-size: 3rem;
+            font-weight: 700;
+            display: block;
+        }
+        .approval-timer .timer-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        .approval-steps {
+            text-align: left;
+            max-width: 350px;
+            margin: 20px auto;
+        }
+        .approval-step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 10px;
+            background: var(--light);
+            transition: all 0.3s;
+        }
+        .approval-step i {
+            color: var(--primary);
+            width: 20px;
+            text-align: center;
+        }
+        .approval-step.pending {
+            opacity: 0.5;
+        }
+        .approval-step.pending i {
+            font-size: 0.5rem;
+        }
+        .approval-step.completed {
+            background: rgba(76, 175, 80, 0.1);
+        }
+        .approval-step.completed i {
+            color: var(--success);
+        }
+        .savings-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .savings-info-item {
+            background: rgba(255,255,255,0.15);
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .savings-info-item .label {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            display: block;
+            margin-bottom: 3px;
+        }
+        .savings-info-item .value {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .receipt-row:last-child { border-bottom: none; }
+        .loan-images-section {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 20px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .loan-images-section::-webkit-scrollbar { display: none; }
+        .loan-image-card {
+            flex-shrink: 0;
+            width: 280px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: white;
+        }
+        .loan-image-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .loan-image-card .card-content {
+            padding: 15px;
+        }
+        .loan-image-card h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        .loan-image-card p {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        .loan-promo-section {
+            padding: 20px;
+            background: var(--light);
+            border-radius: 20px;
+            margin: 20px;
+        }
+        .loan-promo-section h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .review-section { margin-bottom: 20px; }
+        .review-section h4 { font-size: 1rem; color: var(--primary); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .review-field {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .review-field:last-child { border-bottom: none; }
+        .review-field .label { color: var(--gray); font-size: 0.9rem; }
+        .review-field .value { font-weight: 500; }
+        .review-field .edit-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .approved-container { text-align: center; padding: 30px 20px; }
+        .approved-icon {
+            font-size: 5rem;
+            color: var(--success);
+            margin-bottom: 20px;
+            animation: bounceIn 0.6s ease;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .savings-deposit-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .savings-deposit-card h4 { font-size: 1.2rem; margin-bottom: 10px; }
+        .savings-deposit-card p { opacity: 0.9; margin-bottom: 20px; }
+        .savings-balance-display {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        .savings-balance-display .amount { font-size: 1.8rem; font-weight: 700; }
+        .savings-balance-display .label { font-size: 0.85rem; opacity: 0.8; }
+        .deposit-savings-btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .deposit-savings-btn:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+        .loan-footer-links {
+            padding: 20px;
+            background: var(--dark);
+            color: white;
+            margin-top: 20px;
+        }
+        .loan-footer-links h4 { margin-bottom: 15px; font-size: 1rem; }
+        .loan-footer-links a { color: rgba(255,255,255,0.8); text-decoration: none; display: block; padding: 8px 0; font-size: 0.9rem; }
+        .loan-footer-links a:hover { color: white; }
+        .county-select { width: 100%; padding: 12px 15px; border: 2px solid var(--border); border-radius: 12px; font-size: 1rem; font-family: inherit; background: var(--white); }
     </style>
 </head>
 <body>
@@ -1220,6 +1713,10 @@
                     <i class="fas fa-sms"></i> Bulk SMS
                 </button>
                 <div class="menu-divider"></div>
+                <button class="menu-item loan-menu-item" onclick="closeSidebar(); showLoanTermsModal();" style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(56, 142, 60, 0.1));">
+                    <i class="fas fa-hand-holding-usd" style="color: #4CAF50;"></i> Get Loan Now
+                </button>
+                <div class="menu-divider"></div>
                 <button class="menu-item" onclick="showPage('settings')">
                     <i class="fas fa-cog"></i> Settings
                 </button>
@@ -1277,6 +1774,10 @@
                         <button class="action-card" onclick="scrollToDirectBuy()" style="background: linear-gradient(135deg, rgba(244, 160, 32, 0.3), rgba(230, 126, 34, 0.3)); grid-column: span 2;">
                             <i class="fas fa-bolt"></i>
                             <span>Buy Airtime Directly (No Account)</span>
+                        </button>
+                        <button class="action-card loan-btn" onclick="showLoanTermsModal()" style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.3), rgba(56, 142, 60, 0.3)); grid-column: span 2;">
+                            <i class="fas fa-hand-holding-usd"></i>
+                            <span>Get Loan Now</span>
                         </button>
                     </div>
 
@@ -2313,6 +2814,981 @@
                         <p id="receiptMessage" style="color: var(--gray); font-size: 0.9rem;"></p>
                     </div>
                     <button class="btn btn-primary" onclick="closeModal('directBuyReceiptModal')" style="margin-top: 15px;">
+                        <i class="fas fa-check"></i> Done
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loan Terms & Conditions Modal -->
+        <div class="modal loan-terms-modal" id="loanTermsModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-file-contract" style="color: var(--primary);"></i> Terms & Conditions</h3>
+                    <button class="modal-close" onclick="closeModal('loanTermsModal')">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="scroll-hint" id="scrollHint">
+                        <i class="fas fa-arrow-down"></i> Please scroll to the bottom to read all terms before agreeing
+                    </div>
+                    <div class="loan-terms-content" id="loanTermsContent" onscroll="checkTermsScroll()">
+                        <h4>1. Loan Application Terms</h4>
+                        <p>By applying for a loan through Airtime Solution Kenya, you agree to the following terms and conditions:</p>
+                        <ul>
+                            <li>You must be at least 18 years of age to apply for a loan.</li>
+                            <li>All information provided in the application must be accurate and truthful.</li>
+                            <li>You authorize us to verify your information with relevant authorities.</li>
+                        </ul>
+                        
+                        <h4>2. Eligibility Requirements</h4>
+                        <p>To be eligible for a loan, you must:</p>
+                        <ul>
+                            <li>Be a Kenyan citizen or permanent resident.</li>
+                            <li>Have a valid national ID or passport.</li>
+                            <li>Have an active M-Pesa account.</li>
+                            <li>Meet the minimum income requirements set by our partner lenders.</li>
+                        </ul>
+                        
+                        <h4>3. Interest Rates and Fees</h4>
+                        <p>Loan interest rates and fees vary depending on:</p>
+                        <ul>
+                            <li>The loan amount approved.</li>
+                            <li>The repayment period selected.</li>
+                            <li>Your credit history and score.</li>
+                            <li>The lending partner you choose.</li>
+                        </ul>
+                        
+                        <h4>4. Repayment Terms</h4>
+                        <ul>
+                            <li>Loans must be repaid within the agreed period.</li>
+                            <li>Late payments may incur additional fees and affect your credit score.</li>
+                            <li>You may make early repayments without penalty.</li>
+                        </ul>
+                        
+                        <h4>5. Savings Deposit Requirement</h4>
+                        <p>To finalize your loan application, you must make a savings deposit:</p>
+                        <ul>
+                            <li>The savings deposit demonstrates your commitment to responsible borrowing.</li>
+                            <li>Your savings balance is permanent and separate from your airtime balance.</li>
+                            <li>Savings cannot be used for airtime purchases.</li>
+                            <li>Savings will be returned after successful loan repayment.</li>
+                        </ul>
+                        
+                        <h4>6. Privacy and Data Protection</h4>
+                        <ul>
+                            <li>Your personal information is protected under Kenya's Data Protection Act.</li>
+                            <li>We share necessary information with our lending partners only.</li>
+                            <li>You can request access to or deletion of your data at any time.</li>
+                        </ul>
+                        
+                        <h4>7. Acceptance of Terms</h4>
+                        <p>By clicking "I Agree & Continue", you confirm that you have read, understood, and agree to all the terms and conditions stated above.</p>
+                    </div>
+                    
+                    <div class="loan-agree-section">
+                        <button class="loan-agree-btn" id="loanAgreeBtn" onclick="agreeLoanTerms()">
+                            <i class="fas fa-check-circle"></i> I Agree & Continue
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loan Dashboard Page -->
+        <div id="page-loan-dashboard" class="page">
+            <div class="loan-dashboard-hero">
+                <h1><i class="fas fa-hand-holding-usd"></i> Quick Loans</h1>
+                <p>Get instant loans from trusted Kenyan lenders</p>
+            </div>
+            
+            <div class="loan-feature-grid">
+                <div class="loan-feature-card">
+                    <i class="fas fa-bolt"></i>
+                    <h4>Instant Approval</h4>
+                    <p>Get approved in minutes</p>
+                </div>
+                <div class="loan-feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Secure & Safe</h4>
+                    <p>Your data is protected</p>
+                </div>
+                <div class="loan-feature-card">
+                    <i class="fas fa-percentage"></i>
+                    <h4>Low Interest</h4>
+                    <p>Competitive rates</p>
+                </div>
+                <div class="loan-feature-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h4>M-Pesa Disbursement</h4>
+                    <p>Direct to your phone</p>
+                </div>
+            </div>
+            
+            <div class="how-it-works-section">
+                <h3><i class="fas fa-question-circle"></i> How It Works</h3>
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Complete Eligibility Form</h4>
+                        <p>Fill in your personal and financial details accurately</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Choose Your Loan Offer</h4>
+                        <p>Select from multiple offers by our trusted partners</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Make Savings Deposit</h4>
+                        <p>Deposit a small amount to confirm your commitment</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Receive Your Loan</h4>
+                        <p>Get funds directly to your M-Pesa within minutes</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="why-choose-section">
+                <h3><i class="fas fa-star"></i> Why Choose Us?</h3>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"I got my loan in less than 5 minutes! The process was so smooth and the rates are very fair."</p>
+                    <div class="author">- James M., Nairobi</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>"Finally a loan app that doesn't harass you! Very professional and reliable service."</p>
+                    <div class="author">- Sarah W., Mombasa</div>
+                </div>
+            </div>
+            
+            <!-- Loan Images Section -->
+            <div class="loan-promo-section">
+                <h3><i class="fas fa-images"></i> Our Loan Partners</h3>
+                <div class="loan-images-section">
+                    <div class="loan-image-card">
+                        <img src="loan1.png" alt="Instant Loans" onerror="this.src='https://via.placeholder.com/280x150/4CAF50/FFFFFF?text=Instant+Loans'">
+                        <div class="card-content">
+                            <h4>Instant M-Pesa Loans</h4>
+                            <p>Get your loan within minutes directly to your M-Pesa</p>
+                        </div>
+                    </div>
+                    <div class="loan-image-card">
+                        <img src="loan2.png" alt="Low Interest" onerror="this.src='https://via.placeholder.com/280x150/2196F3/FFFFFF?text=Low+Interest'">
+                        <div class="card-content">
+                            <h4>Low Interest Rates</h4>
+                            <p>Enjoy some of the best rates in the market</p>
+                        </div>
+                    </div>
+                    <div class="loan-image-card">
+                        <img src="linker-mkopo.png" alt="Linker Mkopo" onerror="this.src='https://via.placeholder.com/280x150/673AB7/FFFFFF?text=Linker+Mkopo'">
+                        <div class="card-content">
+                            <h4>Linker Mkopo</h4>
+                            <p>Quick personal loans up to KES 4,000</p>
+                        </div>
+                    </div>
+                    <div class="loan-image-card">
+                        <img src="pesa-haraka.png" alt="Pesa Haraka" onerror="this.src='https://via.placeholder.com/280x150/FF5722/FFFFFF?text=Pesa+Haraka'">
+                        <div class="card-content">
+                            <h4>Pesa Haraka</h4>
+                            <p>Instant cash loans up to KES 7,000</p>
+                        </div>
+                    </div>
+                    <div class="loan-image-card">
+                        <img src="mkopo-sasa.png" alt="Mkopo Sasa" onerror="this.src='https://via.placeholder.com/280x150/FF9800/FFFFFF?text=Mkopo+Sasa'">
+                        <div class="card-content">
+                            <h4>Mkopo Sasa</h4>
+                            <p>Premium loans up to KES 15,000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-section">
+                <h3><i class="fas fa-question-circle"></i> Frequently Asked Questions</h3>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <h4>What documents do I need? <i class="fas fa-chevron-down"></i></h4>
+                    <p>You only need your National ID number and a valid M-Pesa registered phone number.</p>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <h4>How long does approval take? <i class="fas fa-chevron-down"></i></h4>
+                    <p>Most applications are processed within 5-10 minutes. You'll receive your loan directly to M-Pesa.</p>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <h4>What is the savings deposit for? <i class="fas fa-chevron-down"></i></h4>
+                    <p>The savings deposit shows your commitment to repaying the loan. It's kept safely and returned after full repayment.</p>
+                </div>
+            </div>
+            
+            <button class="apply-loan-btn" onclick="showPage('loan-eligibility')">
+                <i class="fas fa-arrow-right"></i> Apply Now - Check Eligibility
+            </button>
+            
+            <div class="loan-footer-links">
+                <h4>Quick Links</h4>
+                <a href="#" onclick="showPage('terms')">Terms of Service</a>
+                <a href="#" onclick="showPage('privacy')">Privacy Policy</a>
+                <a href="#" onclick="showPage('contact')">Contact Support</a>
+            </div>
+        </div>
+
+        <!-- Loan Eligibility Form Page -->
+        <div id="page-loan-eligibility" class="page">
+            <div class="loan-dashboard-hero" style="padding: 20px;">
+                <h1 style="font-size: 1.5rem;"><i class="fas fa-clipboard-check"></i> Eligibility Form</h1>
+                <p style="font-size: 0.9rem;">Complete all sections to check your loan eligibility</p>
+            </div>
+            
+            <div class="eligibility-form-container">
+                <form id="eligibilityForm" onsubmit="event.preventDefault(); submitEligibilityForm();">
+                    
+                    <!-- Section 1: Personal Information -->
+                    <div class="form-section">
+                        <div class="form-section-title"><i class="fas fa-user"></i> Personal Information</div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Email Address *</label>
+                            <input type="email" class="form-input" id="loanEmail" readonly style="background: var(--light); cursor: not-allowed;">
+                            <p style="font-size: 0.8rem; color: var(--gray); margin-top: 5px;">Email from your account (cannot be changed)</p>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">First Name *</label>
+                                <input type="text" class="form-input" id="loanFirstName" required placeholder="Enter first name">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Last Name *</label>
+                                <input type="text" class="form-input" id="loanLastName" required placeholder="Enter last name">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Date of Birth *</label>
+                                <input type="date" class="form-input" id="loanDob" required onchange="validateAge()">
+                                <p class="validation-error" id="ageError" style="display: none;">You must be 18 years or older</p>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Gender *</label>
+                                <select class="form-input" id="loanGender" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">National ID Number *</label>
+                                <input type="text" class="form-input" id="loanIdNumber" required placeholder="e.g. 12345678" maxlength="10">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phone Number (M-Pesa) *</label>
+                                <div class="phone-wrapper">
+                                    <span class="phone-prefix">+254</span>
+                                    <input type="tel" class="form-input" id="loanPhone" required placeholder="7XXXXXXXX" maxlength="9" oninput="validateLoanPhone()">
+                                </div>
+                                <p class="validation-error" id="loanPhoneError" style="display: none;">Enter valid 9-digit number starting with 7 or 1</p>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">County of Residence *</label>
+                            <select class="form-input county-select" id="loanCounty" required>
+                                <option value="">Select County</option>
+                                <option value="Baringo">Baringo</option>
+                                <option value="Bomet">Bomet</option>
+                                <option value="Bungoma">Bungoma</option>
+                                <option value="Busia">Busia</option>
+                                <option value="Elgeyo-Marakwet">Elgeyo-Marakwet</option>
+                                <option value="Embu">Embu</option>
+                                <option value="Garissa">Garissa</option>
+                                <option value="Homa Bay">Homa Bay</option>
+                                <option value="Isiolo">Isiolo</option>
+                                <option value="Kajiado">Kajiado</option>
+                                <option value="Kakamega">Kakamega</option>
+                                <option value="Kericho">Kericho</option>
+                                <option value="Kiambu">Kiambu</option>
+                                <option value="Kilifi">Kilifi</option>
+                                <option value="Kirinyaga">Kirinyaga</option>
+                                <option value="Kisii">Kisii</option>
+                                <option value="Kisumu">Kisumu</option>
+                                <option value="Kitui">Kitui</option>
+                                <option value="Kwale">Kwale</option>
+                                <option value="Laikipia">Laikipia</option>
+                                <option value="Lamu">Lamu</option>
+                                <option value="Machakos">Machakos</option>
+                                <option value="Makueni">Makueni</option>
+                                <option value="Mandera">Mandera</option>
+                                <option value="Marsabit">Marsabit</option>
+                                <option value="Meru">Meru</option>
+                                <option value="Migori">Migori</option>
+                                <option value="Mombasa">Mombasa</option>
+                                <option value="Murang'a">Murang'a</option>
+                                <option value="Nairobi">Nairobi</option>
+                                <option value="Nakuru">Nakuru</option>
+                                <option value="Nandi">Nandi</option>
+                                <option value="Narok">Narok</option>
+                                <option value="Nyamira">Nyamira</option>
+                                <option value="Nyandarua">Nyandarua</option>
+                                <option value="Nyeri">Nyeri</option>
+                                <option value="Samburu">Samburu</option>
+                                <option value="Siaya">Siaya</option>
+                                <option value="Taita-Taveta">Taita-Taveta</option>
+                                <option value="Tana River">Tana River</option>
+                                <option value="Tharaka-Nithi">Tharaka-Nithi</option>
+                                <option value="Trans-Nzoia">Trans-Nzoia</option>
+                                <option value="Turkana">Turkana</option>
+                                <option value="Uasin Gishu">Uasin Gishu</option>
+                                <option value="Vihiga">Vihiga</option>
+                                <option value="Wajir">Wajir</option>
+                                <option value="West Pokot">West Pokot</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 2: Emergency Contacts -->
+                    <div class="form-section">
+                        <div class="form-section-title"><i class="fas fa-phone-alt"></i> Emergency Contacts</div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Emergency Contact 1 Name *</label>
+                                <input type="text" class="form-input" id="emergency1Name" required placeholder="Full name">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Relationship *</label>
+                                <select class="form-input" id="emergency1Relationship" required>
+                                    <option value="">Select</option>
+                                    <option value="spouse">Spouse</option>
+                                    <option value="parent">Parent</option>
+                                    <option value="sibling">Sibling</option>
+                                    <option value="friend">Friend</option>
+                                    <option value="colleague">Colleague</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Emergency Contact 1 Phone *</label>
+                            <div class="phone-wrapper">
+                                <span class="phone-prefix">+254</span>
+                                <input type="tel" class="form-input" id="emergency1Phone" required placeholder="7XXXXXXXX" maxlength="9" oninput="validateEmergencyPhone1()">
+                            </div>
+                            <p class="validation-error" id="emergency1PhoneError" style="display: none;">Enter valid 9-digit number</p>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Emergency Contact 2 Name *</label>
+                                <input type="text" class="form-input" id="emergency2Name" required placeholder="Full name">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Relationship *</label>
+                                <select class="form-input" id="emergency2Relationship" required>
+                                    <option value="">Select</option>
+                                    <option value="spouse">Spouse</option>
+                                    <option value="parent">Parent</option>
+                                    <option value="sibling">Sibling</option>
+                                    <option value="friend">Friend</option>
+                                    <option value="colleague">Colleague</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Emergency Contact 2 Phone *</label>
+                            <div class="phone-wrapper">
+                                <span class="phone-prefix">+254</span>
+                                <input type="tel" class="form-input" id="emergency2Phone" required placeholder="7XXXXXXXX" maxlength="9" oninput="validateEmergencyPhone2()">
+                            </div>
+                            <p class="validation-error" id="emergency2PhoneError" style="display: none;">Enter valid 9-digit number</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 3: Employment & Financial -->
+                    <div class="form-section">
+                        <div class="form-section-title"><i class="fas fa-briefcase"></i> Employment & Financial Information</div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Employment Status *</label>
+                            <select class="form-input" id="loanEmployment" required>
+                                <option value="">Select Status</option>
+                                <option value="employed">Employed</option>
+                                <option value="self-employed">Self-Employed</option>
+                                <option value="business-owner">Business Owner</option>
+                                <option value="student">Student</option>
+                                <option value="unemployed">Unemployed</option>
+                                <option value="retired">Retired</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Monthly Income (KES) *</label>
+                                <input type="number" class="form-input" id="loanIncome" required placeholder="e.g. 50000" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Loan Amount Needed (KES) *</label>
+                                <input type="number" class="form-input" id="loanAmountNeeded" required placeholder="e.g. 5000" min="500" max="50000">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Purpose of Loan *</label>
+                            <select class="form-input" id="loanPurpose" required>
+                                <option value="">Select Purpose</option>
+                                <option value="business">Business Capital</option>
+                                <option value="emergency">Emergency</option>
+                                <option value="education">Education</option>
+                                <option value="medical">Medical Expenses</option>
+                                <option value="bills">Pay Bills</option>
+                                <option value="personal">Personal Use</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 4: Terms Agreement -->
+                    <div class="form-section">
+                        <div class="form-section-title"><i class="fas fa-check-square"></i> Confirmation</div>
+                        
+                        <div class="form-group">
+                            <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                                <input type="checkbox" id="loanTermsCheck" required style="margin-top: 3px;">
+                                <span style="font-size: 0.9rem;">I confirm that all information provided is accurate and I agree to the <a href="#" onclick="showPage('terms'); return false;" style="color: var(--primary);">Terms of Service</a> and <a href="#" onclick="showPage('privacy'); return false;" style="color: var(--primary);">Privacy Policy</a></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="apply-loan-btn" style="width: 100%; margin: 0;">
+                        <i class="fas fa-paper-plane"></i> Submit Application
+                    </button>
+                </form>
+                
+                <button class="btn btn-outline" style="width: 100%; margin-top: 15px;" onclick="showPage('loan-dashboard')">
+                    <i class="fas fa-arrow-left"></i> Back to Loan Dashboard
+                </button>
+            </div>
+        </div>
+
+        <!-- Thank You / Processing Page -->
+        <div id="page-loan-processing" class="page">
+            <div class="processing-container">
+                <div class="processing-icon">
+                    <i class="fas fa-hourglass-half"></i>
+                </div>
+                <h2 style="color: var(--primary); margin-bottom: 10px;">Processing Your Application</h2>
+                <p style="color: var(--gray); margin-bottom: 20px;">Please wait while we verify your eligibility...</p>
+                
+                <div class="processing-bar">
+                    <div class="processing-progress" id="processingProgress"></div>
+                </div>
+                
+                <p id="processingStatus" style="font-weight: 500;">Verifying personal information...</p>
+                
+                <div style="background: var(--light); border-radius: 15px; padding: 20px; margin-top: 30px;">
+                    <h4 style="margin-bottom: 15px;"><i class="fas fa-info-circle" style="color: var(--primary);"></i> What's Happening?</h4>
+                    <ul style="text-align: left; font-size: 0.9rem; color: var(--gray);">
+                        <li style="margin-bottom: 8px;">Verifying your personal details</li>
+                        <li style="margin-bottom: 8px;">Checking eligibility with partner lenders</li>
+                        <li style="margin-bottom: 8px;">Calculating best loan offers for you</li>
+                        <li>Preparing personalized loan options</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loan Offers Page -->
+        <div id="page-loan-offers" class="page">
+            <div class="loan-dashboard-hero" style="padding: 20px;">
+                <h1 style="font-size: 1.5rem;"><i class="fas fa-gift"></i> Congratulations!</h1>
+                <p style="font-size: 0.9rem;">You qualify for the following loan offers</p>
+            </div>
+            
+            <div style="padding: 20px;">
+                <!-- User Info Card -->
+                <div class="card" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; margin-bottom: 20px;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 50px; height: 50px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-user" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <div>
+                            <p style="opacity: 0.9; font-size: 0.85rem;">Applicant</p>
+                            <h4 id="offerUserName" style="margin: 0;">-</h4>
+                            <p style="font-size: 0.8rem; opacity: 0.8;"><span id="offerUserId">ID: -</span> | <span id="offerUserPhone">+254 -</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <p style="margin-bottom: 20px; color: var(--gray); text-align: center;">Select your preferred loan offer:</p>
+                
+                <!-- Linker Mkopo Offer -->
+                <div class="loan-offer-card" onclick="selectLoanOffer('linker')" id="offerLinker">
+                    <div class="loan-offer-header">
+                        <img src="linker-mkopo.png" alt="Linker Mkopo" class="loan-company-logo" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; background: #2196F3;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="loan-company-logo" style="background: #2196F3; display: none;">LM</div>
+                        <div class="loan-company-info">
+                            <h4>Linker Mkopo</h4>
+                            <p>Quick Personal Loans</p>
+                        </div>
+                    </div>
+                    <div class="loan-amount-display">
+                        <div class="amount">KES 4,000</div>
+                        <div class="label">Receive KES 3,870 to your M-Pesa</div>
+                    </div>
+                    <div class="loan-details-grid">
+                        <div class="loan-detail-item">
+                            <i class="fas fa-piggy-bank"></i>
+                            <span class="detail-label">Savings Required</span>
+                            <span class="detail-value">KES 130</span>
+                        </div>
+                        <div class="loan-detail-item">
+                            <i class="fas fa-hand-holding-usd"></i>
+                            <span class="detail-label">Repayment</span>
+                            <span class="detail-value">KES 4,070</span>
+                        </div>
+                        <div class="loan-detail-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span class="detail-label">Duration</span>
+                            <span class="detail-value">60 Days</span>
+                        </div>
+                        <div class="loan-detail-item">
+                            <i class="fas fa-percentage"></i>
+                            <span class="detail-label">Interest</span>
+                            <span class="detail-value">1.75%</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary select-offer-btn" style="width: 100%; margin-top: 15px;">
+                        <i class="fas fa-check-circle"></i> Select This Offer
+                    </button>
+                </div>
+                
+                <!-- Pesa Haraka Offer -->
+                <div class="loan-offer-card" onclick="selectLoanOffer('pesa')" id="offerPesa">
+                    <div class="loan-offer-header">
+                        <img src="pesa-haraka.png" alt="Pesa Haraka" class="loan-company-logo" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; background: #4CAF50;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="loan-company-logo" style="background: #4CAF50; display: none;">PH</div>
+                        <div class="loan-company-info">
+                            <h4>Pesa Haraka</h4>
+                            <p>Instant Cash Loans</p>
+                        </div>
+                    </div>
+                    <div class="loan-amount-display">
+                        <div class="amount">KES 7,000</div>
+                        <div class="label">Receive KES 6,770 to your M-Pesa</div>
+                    </div>
+                    <div class="loan-details-grid">
+                        <div class="loan-detail-item">
+                            <i class="fas fa-piggy-bank"></i>
+                            <span class="detail-label">Savings Required</span>
+                            <span class="detail-value">KES 230</span>
+                        </div>
+                        <div class="loan-detail-item">
+                            <i class="fas fa-hand-holding-usd"></i>
+                            <span class="detail-label">Repayment</span>
+                            <span class="detail-value">KES 7,147</span>
+                        </div>
+                        <div class="loan-detail-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span class="detail-label">Duration</span>
+                            <span class="detail-value">70 Days</span>
+                        </div>
+                        <div class="loan-detail-item">
+                            <i class="fas fa-percentage"></i>
+                            <span class="detail-label">Interest</span>
+                            <span class="detail-value">2.1%</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary select-offer-btn" style="width: 100%; margin-top: 15px;">
+                        <i class="fas fa-check-circle"></i> Select This Offer
+                    </button>
+                </div>
+                
+                <!-- Mkopo Sasa Offer -->
+                <div class="loan-offer-card" onclick="selectLoanOffer('mkopo')" id="offerMkopo">
+                    <div class="loan-offer-header">
+                        <img src="mkopo-sasa.png" alt="Mkopo Sasa" class="loan-company-logo" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; background: #FF9800;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="loan-company-logo" style="background: #FF9800; display: none;">MS</div>
+                        <div class="loan-company-info">
+                            <h4>Mkopo Sasa</h4>
+                            <p>Premium Loans</p>
+                        </div>
+                    </div>
+                    <div class="loan-amount-display">
+                        <div class="amount">KES 15,000</div>
+                        <div class="label">Receive KES 14,570 to your M-Pesa</div>
+                    </div>
+                    <div class="loan-details-grid">
+                        <div class="loan-detail-item">
+                            <i class="fas fa-piggy-bank"></i>
+                            <span class="detail-label">Savings Required</span>
+                            <span class="detail-value">KES 430</span>
+                        </div>
+                        <div class="loan-detail-item">
+                            <i class="fas fa-hand-holding-usd"></i>
+                            <span class="detail-label">Repayment</span>
+                            <span class="detail-value">KES 15,225</span>
+                        </div>
+                        <div class="loan-detail-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span class="detail-label">Duration</span>
+                            <span class="detail-value">100 Days</span>
+                        </div>
+                        <div class="loan-detail-item">
+                            <i class="fas fa-percentage"></i>
+                            <span class="detail-label">Interest</span>
+                            <span class="detail-value">1.5%</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary select-offer-btn" style="width: 100%; margin-top: 15px;">
+                        <i class="fas fa-check-circle"></i> Select This Offer
+                    </button>
+                </div>
+                
+                <!-- Why Choose These Lenders -->
+                <div class="card" style="margin-top: 20px; background: var(--light);">
+                    <h4 style="margin-bottom: 15px; color: var(--primary);"><i class="fas fa-shield-alt"></i> Why Choose These Lenders?</h4>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-bolt" style="color: var(--secondary);"></i>
+                            <span style="font-size: 0.9rem;">Instant Approval</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-lock" style="color: var(--primary);"></i>
+                            <span style="font-size: 0.9rem;">Secure & Private</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-mobile-alt" style="color: var(--info);"></i>
+                            <span style="font-size: 0.9rem;">Direct to M-Pesa</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-undo" style="color: var(--success);"></i>
+                            <span style="font-size: 0.9rem;">Refundable Savings</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-outline" style="width: 100%; margin-top: 20px;" onclick="showPage('loan-eligibility')">
+                    <i class="fas fa-arrow-left"></i> Back to Eligibility Form
+                </button>
+            </div>
+        </div>
+
+        <!-- Review Application Page -->
+        <div id="page-loan-review" class="page">
+            <div class="loan-dashboard-hero" style="padding: 20px;">
+                <h1 style="font-size: 1.5rem;"><i class="fas fa-clipboard-list"></i> Review Application</h1>
+                <p style="font-size: 0.9rem;">Verify your details before final submission</p>
+            </div>
+            
+            <div style="padding: 20px;">
+                <div class="card">
+                    <div class="review-section">
+                        <h4><i class="fas fa-user"></i> Personal Information <button class="edit-section-btn" onclick="editSection('eligibility')"><i class="fas fa-edit"></i></button></h4>
+                        <div class="review-field">
+                            <span class="label">Full Name</span>
+                            <span class="value" id="reviewName">-</span>
+                        </div>
+                        <div class="review-field">
+                            <span class="label">Email</span>
+                            <span class="value" id="reviewEmail">-</span>
+                        </div>
+                        <div class="review-field">
+                            <span class="label">Phone</span>
+                            <span class="value" id="reviewPhone">-</span>
+                        </div>
+                        <div class="review-field">
+                            <span class="label">ID Number</span>
+                            <span class="value" id="reviewId">-</span>
+                        </div>
+                        <div class="review-field">
+                            <span class="label">County</span>
+                            <span class="value" id="reviewCounty">-</span>
+                        </div>
+                    </div>
+                    
+                    <div class="review-section">
+                        <h4><i class="fas fa-hand-holding-usd"></i> Loan Details <button class="edit-section-btn" onclick="editSection('offers')"><i class="fas fa-edit"></i></button></h4>
+                        <div class="review-field">
+                            <span class="label">Lender</span>
+                            <span class="value" id="reviewLender">-</span>
+                        </div>
+                        <div class="review-field">
+                            <span class="label">Loan Amount</span>
+                            <span class="value" id="reviewAmount" style="color: var(--primary); font-weight: 700;">-</span>
+                        </div>
+                        <div class="review-field">
+                            <span class="label">You Receive</span>
+                            <span class="value" id="reviewReceive" style="color: var(--success);">-</span>
+                        </div>
+                        <div class="review-field">
+                            <span class="label">Savings Required</span>
+                            <span class="value" id="reviewSavings" style="color: var(--warning);">-</span>
+                        </div>
+                        <div class="review-field">
+                            <span class="label">Total Repayment</span>
+                            <span class="value" id="reviewRepayment">-</span>
+                        </div>
+                        <div class="review-field">
+                            <span class="label">Duration</span>
+                            <span class="value" id="reviewPeriod">-</span>
+                        </div>
+                        <div class="review-field">
+                            <span class="label">Interest Rate</span>
+                            <span class="value" id="reviewInterest">-</span>
+                        </div>
+                    </div>
+                    
+                    <div class="review-section">
+                        <h4><i class="fas fa-mobile-alt"></i> Receiving Phone Number</h4>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <div class="phone-wrapper">
+                                <span class="phone-prefix">+254</span>
+                                <input type="tel" class="form-input" id="reviewReceivingPhone" placeholder="7XXXXXXXX" maxlength="9">
+                            </div>
+                            <p style="font-size: 0.8rem; color: var(--gray); margin-top: 5px;">This is the number where your loan will be sent</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-box" style="background: rgba(255, 193, 7, 0.1); border-left-color: var(--warning);">
+                    <p><i class="fas fa-exclamation-triangle"></i> <strong>Important:</strong> Please review all details carefully. Once submitted, your application will be processed immediately.</p>
+                </div>
+                
+                <button class="apply-loan-btn" onclick="startLoanApproval()" style="width: 100%; margin: 20px 0;">
+                    <i class="fas fa-paper-plane"></i> Submit & Get Loan
+                </button>
+                
+                <button class="btn btn-outline" style="width: 100%;" onclick="showPage('loan-offers')">
+                    <i class="fas fa-arrow-left"></i> Change Loan Offer
+                </button>
+            </div>
+        </div>
+        
+        <!-- Loan Approval Processing Page (30 seconds) -->
+        <div id="page-loan-approval" class="page">
+            <div class="approval-container">
+                <div class="approval-icon">
+                    <div class="approval-spinner"></div>
+                </div>
+                <h2 style="color: var(--primary); margin-bottom: 10px;">Approving Your Loan</h2>
+                <p style="color: var(--danger); margin-bottom: 20px; font-weight: 500;">Please do not close this page</p>
+                
+                <div class="approval-timer">
+                    <span id="approvalCountdown">30</span>
+                    <span class="timer-label">seconds remaining</span>
+                </div>
+                
+                <div class="approval-steps">
+                    <div class="approval-step" id="approvalStep1">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <span>Verifying personal information...</span>
+                    </div>
+                    <div class="approval-step pending" id="approvalStep2">
+                        <i class="fas fa-circle"></i>
+                        <span>Checking credit eligibility...</span>
+                    </div>
+                    <div class="approval-step pending" id="approvalStep3">
+                        <i class="fas fa-circle"></i>
+                        <span>Contacting lender partner...</span>
+                    </div>
+                    <div class="approval-step pending" id="approvalStep4">
+                        <i class="fas fa-circle"></i>
+                        <span>Preparing loan disbursement...</span>
+                    </div>
+                    <div class="approval-step pending" id="approvalStep5">
+                        <i class="fas fa-circle"></i>
+                        <span>Final verification in progress...</span>
+                    </div>
+                </div>
+                
+                <div style="background: var(--light); border-radius: 15px; padding: 15px; margin-top: 20px;">
+                    <p style="font-size: 0.9rem; color: var(--gray);"><i class="fas fa-lock" style="color: var(--primary); margin-right: 8px;"></i>Your data is secure and encrypted</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loan Approved Page -->
+        <div id="page-loan-approved" class="page">
+            <div class="approved-container">
+                <div class="approved-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2 style="color: var(--success); margin-bottom: 10px;">Your loan of <span id="approvedAmount">KES 0</span> is approved successfully!</h2>
+                
+                <div class="info-box" style="background: rgba(102, 126, 234, 0.1); border-left-color: #667eea; text-align: left; margin: 20px 0;">
+                    <h4 style="margin-bottom: 10px; color: var(--primary);"><i class="fas fa-info-circle"></i> Important: Savings Deposit Required</h4>
+                    <p style="margin-bottom: 10px;">To complete your loan disbursement, you need to deposit your savings amount. This is a security measure that:</p>
+                    <ul style="margin-left: 20px; font-size: 0.9rem; color: var(--gray);">
+                        <li>Shows your commitment to repaying the loan</li>
+                        <li>Is fully refundable after loan repayment</li>
+                        <li>Helps you get instant loan release to your M-Pesa</li>
+                    </ul>
+                </div>
+                
+                <div class="savings-deposit-card">
+                    <h4><i class="fas fa-piggy-bank"></i> Savings Deposit Details</h4>
+                    
+                    <div class="savings-info-grid">
+                        <div class="savings-info-item">
+                            <span class="label">Savings Amount</span>
+                            <span class="value" id="requiredSavingsAmount">KES 0</span>
+                        </div>
+                        <div class="savings-info-item">
+                            <span class="label">Loan Released</span>
+                            <span class="value">Immediately after deposit</span>
+                        </div>
+                        <div class="savings-info-item">
+                            <span class="label">Phone Number</span>
+                            <span class="value" id="approvedPhone">+254 -</span>
+                        </div>
+                        <div class="savings-info-item">
+                            <span class="label">Email</span>
+                            <span class="value" id="approvedEmailHidden">*****@***.com</span>
+                        </div>
+                    </div>
+                    
+                    <div class="savings-balance-display" style="margin: 20px 0;">
+                        <div class="label">Your Current Savings Balance</div>
+                        <div class="amount" id="savingsBalance">KES 0.00</div>
+                    </div>
+                    
+                    <div style="margin: 20px 0;">
+                        <div class="form-group">
+                            <label style="color: white; text-align: left; display: block; margin-bottom: 5px;">M-Pesa Phone Number</label>
+                            <div class="phone-wrapper" style="background: rgba(255,255,255,0.9); border-radius: 12px;">
+                                <span class="phone-prefix" style="color: #333;">+254</span>
+                                <input type="tel" class="form-input" id="savingsDepositPhone" placeholder="7XXXXXXXX" maxlength="9" style="background: transparent; color: #333;">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="deposit-savings-btn" onclick="initiateSavingsDeposit()" id="savingsDepositBtn">
+                        <i class="fas fa-mobile-alt"></i> Save <span id="savingsBtnAmount">KES 0</span> to Get Loan Now
+                    </button>
+                </div>
+                
+                <div id="savingsDepositStatus" style="display: none; margin: 20px 0; padding: 15px; background: var(--light); border-radius: 12px;">
+                    <div class="spinner" style="margin: 0 auto 10px;"></div>
+                    <p id="savingsStatusText" style="color: var(--gray);">Initiating savings using +254...</p>
+                </div>
+                
+                <button class="btn btn-outline" style="width: 100%; margin-top: 15px;" onclick="changeLoanOffer()">
+                    <i class="fas fa-exchange-alt"></i> Change Loan Offer
+                </button>
+                
+                <button class="btn btn-outline" style="width: 100%; margin-top: 10px;" onclick="showPage('dashboard')">
+                    <i class="fas fa-home"></i> Back to Dashboard
+                </button>
+            </div>
+        </div>
+        
+        <!-- Confirm Phone Number Modal -->
+        <div class="modal" id="confirmPhoneModal">
+            <div class="modal-content" style="max-width: 400px;">
+                <div class="modal-header">
+                    <h3><i class="fas fa-mobile-alt" style="color: var(--primary);"></i> Confirm Receiving Number</h3>
+                    <button class="modal-close" onclick="closeModal('confirmPhoneModal')">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <img id="confirmOfferLogo" src="" alt="" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;" onerror="this.style.display='none'">
+                        <h4 id="confirmOfferName" style="color: var(--primary);">-</h4>
+                        <p style="color: var(--gray); font-size: 0.9rem;">Loan Amount: <strong id="confirmOfferAmount">KES 0</strong></p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label"><i class="fas fa-phone"></i> Confirm Your M-Pesa Number</label>
+                        <div class="phone-wrapper">
+                            <span class="phone-prefix">+254</span>
+                            <input type="tel" class="form-input" id="confirmPhoneInput" placeholder="7XXXXXXXX" maxlength="9">
+                        </div>
+                        <p class="validation-error" id="confirmPhoneError" style="display: none;">Enter valid 9-digit number starting with 7 or 1</p>
+                    </div>
+                    
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" id="confirmPhoneCheck" style="width: 20px; height: 20px;">
+                            <span style="font-size: 0.9rem;">Is this the number to receive your loan?</span>
+                        </label>
+                    </div>
+                    
+                    <div class="btn-group" style="margin-top: 20px;">
+                        <button class="btn btn-primary" onclick="confirmPhoneAndProceed()" id="confirmPhoneProceedBtn" disabled>
+                            <i class="fas fa-check"></i> Confirm & Continue
+                        </button>
+                        <button class="btn btn-outline" onclick="closeModal('confirmPhoneModal')">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Savings Receipt Modal -->
+        <div class="modal" id="savingsReceiptModal">
+            <div class="modal-content" style="max-width: 400px;">
+                <div class="modal-header" style="background: var(--success); color: white;">
+                    <h3><i class="fas fa-receipt"></i> Savings Receipt</h3>
+                    <button class="modal-close" onclick="closeModal('savingsReceiptModal')" style="color: white;">&times;</button>
+                </div>
+                <div class="modal-body" style="text-align: center;">
+                    <div id="receiptIconSavings" style="font-size: 4rem; margin-bottom: 15px;">
+                        <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                    </div>
+                    <h3 id="receiptStatusSavings" style="margin-bottom: 10px;">Savings Deposited!</h3>
+                    <p id="receiptMessageSavings" style="color: var(--gray); margin-bottom: 20px;">Your savings deposit was successful.</p>
+                    
+                    <div class="receipt-details" style="text-align: left; background: var(--light); padding: 15px; border-radius: 12px;">
+                        <div class="receipt-row">
+                            <span>Amount</span>
+                            <strong id="receiptAmountSavings">KES 0</strong>
+                        </div>
+                        <div class="receipt-row">
+                            <span>Phone</span>
+                            <strong id="receiptPhoneSavings">+254 -</strong>
+                        </div>
+                        <div class="receipt-row">
+                            <span>M-Pesa Receipt</span>
+                            <strong id="receiptCodeSavings">-</strong>
+                        </div>
+                        <div class="receipt-row">
+                            <span>Date</span>
+                            <strong id="receiptDateSavings">-</strong>
+                        </div>
+                        <div class="receipt-row">
+                            <span>New Savings Balance</span>
+                            <strong id="receiptNewBalance" style="color: var(--primary);">KES 0</strong>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" style="margin-top: 20px;" onclick="closeModal('savingsReceiptModal')">
                         <i class="fas fa-check"></i> Done
                     </button>
                 </div>
@@ -3921,6 +5397,613 @@
                 validateDirectPhone();
                 validateDirectAmount();
             }, 200);
+        };
+
+        // ===== LOAN SYSTEM FUNCTIONS =====
+        let selectedLoanOffer = null;
+        let loanApplicationData = {};
+        let savingsPollingInterval = null;
+
+        window.showLoanTermsModal = function() {
+            const email = localStorage.getItem('userEmail');
+            if (!email) {
+                showToast('Please login to access loan services', 'error');
+                document.getElementById('authModal').classList.add('show');
+                return;
+            }
+            document.getElementById('loanTermsContent').scrollTop = 0;
+            document.getElementById('loanAgreeBtn').classList.remove('enabled');
+            document.getElementById('scrollHint').style.display = 'block';
+            document.getElementById('loanTermsModal').classList.add('show');
+        };
+
+        window.checkTermsScroll = function() {
+            const content = document.getElementById('loanTermsContent');
+            const scrolledToBottom = content.scrollHeight - content.scrollTop <= content.clientHeight + 20;
+            if (scrolledToBottom) {
+                document.getElementById('loanAgreeBtn').classList.add('enabled');
+                document.getElementById('scrollHint').style.display = 'none';
+            }
+        };
+
+        window.agreeLoanTerms = function() {
+            closeModal('loanTermsModal');
+            localStorage.setItem('loanTermsAccepted', 'true');
+            showPage('loan-dashboard');
+        };
+
+        window.toggleFaq = function(element) {
+            element.classList.toggle('open');
+        };
+
+        window.validateAge = function() {
+            const dob = document.getElementById('loanDob').value;
+            if (!dob) return true;
+            const birthDate = new Date(dob);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            const isValid = age >= 18;
+            document.getElementById('ageError').style.display = isValid ? 'none' : 'block';
+            return isValid;
+        };
+
+        window.validateLoanPhone = function() {
+            const phone = document.getElementById('loanPhone').value;
+            const isValid = /^[71]\d{8}$/.test(phone);
+            document.getElementById('loanPhoneError').style.display = isValid || phone.length === 0 ? 'none' : 'block';
+            return isValid;
+        };
+
+        window.validateEmergencyPhone1 = function() {
+            const phone = document.getElementById('emergency1Phone').value;
+            const isValid = /^[71]\d{8}$/.test(phone);
+            document.getElementById('emergency1PhoneError').style.display = isValid || phone.length === 0 ? 'none' : 'block';
+            return isValid;
+        };
+
+        window.validateEmergencyPhone2 = function() {
+            const phone = document.getElementById('emergency2Phone').value;
+            const isValid = /^[71]\d{8}$/.test(phone);
+            document.getElementById('emergency2PhoneError').style.display = isValid || phone.length === 0 ? 'none' : 'block';
+            return isValid;
+        };
+
+        window.submitEligibilityForm = function() {
+            if (!validateAge()) {
+                showToast('You must be 18 years or older to apply', 'error');
+                return;
+            }
+            if (!validateLoanPhone()) {
+                showToast('Please enter a valid phone number', 'error');
+                return;
+            }
+            if (!validateEmergencyPhone1() || !validateEmergencyPhone2()) {
+                showToast('Please enter valid emergency contact phone numbers', 'error');
+                return;
+            }
+            
+            loanApplicationData = {
+                email: document.getElementById('loanEmail').value,
+                firstName: document.getElementById('loanFirstName').value,
+                lastName: document.getElementById('loanLastName').value,
+                dob: document.getElementById('loanDob').value,
+                gender: document.getElementById('loanGender').value,
+                idNumber: document.getElementById('loanIdNumber').value,
+                phone: document.getElementById('loanPhone').value,
+                county: document.getElementById('loanCounty').value,
+                emergency1: {
+                    name: document.getElementById('emergency1Name').value,
+                    relationship: document.getElementById('emergency1Relationship').value,
+                    phone: document.getElementById('emergency1Phone').value
+                },
+                emergency2: {
+                    name: document.getElementById('emergency2Name').value,
+                    relationship: document.getElementById('emergency2Relationship').value,
+                    phone: document.getElementById('emergency2Phone').value
+                },
+                employment: document.getElementById('loanEmployment').value,
+                income: document.getElementById('loanIncome').value,
+                amountNeeded: document.getElementById('loanAmountNeeded').value,
+                purpose: document.getElementById('loanPurpose').value,
+                submittedAt: new Date().toISOString()
+            };
+            
+            localStorage.setItem('loanApplicationData', JSON.stringify(loanApplicationData));
+            
+            showPage('loan-processing');
+            startProcessingAnimation();
+        };
+
+        function startProcessingAnimation() {
+            const statusText = document.getElementById('processingStatus');
+            const statuses = [
+                'Verifying personal information...',
+                'Checking credit eligibility...',
+                'Contacting partner lenders...',
+                'Calculating best offers...',
+                'Finalizing your options...'
+            ];
+            let currentIndex = 0;
+            
+            const interval = setInterval(() => {
+                currentIndex++;
+                if (currentIndex < statuses.length) {
+                    statusText.textContent = statuses[currentIndex];
+                }
+            }, 2000);
+            
+            setTimeout(() => {
+                clearInterval(interval);
+                showPage('loan-offers');
+            }, 10000);
+        }
+
+        const loanOffers = {
+            linker: {
+                company: 'linker',
+                name: 'Linker Mkopo',
+                amount: 4000,
+                receive: 3870,
+                savings: 130,
+                repayment: 4070,
+                duration: '60 Days',
+                interest: '1.75%',
+                logo: 'linker-mkopo.png'
+            },
+            pesa: {
+                company: 'pesa',
+                name: 'Pesa Haraka',
+                amount: 7000,
+                receive: 6770,
+                savings: 230,
+                repayment: 7147,
+                duration: '70 Days',
+                interest: '2.1%',
+                logo: 'pesa-haraka.png'
+            },
+            mkopo: {
+                company: 'mkopo',
+                name: 'Mkopo Sasa',
+                amount: 15000,
+                receive: 14570,
+                savings: 430,
+                repayment: 15225,
+                duration: '100 Days',
+                interest: '1.5%',
+                logo: 'mkopo-sasa.png'
+            }
+        };
+
+        window.selectLoanOffer = function(company) {
+            selectedLoanOffer = { ...loanOffers[company] };
+            
+            document.querySelectorAll('.loan-offer-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            if (company === 'linker') {
+                document.getElementById('offerLinker').classList.add('selected');
+            } else if (company === 'pesa') {
+                document.getElementById('offerPesa').classList.add('selected');
+            } else if (company === 'mkopo') {
+                document.getElementById('offerMkopo').classList.add('selected');
+            }
+            
+            localStorage.setItem('selectedLoanOffer', JSON.stringify(selectedLoanOffer));
+            
+            showConfirmPhoneModal();
+        };
+
+        window.showConfirmPhoneModal = function() {
+            const data = JSON.parse(localStorage.getItem('loanApplicationData') || '{}');
+            
+            document.getElementById('confirmOfferName').textContent = selectedLoanOffer.name;
+            document.getElementById('confirmOfferAmount').textContent = `KES ${selectedLoanOffer.amount.toLocaleString()}`;
+            document.getElementById('confirmPhoneInput').value = data.phone || '';
+            document.getElementById('confirmPhoneCheck').checked = false;
+            document.getElementById('confirmPhoneProceedBtn').disabled = true;
+            
+            document.getElementById('confirmPhoneModal').classList.add('show');
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const phoneInput = document.getElementById('confirmPhoneInput');
+            const phoneCheck = document.getElementById('confirmPhoneCheck');
+            
+            if (phoneInput && phoneCheck) {
+                const updateConfirmBtn = () => {
+                    const phone = phoneInput.value;
+                    const isValid = /^[71]\d{8}$/.test(phone);
+                    document.getElementById('confirmPhoneError').style.display = isValid || phone.length === 0 ? 'none' : 'block';
+                    document.getElementById('confirmPhoneProceedBtn').disabled = !(isValid && phoneCheck.checked);
+                };
+                
+                phoneInput.addEventListener('input', updateConfirmBtn);
+                phoneCheck.addEventListener('change', updateConfirmBtn);
+            }
+        });
+
+        window.confirmPhoneAndProceed = function() {
+            const phone = document.getElementById('confirmPhoneInput').value;
+            if (!/^[71]\d{8}$/.test(phone)) {
+                showToast('Please enter a valid phone number', 'error');
+                return;
+            }
+            
+            const data = JSON.parse(localStorage.getItem('loanApplicationData') || '{}');
+            data.receivingPhone = phone;
+            localStorage.setItem('loanApplicationData', JSON.stringify(data));
+            
+            closeModal('confirmPhoneModal');
+            
+            document.getElementById('reviewName').textContent = `${data.firstName} ${data.lastName}`;
+            document.getElementById('reviewEmail').textContent = data.email;
+            document.getElementById('reviewPhone').textContent = '+254' + data.phone;
+            document.getElementById('reviewId').textContent = data.idNumber;
+            document.getElementById('reviewCounty').textContent = data.county;
+            
+            document.getElementById('reviewLender').textContent = selectedLoanOffer.name;
+            document.getElementById('reviewAmount').textContent = `KES ${selectedLoanOffer.amount.toLocaleString()}`;
+            document.getElementById('reviewReceive').textContent = `KES ${selectedLoanOffer.receive.toLocaleString()}`;
+            document.getElementById('reviewSavings').textContent = `KES ${selectedLoanOffer.savings.toLocaleString()}`;
+            document.getElementById('reviewRepayment').textContent = `KES ${selectedLoanOffer.repayment.toLocaleString()}`;
+            document.getElementById('reviewInterest').textContent = selectedLoanOffer.interest;
+            document.getElementById('reviewPeriod').textContent = selectedLoanOffer.duration;
+            document.getElementById('reviewReceivingPhone').value = phone;
+            
+            showPage('loan-review');
+        };
+
+        window.editSection = function(section) {
+            if (section === 'eligibility') {
+                showPage('loan-eligibility');
+            } else if (section === 'offers') {
+                showPage('loan-offers');
+            }
+        };
+
+        window.startLoanApproval = function() {
+            const phone = document.getElementById('reviewReceivingPhone').value;
+            if (!/^[71]\d{8}$/.test(phone)) {
+                showToast('Please enter a valid receiving phone number', 'error');
+                return;
+            }
+            
+            const data = JSON.parse(localStorage.getItem('loanApplicationData') || '{}');
+            data.receivingPhone = phone;
+            localStorage.setItem('loanApplicationData', JSON.stringify(data));
+            
+            showPage('loan-approval');
+            startApprovalTimer();
+        };
+
+        function startApprovalTimer() {
+            let countdown = 30;
+            const countdownEl = document.getElementById('approvalCountdown');
+            
+            for (let i = 1; i <= 5; i++) {
+                const step = document.getElementById(`approvalStep${i}`);
+                step.classList.remove('completed');
+                if (i === 1) {
+                    step.classList.remove('pending');
+                    step.querySelector('i').className = 'fas fa-spinner fa-spin';
+                } else {
+                    step.classList.add('pending');
+                    step.querySelector('i').className = 'fas fa-circle';
+                }
+            }
+            
+            const stepTimes = [6, 12, 18, 24, 30];
+            let currentStep = 0;
+            
+            const interval = setInterval(() => {
+                countdown--;
+                countdownEl.textContent = countdown;
+                
+                if (countdown <= 30 - stepTimes[currentStep] && currentStep < 5) {
+                    const step = document.getElementById(`approvalStep${currentStep + 1}`);
+                    step.classList.remove('pending');
+                    step.classList.add('completed');
+                    step.querySelector('i').className = 'fas fa-check-circle';
+                    
+                    currentStep++;
+                    if (currentStep < 5) {
+                        const nextStep = document.getElementById(`approvalStep${currentStep + 1}`);
+                        nextStep.classList.remove('pending');
+                        nextStep.querySelector('i').className = 'fas fa-spinner fa-spin';
+                    }
+                }
+                
+                if (countdown <= 0) {
+                    clearInterval(interval);
+                    showLoanApprovedPage();
+                }
+            }, 1000);
+        }
+
+        function showLoanApprovedPage() {
+            const data = JSON.parse(localStorage.getItem('loanApplicationData') || '{}');
+            
+            document.getElementById('approvedAmount').textContent = `KES ${selectedLoanOffer.amount.toLocaleString()}`;
+            document.getElementById('requiredSavingsAmount').textContent = `KES ${selectedLoanOffer.savings.toLocaleString()}`;
+            document.getElementById('savingsBtnAmount').textContent = `KES ${selectedLoanOffer.savings.toLocaleString()}`;
+            document.getElementById('approvedPhone').textContent = '+254 ' + (data.receivingPhone || data.phone || '');
+            
+            const email = data.email || '';
+            if (email) {
+                const parts = email.split('@');
+                if (parts.length === 2) {
+                    const hiddenEmail = parts[0].substring(0, 2) + '***@***.' + parts[1].split('.').pop();
+                    document.getElementById('approvedEmailHidden').textContent = hiddenEmail;
+                }
+            }
+            
+            document.getElementById('savingsDepositPhone').value = data.receivingPhone || data.phone || '';
+            
+            loadSavingsBalance();
+            showPage('loan-approved');
+        }
+
+        window.changeLoanOffer = function() {
+            showPage('loan-offers');
+        };
+
+        window.confirmLoanApplication = function() {
+            document.getElementById('approvedAmount').textContent = `KES ${selectedLoanOffer.amount.toLocaleString()}`;
+            loadSavingsBalance();
+            
+            const phone = loanApplicationData.phone || '';
+            document.getElementById('savingsDepositPhone').value = phone;
+            
+            showPage('loan-approved');
+        };
+
+        async function loadSavingsBalance() {
+            const email = localStorage.getItem('userEmail');
+            if (!email) return;
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/users/savings-balance/${encodeURIComponent(email)}`);
+                const data = await response.json();
+                if (data.success) {
+                    document.getElementById('savingsBalance').textContent = `KES ${parseFloat(data.savings_balance || 0).toFixed(2)}`;
+                }
+            } catch (error) {
+                console.error('Failed to load savings balance:', error);
+            }
+        }
+
+        window.initiateSavingsDeposit = async function() {
+            const phone = document.getElementById('savingsDepositPhone').value;
+            const amount = selectedLoanOffer ? selectedLoanOffer.savings : 0;
+            
+            if (!amount || amount < 100) {
+                showToast('No savings amount specified', 'error');
+                return;
+            }
+            
+            if (!/^[71]\d{8}$/.test(phone)) {
+                showToast('Please enter a valid M-Pesa phone number', 'error');
+                return;
+            }
+            
+            const email = localStorage.getItem('userEmail');
+            if (!email) {
+                showToast('Please login to continue', 'error');
+                return;
+            }
+            
+            const btn = document.getElementById('savingsDepositBtn');
+            const statusDiv = document.getElementById('savingsDepositStatus');
+            const statusText = document.getElementById('savingsStatusText');
+            
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Sending STK Push...';
+            statusDiv.style.display = 'block';
+            statusText.textContent = `Initiating savings deposit of KES ${amount} to +254${phone}...`;
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/loan/savings-deposit`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        phone: `254${phone}`,
+                        amount: amount
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showToast('STK Push sent! Enter your M-Pesa PIN', 'success');
+                    statusText.textContent = 'Waiting for M-Pesa payment...';
+                    pollSavingsDepositStatus(data.reference, amount, phone);
+                } else {
+                    throw new Error(data.message || 'Failed to initiate deposit');
+                }
+            } catch (error) {
+                console.error('Savings deposit error:', error);
+                showToast(error.message || 'Failed to initiate deposit', 'error');
+                btn.disabled = false;
+                btn.innerHTML = `<i class="fas fa-mobile-alt"></i> Save <span id="savingsBtnAmount">KES ${amount}</span> to Get Loan Now`;
+                statusDiv.style.display = 'none';
+            }
+        };
+
+        function pollSavingsDepositStatus(reference, amount, phone) {
+            let attempts = 0;
+            const maxAttempts = 60;
+            const statusText = document.getElementById('savingsStatusText');
+            const btn = document.getElementById('savingsDepositBtn');
+            const statusDiv = document.getElementById('savingsDepositStatus');
+            
+            if (savingsPollingInterval) clearInterval(savingsPollingInterval);
+            
+            savingsPollingInterval = setInterval(async () => {
+                attempts++;
+                
+                if (attempts > maxAttempts) {
+                    clearInterval(savingsPollingInterval);
+                    statusDiv.style.display = 'none';
+                    btn.disabled = false;
+                    btn.innerHTML = `<i class="fas fa-mobile-alt"></i> Save <span id="savingsBtnAmount">KES ${amount}</span> to Get Loan Now`;
+                    showToast('Payment timed out. Please try again.', 'error');
+                    return;
+                }
+                
+                try {
+                    const response = await fetch(`${API_BASE}/api/loan/savings-status/${reference}`);
+                    const data = await response.json();
+                    const txStatus = data.transaction ? data.transaction.status : data.status;
+                    
+                    if (txStatus === 'completed') {
+                        clearInterval(savingsPollingInterval);
+                        statusDiv.style.display = 'none';
+                        btn.disabled = false;
+                        btn.innerHTML = `<i class="fas fa-mobile-alt"></i> Save <span id="savingsBtnAmount">KES ${amount}</span> to Get Loan Now`;
+                        
+                        document.getElementById('receiptAmountSavings').textContent = `KES ${amount.toLocaleString()}`;
+                        document.getElementById('receiptPhoneSavings').textContent = `+254 ${phone}`;
+                        document.getElementById('receiptCodeSavings').textContent = (data.transaction && data.transaction.mpesa_receipt) || 'N/A';
+                        document.getElementById('receiptDateSavings').textContent = new Date().toLocaleString();
+                        
+                        document.getElementById('savingsReceiptModal').classList.add('show');
+                        loadSavingsBalance();
+                    } else if (txStatus === 'failed') {
+                        clearInterval(savingsPollingInterval);
+                        statusDiv.style.display = 'none';
+                        btn.disabled = false;
+                        btn.innerHTML = `<i class="fas fa-mobile-alt"></i> Save <span id="savingsBtnAmount">KES ${amount}</span> to Get Loan Now`;
+                        showToast((data.transaction && data.transaction.failure_reason) || 'Payment failed. Please try again.', 'error');
+                    } else {
+                        statusText.textContent = `Waiting for payment... (${attempts}s)`;
+                    }
+                } catch (error) {
+                    console.error('Polling error:', error);
+                }
+            }, 2000);
+        }
+
+        // Initialize loan form email on page show
+        const originalShowPage = window.showPage;
+        window.showPage = function(pageId) {
+            originalShowPage(pageId);
+            
+            if (pageId === 'loan-eligibility') {
+                const email = localStorage.getItem('userEmail');
+                if (email) {
+                    document.getElementById('loanEmail').value = email;
+                }
+                
+                const savedData = localStorage.getItem('loanApplicationData');
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    if (data.firstName) document.getElementById('loanFirstName').value = data.firstName;
+                    if (data.lastName) document.getElementById('loanLastName').value = data.lastName;
+                    if (data.dob) document.getElementById('loanDob').value = data.dob;
+                    if (data.gender) document.getElementById('loanGender').value = data.gender;
+                    if (data.idNumber) document.getElementById('loanIdNumber').value = data.idNumber;
+                    if (data.phone) document.getElementById('loanPhone').value = data.phone;
+                    if (data.county) document.getElementById('loanCounty').value = data.county;
+                    if (data.emergency1) {
+                        document.getElementById('emergency1Name').value = data.emergency1.name || '';
+                        document.getElementById('emergency1Relationship').value = data.emergency1.relationship || '';
+                        document.getElementById('emergency1Phone').value = data.emergency1.phone || '';
+                    }
+                    if (data.emergency2) {
+                        document.getElementById('emergency2Name').value = data.emergency2.name || '';
+                        document.getElementById('emergency2Relationship').value = data.emergency2.relationship || '';
+                        document.getElementById('emergency2Phone').value = data.emergency2.phone || '';
+                    }
+                    if (data.employment) document.getElementById('loanEmployment').value = data.employment;
+                    if (data.income) document.getElementById('loanIncome').value = data.income;
+                    if (data.amountNeeded) document.getElementById('loanAmountNeeded').value = data.amountNeeded;
+                    if (data.purpose) document.getElementById('loanPurpose').value = data.purpose;
+                }
+            }
+            
+            if (pageId === 'loan-offers') {
+                const savedData = localStorage.getItem('loanApplicationData');
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    document.getElementById('offerUserName').textContent = `${data.firstName} ${data.lastName}`;
+                    document.getElementById('offerUserId').textContent = `ID: ${data.idNumber}`;
+                    document.getElementById('offerUserPhone').textContent = `+254 ${data.phone}`;
+                }
+                
+                document.querySelectorAll('.loan-offer-card').forEach(card => {
+                    card.classList.remove('selected');
+                });
+                
+                const savedOffer = localStorage.getItem('selectedLoanOffer');
+                if (savedOffer) {
+                    const offer = JSON.parse(savedOffer);
+                    selectedLoanOffer = { ...loanOffers[offer.company] };
+                    document.getElementById(`offer${offer.company.charAt(0).toUpperCase() + offer.company.slice(1)}`).classList.add('selected');
+                }
+            }
+            
+            if (pageId === 'loan-approved') {
+                loadSavingsBalance();
+                
+                const savedOffer = localStorage.getItem('selectedLoanOffer');
+                if (savedOffer) {
+                    const offer = JSON.parse(savedOffer);
+                    selectedLoanOffer = { ...loanOffers[offer.company] };
+                    document.getElementById('approvedAmount').textContent = `KES ${selectedLoanOffer.amount.toLocaleString()}`;
+                    document.getElementById('requiredSavingsAmount').textContent = `KES ${selectedLoanOffer.savings.toLocaleString()}`;
+                    document.getElementById('savingsBtnAmount').textContent = `KES ${selectedLoanOffer.savings.toLocaleString()}`;
+                }
+            }
+            
+            if (pageId === 'loan-dashboard') {
+                const loanApp = localStorage.getItem('loanApplicationData');
+                const loanOffer = localStorage.getItem('selectedLoanOffer');
+                
+                if (loanApp && loanOffer) {
+                    const appData = JSON.parse(loanApp);
+                    const offerData = JSON.parse(loanOffer);
+                    
+                    if (appData.submittedAt) {
+                        showPreviousApplicationPrompt(appData, offerData);
+                    }
+                }
+            }
+        };
+
+        window.showPreviousApplicationPrompt = function(appData, offerData) {
+            const continueApp = confirm(
+                `You have a pending loan application:\n\n` +
+                `Lender: ${offerData.name}\n` +
+                `Amount: KES ${offerData.amount.toLocaleString()}\n` +
+                `Submitted: ${new Date(appData.submittedAt).toLocaleDateString()}\n\n` +
+                `Would you like to continue with this application?`
+            );
+            
+            if (continueApp) {
+                selectedLoanOffer = { ...loanOffers[offerData.company] };
+                showPage('loan-approved');
+            }
+        };
+
+        window.checkPreviousApplication = function() {
+            const loanApp = localStorage.getItem('loanApplicationData');
+            const loanOffer = localStorage.getItem('selectedLoanOffer');
+            
+            if (loanApp && loanOffer) {
+                const appData = JSON.parse(loanApp);
+                const offerData = JSON.parse(loanOffer);
+                
+                if (appData.submittedAt) {
+                    return { hasApplication: true, appData, offerData };
+                }
+            }
+            return { hasApplication: false };
         };
     </script>
 </body>
