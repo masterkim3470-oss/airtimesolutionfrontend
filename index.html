@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airtime Solution Kenya</title>
+    <title>Airtime & Loan Solution</title>
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" type="image/png" href="/airtime-logo.png">
     <link rel="apple-touch-icon" href="/airtime-logo.png">
@@ -353,6 +353,8 @@
         .menu-item:hover, .menu-item.active {
             background: rgba(26, 95, 42, 0.1);
             color: var(--primary);
+            border-left: 4px solid var(--primary);
+            padding-left: 21px;
         }
 
         .menu-item i { width: 25px; text-align: center; }
@@ -461,11 +463,11 @@
         }
 
         .balance-value { 
-            font-size: 3rem; 
-            font-weight: 800; 
-            text-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            letter-spacing: 1px;
-            margin: 10px 0;
+            font-size: 1.8rem; 
+            font-weight: 700; 
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            letter-spacing: 0.5px;
+            margin: 8px 0;
         }
 
         .balance-bonus { 
@@ -1137,7 +1139,7 @@
             .quick-actions { flex-direction: column; gap: 10px; }
             .action-btn { padding: 15px 18px; }
             .action-btn i:first-child { width: 44px; height: 44px; font-size: 1.3rem; }
-            .balance-value { font-size: 2.5rem; }
+            .balance-value { font-size: 1.6rem; }
             .notification-panel { right: 5px; left: 5px; width: auto; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
@@ -1159,7 +1161,7 @@
                 </button>
                 <div class="logo">
                     <img src="airtime-logo.png" alt="Logo" id="headerLogo">
-                    <span class="logo-text">Airtime Solution </span>
+                    <span class="logo-text">Airtime & Loan</span>
                 </div>
             </div>
             <div class="header-right">
@@ -1253,15 +1255,8 @@
 
         <main class="main-content">
             <div id="page-dashboard" class="page active">
-                <div class="hero-section">
-                    <!-- Trust Badge Header -->
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 15px; padding: 10px 15px; background: rgba(255,255,255,0.12); border-radius: 30px; backdrop-filter: blur(5px);">
-                        <i class="fas fa-shield-alt" style="color: #4CAF50;"></i>
-                        <span style="color: #fff; font-size: 0.8rem; font-weight: 500;">Licensed & Secure | M-Pesa Protected</span>
-                        <i class="fas fa-check-circle" style="color: #4CAF50;"></i>
-                    </div>
-
-                    <div class="card balance-card" style="background: linear-gradient(145deg, #1a5f2a 0%, #0d4a1f 50%, #083314 100%); border: none; border-radius: 24px; padding: 25px 20px; position: relative; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);">
+                <div class="hero-section" style="padding-top: 0;">
+                    <div class="card balance-card" style="background: linear-gradient(145deg, #1a5f2a 0%, #0d4a1f 50%, #083314 100%); border: none; border-radius: 24px; padding: 25px 20px; position: relative; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1); margin-top: 0;">
                         <!-- Decorative circles -->
                         <div style="position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; background: rgba(255,255,255,0.05); border-radius: 50%;"></div>
                         <div style="position: absolute; bottom: -40px; left: -40px; width: 150px; height: 150px; background: rgba(255,255,255,0.03); border-radius: 50%;"></div>
@@ -1280,7 +1275,7 @@
                         <!-- Balance amount -->
                         <div style="text-align: center; margin: 25px 0; position: relative; z-index: 1;">
                             <p style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-bottom: 5px;">Current Balance</p>
-                            <p class="balance-value" id="dashboardBalance" style="font-size: 2.8rem; font-weight: 800; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.3); margin: 0; letter-spacing: -1px;">KES 0.00</p>
+                            <p class="balance-value" id="dashboardBalance" style="font-size: 1.8rem; font-weight: 700; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.3); margin: 0; letter-spacing: -0.5px;">KES 0.00</p>
                         </div>
                         
                         <!-- Bonus banner -->
@@ -1365,7 +1360,7 @@
                 <!-- Scrolling Announcement -->
                 <div class="scrolling-text-container" style="margin-top: 15px;">
                     <div class="scrolling-text">
-                        📢 IMPORTANT UPDATE: Enjoy instant airtime delivery! Deposit KES 50+ and get KES 6 bonus! New features coming soon! 24/7 Support available! Buy airtime directly without an account - just pay via M-Pesa! All networks supported: Safaricom, Airtel, Telkom! Fast, secure, and reliable service! 🎉
+                        📢 IMPORTANT UPDATE: Enjoy instant airtime delivery! Deposit KES 50+ and get KES 6 bonus! 💰 LOANS NOW AVAILABLE: Get up to KES 15,000 instantly! Quick approval in minutes! 🎯 New features coming soon! 24/7 Support available! Buy airtime directly without an account - just pay via M-Pesa! All networks supported: Safaricom, Airtel, Telkom! 💳 Low interest rates from 1.5%! Flexible repayment up to 100 days! Fast, secure, and reliable service! Apply for a loan today! 🎉
                     </div>
                 </div>
 
@@ -1872,6 +1867,9 @@
 
             <div id="page-about" class="page">
                 <div class="card">
+                    <button class="btn btn-outline" onclick="history.back()" style="margin-bottom: 15px; width: auto; padding: 10px 20px;">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
                     <h3 class="card-title"><i class="fas fa-info-circle"></i> <span data-translate="aboutUs">About Us</span></h3>
                     
                     <div style="text-align: center; margin-bottom: 20px;">
@@ -1935,6 +1933,9 @@
 
             <div id="page-contact" class="page">
                 <div class="card">
+                    <button class="btn btn-outline" onclick="history.back()" style="margin-bottom: 15px; width: auto; padding: 10px 20px;">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
                     <h3 class="card-title"><i class="fas fa-envelope"></i> <span data-translate="contactUs">Contact Us</span></h3>
                     
                     <p style="margin-bottom: 20px; font-size: 1.05rem;">Have questions about airtime, loans, or need help? We're here for you 24/7!</p>
@@ -1998,6 +1999,9 @@
 
             <div id="page-privacy" class="page">
                 <div class="card">
+                    <button class="btn btn-outline" onclick="history.back()" style="margin-bottom: 15px; width: auto; padding: 10px 20px;">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
                     <h3 class="card-title"><i class="fas fa-shield-alt"></i> <span data-translate="privacyPolicy">Privacy Policy</span></h3>
                     
                     <div style="text-align: center; margin-bottom: 20px;">
@@ -2073,6 +2077,9 @@
 
             <div id="page-terms" class="page">
                 <div class="card">
+                    <button class="btn btn-outline" onclick="history.back()" style="margin-bottom: 15px; width: auto; padding: 10px 20px;">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
                     <h3 class="card-title"><i class="fas fa-file-contract"></i> <span data-translate="termsOfService">Terms of Service</span></h3>
                     
                     <div style="background: var(--light); padding: 15px; border-radius: 12px; margin-bottom: 20px;">
@@ -2626,6 +2633,46 @@
                                     <option value="eldoret">Uasin Gishu</option>
                                     <option value="kiambu">Kiambu</option>
                                     <option value="machakos">Machakos</option>
+                                    <option value="kajiado">Kajiado</option>
+                                    <option value="nyeri">Nyeri</option>
+                                    <option value="meru">Meru</option>
+                                    <option value="kakamega">Kakamega</option>
+                                    <option value="kilifi">Kilifi</option>
+                                    <option value="bungoma">Bungoma</option>
+                                    <option value="turkana">Turkana</option>
+                                    <option value="nyandarua">Nyandarua</option>
+                                    <option value="muranga">Murang'a</option>
+                                    <option value="embu">Embu</option>
+                                    <option value="trans_nzoia">Trans Nzoia</option>
+                                    <option value="kericho">Kericho</option>
+                                    <option value="bomet">Bomet</option>
+                                    <option value="kisii">Kisii</option>
+                                    <option value="narok">Narok</option>
+                                    <option value="migori">Migori</option>
+                                    <option value="homabay">Homa Bay</option>
+                                    <option value="siaya">Siaya</option>
+                                    <option value="nandi">Nandi</option>
+                                    <option value="baringo">Baringo</option>
+                                    <option value="laikipia">Laikipia</option>
+                                    <option value="samburu">Samburu</option>
+                                    <option value="westpokot">West Pokot</option>
+                                    <option value="kitui">Kitui</option>
+                                    <option value="makueni">Makueni</option>
+                                    <option value="kwale">Kwale</option>
+                                    <option value="taita_taveta">Taita Taveta</option>
+                                    <option value="tana_river">Tana River</option>
+                                    <option value="lamu">Lamu</option>
+                                    <option value="garissa">Garissa</option>
+                                    <option value="wajir">Wajir</option>
+                                    <option value="mandera">Mandera</option>
+                                    <option value="marsabit">Marsabit</option>
+                                    <option value="isiolo">Isiolo</option>
+                                    <option value="tharaka_nithi">Tharaka Nithi</option>
+                                    <option value="kirinyaga">Kirinyaga</option>
+                                    <option value="vihiga">Vihiga</option>
+                                    <option value="busia">Busia</option>
+                                    <option value="elgeyo_marakwet">Elgeyo Marakwet</option>
+                                    <option value="nyamira">Nyamira</option>
                                 </select>
                             </div>
 
@@ -2754,6 +2801,17 @@
                                     <option value="other">Other</option>
                                 </select>
                             </div>
+
+                            <div class="form-group">
+                                <label class="form-label"><i class="fas fa-question-circle"></i> Do you have any existing loan? *</label>
+                                <select class="form-input" id="loanExisting" required>
+                                    <option value="">Select Answer</option>
+                                    <option value="no">No, I don't have any loan</option>
+                                    <option value="yes_repaying">Yes, but I'm repaying on time</option>
+                                    <option value="yes_defaulted">Yes, but I have defaulted</option>
+                                    <option value="yes_cleared">Yes, but I have cleared it</option>
+                                </select>
+                            </div>
                         </div>
 
                         <!-- Section 4: Terms Acceptance -->
@@ -2785,57 +2843,87 @@
 
             <!-- Loan Processing Page -->
             <div id="page-loan-processing" class="page">
-                <div style="min-height: calc(100vh - 70px); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; text-align: center;">
-                    <div style="width: 100px; height: 100px; border: 4px solid var(--border); border-top-color: var(--success); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 30px;"></div>
-                    <h2 style="font-size: 1.5rem; color: var(--primary); margin-bottom: 10px;">Processing Your Application</h2>
-                    <p style="color: var(--gray); margin-bottom: 30px;">Please wait while we verify your details</p>
+                <div style="min-height: calc(100vh - 70px); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; text-align: center; background: linear-gradient(180deg, var(--light) 0%, #e8f5e9 100%);">
+                    <!-- Animated Processing Icon -->
+                    <div style="position: relative; width: 120px; height: 120px; margin-bottom: 30px;">
+                        <div style="width: 120px; height: 120px; border: 5px solid rgba(39, 174, 96, 0.2); border-top-color: var(--success); border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                            <i class="fas fa-search-dollar" style="font-size: 2.5rem; color: var(--success); animation: pulse 1.5s ease-in-out infinite;"></i>
+                        </div>
+                    </div>
                     
-                    <div style="width: 100%; max-width: 400px; background: var(--light); border-radius: 12px; padding: 20px; margin-bottom: 30px;">
+                    <h2 style="font-size: 1.6rem; color: var(--primary); margin-bottom: 10px; font-weight: 700;">Processing Your Application</h2>
+                    <p style="color: var(--gray); margin-bottom: 30px; font-size: 1rem;">Connecting to partner lenders...</p>
+                    
+                    <!-- System Status Card -->
+                    <div style="width: 100%; max-width: 400px; background: var(--white); border-radius: 16px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border);">
+                            <span class="live-indicator" style="background: var(--success);"></span>
+                            <span style="font-size: 0.85rem; color: var(--success); font-weight: 600;">SYSTEM LIVE</span>
+                        </div>
                         <div id="loanProcessingSteps">
-                            <div class="processing-step" style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
-                                <i class="fas fa-check-circle" style="color: var(--success); font-size: 1.2rem;"></i>
-                                <span style="font-size: 0.9rem;">Validating personal information...</span>
+                            <div class="processing-step" style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px; padding: 10px; background: rgba(39, 174, 96, 0.1); border-radius: 10px;">
+                                <i class="fas fa-check-circle" style="color: var(--success); font-size: 1.3rem;"></i>
+                                <span style="font-size: 0.95rem; font-weight: 500;">Validating personal information...</span>
                             </div>
-                            <div class="processing-step" style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
-                                <i class="fas fa-spinner fa-spin" style="color: var(--primary); font-size: 1.2rem;"></i>
-                                <span style="font-size: 0.9rem;">Verifying identity...</span>
+                            <div class="processing-step" style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px; padding: 10px; background: rgba(26, 95, 42, 0.1); border-radius: 10px;">
+                                <i class="fas fa-spinner fa-spin" style="color: var(--primary); font-size: 1.3rem;"></i>
+                                <span style="font-size: 0.95rem; font-weight: 500;">Verifying identity with CRB...</span>
                             </div>
-                            <div class="processing-step" style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; opacity: 0.5;">
-                                <i class="fas fa-circle" style="color: var(--gray); font-size: 1.2rem;"></i>
-                                <span style="font-size: 0.9rem;">Checking credit eligibility...</span>
+                            <div class="processing-step" style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px; padding: 10px; border-radius: 10px; opacity: 0.5;">
+                                <i class="fas fa-circle" style="color: var(--gray); font-size: 1.3rem;"></i>
+                                <span style="font-size: 0.95rem;">Checking credit eligibility...</span>
                             </div>
-                            <div class="processing-step" style="display: flex; align-items: center; gap: 10px; opacity: 0.5;">
-                                <i class="fas fa-circle" style="color: var(--gray); font-size: 1.2rem;"></i>
-                                <span style="font-size: 0.9rem;">Preparing loan offers...</span>
+                            <div class="processing-step" style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px; padding: 10px; border-radius: 10px; opacity: 0.5;">
+                                <i class="fas fa-circle" style="color: var(--gray); font-size: 1.3rem;"></i>
+                                <span style="font-size: 0.95rem;">Contacting partner lenders...</span>
+                            </div>
+                            <div class="processing-step" style="display: flex; align-items: center; gap: 12px; padding: 10px; border-radius: 10px; opacity: 0.5;">
+                                <i class="fas fa-circle" style="color: var(--gray); font-size: 1.3rem;"></i>
+                                <span style="font-size: 0.95rem;">Preparing loan offers...</span>
                             </div>
                         </div>
                     </div>
 
-                    <div style="background: linear-gradient(135deg, var(--success), #2ecc71); color: white; padding: 15px 30px; border-radius: 50px; font-size: 1.2rem; font-weight: 600;">
-                        <span id="loanProcessingTimer">10</span> seconds remaining
+                    <!-- Timer Badge -->
+                    <div style="background: linear-gradient(135deg, var(--success), #2ecc71); color: white; padding: 18px 40px; border-radius: 50px; font-size: 1.3rem; font-weight: 700; box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);">
+                        <i class="fas fa-hourglass-half" style="margin-right: 10px; animation: pulse 1s ease-in-out infinite;"></i>
+                        <span id="loanProcessingTimer">20</span> seconds
                     </div>
                     
-                    <p style="margin-top: 20px; font-size: 0.85rem; color: var(--gray);"><i class="fas fa-lock"></i> Your data is secure and encrypted</p>
+                    <div style="margin-top: 25px; padding: 15px 20px; background: rgba(39, 174, 96, 0.1); border-radius: 12px;">
+                        <p style="font-size: 0.9rem; color: var(--primary);"><i class="fas fa-shield-alt" style="margin-right: 8px;"></i> Your data is encrypted and secure</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loan Offers Loading Page -->
+            <div id="page-loan-offers-loading" class="page">
+                <div style="min-height: calc(100vh - 70px); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; text-align: center; background: linear-gradient(180deg, #e8f5e9 0%, var(--light) 100%);">
+                    <div style="width: 80px; height: 80px; border: 4px solid rgba(39, 174, 96, 0.2); border-top-color: var(--success); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 30px;"></div>
+                    <h2 style="font-size: 1.4rem; color: var(--primary); margin-bottom: 10px;">Generating Loan Offers</h2>
+                    <p style="color: var(--gray);">Please wait...</p>
                 </div>
             </div>
 
             <!-- Loan Offers Page -->
             <div id="page-loan-offers" class="page">
-                <div style="background: linear-gradient(135deg, var(--success), #27ae60); color: white; padding: 30px 20px; text-align: center;">
-                    <i class="fas fa-trophy" style="font-size: 3rem; margin-bottom: 15px;"></i>
-                    <h2 style="font-size: 1.6rem; margin-bottom: 10px;">Congratulations!</h2>
-                    <p style="opacity: 0.9;">You qualify for the following loan offers</p>
+                <div style="background: linear-gradient(135deg, var(--success), #27ae60); color: white; padding: 30px 20px; text-align: center; position: relative; overflow: hidden;">
+                    <img src="congrats.png" alt="" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15;" onerror="this.style.display='none'">
+                    <div style="position: relative; z-index: 1;">
+                        <i class="fas fa-trophy" style="font-size: 3.5rem; margin-bottom: 15px; animation: pulse 2s ease-in-out infinite;"></i>
+                        <h2 style="font-size: 1.8rem; margin-bottom: 10px; font-weight: 700;">Congratulations!</h2>
+                        <p style="opacity: 0.95; font-size: 1.05rem;">You qualify for the following loan offers</p>
+                    </div>
                 </div>
                 
                 <div class="page-content" style="padding-top: 20px;">
                     <!-- Applicant Info Card -->
-                    <div class="card" style="margin-bottom: 20px; background: linear-gradient(135deg, rgba(39, 174, 96, 0.1), rgba(46, 204, 113, 0.05));">
+                    <div class="card" style="margin-bottom: 20px; background: linear-gradient(135deg, rgba(39, 174, 96, 0.1), rgba(46, 204, 113, 0.05)); border: 2px solid rgba(39, 174, 96, 0.2);">
                         <div style="display: flex; align-items: center; gap: 15px;">
-                            <div style="width: 60px; height: 60px; background: var(--success); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-user-check" style="font-size: 1.5rem; color: white;"></i>
-                            </div>
+                            <img src="loan-avatar.png" alt="User" style="width: 65px; height: 65px; border-radius: 50%; object-fit: cover; border: 3px solid var(--success);" onerror="this.outerHTML='<div style=\\'width: 65px; height: 65px; background: linear-gradient(135deg, var(--success), #2ecc71); border-radius: 50%; display: flex; align-items: center; justify-content: center;\\'><i class=\\'fas fa-user-check\\' style=\\'font-size: 1.5rem; color: white;\\'></i></div>'">
                             <div>
-                                <h4 id="loanOfferName" style="font-size: 1.1rem;">-</h4>
+                                <h4 id="loanOfferName" style="font-size: 1.15rem; font-weight: 600;">-</h4>
                                 <p style="font-size: 0.85rem; color: var(--gray);">ID: <span id="loanOfferId">-</span></p>
                                 <p style="font-size: 0.85rem; color: var(--gray);">Phone: <span id="loanOfferPhone">-</span></p>
                             </div>
@@ -2845,9 +2933,14 @@
                     <!-- Loan Offer Cards -->
                     <div id="loanOfferCards" style="display: grid; gap: 20px;">
                         <!-- Linker Mkopo -->
-                        <div class="card loan-offer-card" style="border: 2px solid var(--border); transition: all 0.3s;">
+                        <div class="card loan-offer-card" style="border: 3px solid #3498db; transition: all 0.3s; animation: cardFloat1 3s ease-in-out infinite; background: linear-gradient(135deg, rgba(52, 152, 219, 0.05), rgba(255,255,255,1));">
+                            <style>
+                                @keyframes cardFloat1 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+                                @keyframes cardFloat2 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+                                @keyframes cardFloat3 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+                            </style>
                             <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-                                <img src="linker-mkopo.png" alt="Linker Mkopo" style="width: 60px; height: 60px; border-radius: 12px; object-fit: cover;" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 60%22><rect fill=%22%233498db%22 width=%2260%22 height=%2260%22 rx=%2212%22/><text x=%2230%22 y=%2235%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2210%22 font-family=%22sans-serif%22>LM</text></svg>'">
+                                <img src="linker-logo.png" alt="Linker Mkopo" style="width: 60px; height: 60px; border-radius: 12px; object-fit: cover; border: 2px solid #3498db;" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 60%22><rect fill=%22%233498db%22 width=%2260%22 height=%2260%22 rx=%2212%22/><text x=%2230%22 y=%2235%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2210%22 font-family=%22sans-serif%22>LM</text></svg>'">
                                 <div>
                                     <h4 style="font-size: 1.1rem; color: var(--primary);">Linker Mkopo</h4>
                                     <p style="font-size: 0.85rem; color: var(--gray);">Quick Personal Loans</p>
@@ -2881,9 +2974,9 @@
                         </div>
 
                         <!-- Pesa Haraka -->
-                        <div class="card loan-offer-card" style="border: 2px solid var(--border); transition: all 0.3s;">
+                        <div class="card loan-offer-card" style="border: 3px solid #e74c3c; transition: all 0.3s; animation: cardFloat2 3.5s ease-in-out infinite; background: linear-gradient(135deg, rgba(231, 76, 60, 0.05), rgba(255,255,255,1));">
                             <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-                                <img src="pesa-haraka.png" alt="Pesa Haraka" style="width: 60px; height: 60px; border-radius: 12px; object-fit: cover;" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 60%22><rect fill=%22%23e74c3c%22 width=%2260%22 height=%2260%22 rx=%2212%22/><text x=%2230%22 y=%2235%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2210%22 font-family=%22sans-serif%22>PH</text></svg>'">
+                                <img src="pesa-logo.png" alt="Pesa Haraka" style="width: 60px; height: 60px; border-radius: 12px; object-fit: cover; border: 2px solid #e74c3c;" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 60%22><rect fill=%22%23e74c3c%22 width=%2260%22 height=%2260%22 rx=%2212%22/><text x=%2230%22 y=%2235%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2210%22 font-family=%22sans-serif%22>PH</text></svg>'">
                                 <div>
                                     <h4 style="font-size: 1.1rem; color: var(--primary);">Pesa Haraka</h4>
                                     <p style="font-size: 0.85rem; color: var(--gray);">Instant Cash Loans</p>
@@ -2917,10 +3010,10 @@
                         </div>
 
                         <!-- Mkopo Sasa -->
-                        <div class="card loan-offer-card" style="border: 2px solid var(--success); background: linear-gradient(135deg, rgba(39, 174, 96, 0.05), rgba(46, 204, 113, 0.02)); transition: all 0.3s;">
-                            <div style="position: absolute; top: 10px; right: 10px; background: var(--success); color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">BEST VALUE</div>
+                        <div class="card loan-offer-card" style="border: 3px solid var(--success); background: linear-gradient(135deg, rgba(39, 174, 96, 0.08), rgba(46, 204, 113, 0.03)); transition: all 0.3s; animation: cardFloat3 2.5s ease-in-out infinite; position: relative;">
+                            <div style="position: absolute; top: 10px; right: 10px; background: linear-gradient(135deg, var(--success), #2ecc71); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; box-shadow: 0 3px 10px rgba(39,174,96,0.3);">BEST VALUE</div>
                             <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-                                <img src="mkopo-sasa.png" alt="Mkopo Sasa" style="width: 60px; height: 60px; border-radius: 12px; object-fit: cover;" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 60%22><rect fill=%22%2327ae60%22 width=%2260%22 height=%2260%22 rx=%2212%22/><text x=%2230%22 y=%2235%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2210%22 font-family=%22sans-serif%22>MS</text></svg>'">
+                                <img src="mkopo-logo.png" alt="Mkopo Sasa" style="width: 60px; height: 60px; border-radius: 12px; object-fit: cover; border: 2px solid var(--success);" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 60%22><rect fill=%22%2327ae60%22 width=%2260%22 height=%2260%22 rx=%2212%22/><text x=%2230%22 y=%2235%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2210%22 font-family=%22sans-serif%22>MS</text></svg>'">
                                 <div>
                                     <h4 style="font-size: 1.1rem; color: var(--primary);">Mkopo Sasa</h4>
                                     <p style="font-size: 0.85rem; color: var(--gray);">Premium Loans</p>
@@ -3016,46 +3109,74 @@
 
             <!-- Loan Approval Processing Page -->
             <div id="page-loan-approval-processing" class="page">
-                <div style="min-height: calc(100vh - 70px); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; text-align: center;">
-                    <div style="width: 100px; height: 100px; border: 4px solid var(--border); border-top-color: var(--success); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 30px;"></div>
-                    <h2 style="font-size: 1.5rem; color: var(--primary); margin-bottom: 10px;">Approving Your Loan</h2>
-                    <p style="color: var(--gray); margin-bottom: 15px;">Please do not close this page</p>
+                <div style="min-height: calc(100vh - 70px); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; text-align: center; background: linear-gradient(180deg, var(--light) 0%, #e8f5e9 100%);">
+                    <!-- Animated Processing Icon -->
+                    <div style="position: relative; width: 120px; height: 120px; margin-bottom: 30px;">
+                        <div style="width: 120px; height: 120px; border: 5px solid rgba(39, 174, 96, 0.2); border-top-color: var(--success); border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                            <i class="fas fa-file-signature" style="font-size: 2.5rem; color: var(--success); animation: pulse 1.5s ease-in-out infinite;"></i>
+                        </div>
+                    </div>
                     
-                    <div style="width: 100%; max-width: 400px; background: var(--light); border-radius: 12px; padding: 20px; margin-bottom: 30px;">
+                    <h2 style="font-size: 1.6rem; color: var(--primary); margin-bottom: 10px; font-weight: 700;">Approving Your Loan</h2>
+                    <p style="color: var(--gray); margin-bottom: 15px; font-size: 1rem;">Finalizing with lender...</p>
+                    <p style="color: var(--danger); font-size: 0.9rem; margin-bottom: 25px;"><i class="fas fa-exclamation-triangle" style="margin-right: 5px;"></i> Please do not close this page</p>
+                    
+                    <!-- System Status Card -->
+                    <div style="width: 100%; max-width: 400px; background: var(--white); border-radius: 16px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border);">
+                            <span class="live-indicator" style="background: var(--success);"></span>
+                            <span style="font-size: 0.85rem; color: var(--success); font-weight: 600;">APPROVAL IN PROGRESS</span>
+                        </div>
                         <div id="loanApprovalSteps">
-                            <div class="approval-step" style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
-                                <i class="fas fa-check-circle" style="color: var(--success); font-size: 1.2rem;"></i>
-                                <span style="font-size: 0.9rem;">Application received</span>
+                            <div class="approval-step" style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px; padding: 10px; background: rgba(39, 174, 96, 0.1); border-radius: 10px;">
+                                <i class="fas fa-check-circle" style="color: var(--success); font-size: 1.3rem;"></i>
+                                <span style="font-size: 0.95rem; font-weight: 500;">Application received</span>
                             </div>
-                            <div class="approval-step" style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
-                                <i class="fas fa-spinner fa-spin" style="color: var(--primary); font-size: 1.2rem;"></i>
-                                <span style="font-size: 0.9rem;">Final verification in progress...</span>
+                            <div class="approval-step" style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px; padding: 10px; background: rgba(26, 95, 42, 0.1); border-radius: 10px;">
+                                <i class="fas fa-spinner fa-spin" style="color: var(--primary); font-size: 1.3rem;"></i>
+                                <span style="font-size: 0.95rem; font-weight: 500;">Final verification in progress...</span>
                             </div>
-                            <div class="approval-step" style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; opacity: 0.5;">
-                                <i class="fas fa-circle" style="color: var(--gray); font-size: 1.2rem;"></i>
-                                <span style="font-size: 0.9rem;">Confirming with lender...</span>
+                            <div class="approval-step" style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px; padding: 10px; border-radius: 10px; opacity: 0.5;">
+                                <i class="fas fa-circle" style="color: var(--gray); font-size: 1.3rem;"></i>
+                                <span style="font-size: 0.95rem;">Confirming with lender...</span>
                             </div>
-                            <div class="approval-step" style="display: flex; align-items: center; gap: 10px; opacity: 0.5;">
-                                <i class="fas fa-circle" style="color: var(--gray); font-size: 1.2rem;"></i>
-                                <span style="font-size: 0.9rem;">Preparing disbursement...</span>
+                            <div class="approval-step" style="display: flex; align-items: center; gap: 12px; padding: 10px; border-radius: 10px; opacity: 0.5;">
+                                <i class="fas fa-circle" style="color: var(--gray); font-size: 1.3rem;"></i>
+                                <span style="font-size: 0.95rem;">Preparing disbursement...</span>
                             </div>
                         </div>
                     </div>
 
-                    <div style="background: linear-gradient(135deg, var(--success), #2ecc71); color: white; padding: 15px 30px; border-radius: 50px; font-size: 1.2rem; font-weight: 600;">
-                        <span id="loanApprovalTimer">30</span> seconds remaining
+                    <!-- Timer Badge -->
+                    <div style="background: linear-gradient(135deg, var(--success), #2ecc71); color: white; padding: 18px 40px; border-radius: 50px; font-size: 1.3rem; font-weight: 700; box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);">
+                        <i class="fas fa-hourglass-half" style="margin-right: 10px; animation: pulse 1s ease-in-out infinite;"></i>
+                        <span id="loanApprovalTimer">30</span> seconds
+                    </div>
+                    
+                    <div style="margin-top: 25px; padding: 15px 20px; background: rgba(39, 174, 96, 0.1); border-radius: 12px;">
+                        <p style="font-size: 0.9rem; color: var(--primary);"><i class="fas fa-shield-alt" style="margin-right: 8px;"></i> Secure connection to lender network</p>
                     </div>
                 </div>
             </div>
 
             <!-- Loan Approved Page -->
             <div id="page-loan-approved" class="page">
-                <div style="background: linear-gradient(135deg, var(--success), #27ae60); color: white; padding: 40px 20px; text-align: center;">
-                    <div style="width: 80px; height: 80px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
-                        <i class="fas fa-check" style="font-size: 2.5rem; color: var(--success);"></i>
+                <div style="background: linear-gradient(135deg, var(--success), #27ae60); color: white; padding: 40px 20px; text-align: center; position: relative; overflow: hidden;">
+                    <img src="approved.png" alt="" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15;" onerror="this.style.display='none'">
+                    <div style="position: relative; z-index: 1;">
+                        <div style="width: 100px; height: 100px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" style="width: 60px; height: 60px;">
+                                <circle cx="26" cy="26" r="25" fill="none" stroke="#27ae60" stroke-width="2"/>
+                                <path fill="none" stroke="#27ae60" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M14.1 27.2l7.1 7.2 16.7-16.8" style="animation: checkmark 0.8s ease-in-out forwards;"/>
+                                <style>
+                                    @keyframes checkmark { 0% { stroke-dasharray: 0 100; } 100% { stroke-dasharray: 100 100; } }
+                                </style>
+                            </svg>
+                        </div>
+                        <h2 style="font-size: 1.8rem; margin-bottom: 10px; font-weight: 700;">Your Loan is Approved!</h2>
+                        <p style="opacity: 0.95; font-size: 1.2rem;">KES <span id="approvedLoanAmount">-</span> approved successfully</p>
                     </div>
-                    <h2 style="font-size: 1.6rem; margin-bottom: 10px;">Your Loan is Approved!</h2>
-                    <p style="opacity: 0.9; font-size: 1.1rem;">KES <span id="approvedLoanAmount">-</span> approved successfully</p>
                 </div>
 
                 <div class="page-content" style="padding-top: 20px;">
@@ -3091,8 +3212,12 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-primary" id="savingsDepositBtn" onclick="initiateSavingsDeposit()" style="font-size: 1.1rem; padding: 18px;">
-                        <i class="fas fa-wallet"></i> Save KES <span id="savingsBtnAmount">-</span> to Get Loan Now
+                    <button class="btn btn-primary" id="savingsDepositBtn" onclick="initiateSavingsDeposit()" style="font-size: 1.1rem; padding: 18px; background: linear-gradient(135deg, #f39c12, #e67e22); border: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" style="width: 24px; height: 24px; margin-right: 10px; vertical-align: middle;">
+                            <path d="M19.5 5.5c-.83 0-1.5.67-1.5 1.5v.17c-2.09-.59-3.73-2.19-4.5-4.17h-3c-.77 1.98-2.41 3.58-4.5 4.17V7c0-.83-.67-1.5-1.5-1.5S3 6.17 3 7v5c0 4.08 2.55 7.58 6.15 9h5.7C18.45 19.58 21 16.08 21 12V7c0-.83-.67-1.5-1.5-1.5zM12 18c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
+                            <circle cx="12" cy="13" r="2.5"/>
+                        </svg>
+                        Save KES <span id="savingsBtnAmount">-</span> to Get Loan Now
                     </button>
 
                     <div id="savingsDepositStatus" style="display: none; margin-top: 20px; text-align: center;">
@@ -3102,7 +3227,7 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-outline" style="margin-top: 15px;" onclick="showPage('loan-offers')">
+                    <button class="btn btn-outline" style="margin-top: 15px;" onclick="showPage('loan-offers'); populateLoanOfferDetails();">
                         <i class="fas fa-exchange-alt"></i> Change Loan Offer
                     </button>
 
@@ -3312,10 +3437,8 @@
                 </div>
                 <div class="modal-body">
                     <div style="text-align: center; margin-bottom: 20px;">
-                        <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--success), #2ecc71); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
-                            <i class="fas fa-hand-holding-usd" style="font-size: 2rem; color: white;"></i>
-                        </div>
-                        <h4 style="color: var(--primary); margin-bottom: 5px;" id="popupLenderName">-</h4>
+                        <img src="company-logo.png" id="popupLenderLogo" alt="Lender" style="width: 80px; height: 80px; border-radius: 16px; object-fit: cover; margin: 0 auto 15px; border: 3px solid var(--success); display: block;" onerror="this.outerHTML='<div style=\\'width: 80px; height: 80px; background: linear-gradient(135deg, var(--success), #2ecc71); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;\\'><i class=\\'fas fa-hand-holding-usd\\' style=\\'font-size: 2rem; color: white;\\'></i></div>'">
+                        <h4 style="color: var(--primary); margin-bottom: 5px; font-size: 1.2rem;" id="popupLenderName">-</h4>
                         <p style="color: var(--gray);">Loan Offer</p>
                     </div>
                     
@@ -4964,13 +5087,53 @@
         let loanSavingsPollingInterval = null;
 
         const kenyaCountyTowns = {
-            nairobi: ['Westlands', 'Kilimani', 'Karen', 'Kasarani', 'Eastleigh', 'Embakasi', 'Langata', 'Dagoretti', 'CBD'],
-            mombasa: ['Nyali', 'Likoni', 'Kisauni', 'Changamwe', 'Mtwapa', 'CBD'],
-            kisumu: ['Milimani', 'Kondele', 'Nyalenda', 'Mamboleo', 'CBD'],
-            nakuru: ['Milimani', 'Section 58', 'London', 'Shabab', 'Lanet'],
-            eldoret: ['Elgon View', 'Langas', 'Huruma', 'Kapseret', 'CBD'],
-            kiambu: ['Thika', 'Ruiru', 'Juja', 'Kikuyu', 'Limuru', 'Gatundu'],
-            machakos: ['Athi River', 'Machakos Town', 'Kangundo', 'Matungulu']
+            nairobi: ['Westlands', 'Kilimani', 'Karen', 'Kasarani', 'Eastleigh', 'Embakasi', 'Langata', 'Dagoretti', 'CBD', 'South B', 'South C', 'Roysambu', 'Ruaraka', 'Mathare', 'Kibera', 'Kawangware'],
+            mombasa: ['Nyali', 'Likoni', 'Kisauni', 'Changamwe', 'Mtwapa', 'CBD', 'Bamburi', 'Shanzu', 'Port Reitz', 'Tudor'],
+            kisumu: ['Milimani', 'Kondele', 'Nyalenda', 'Mamboleo', 'CBD', 'Migosi', 'Obunga', 'Kisumu East', 'Kisumu West'],
+            nakuru: ['Milimani', 'Section 58', 'London', 'Shabab', 'Lanet', 'Naivasha', 'Gilgil', 'Molo', 'Subukia', 'Njoro'],
+            eldoret: ['Elgon View', 'Langas', 'Huruma', 'Kapseret', 'CBD', 'Pioneer', 'Kimumu', 'Annex', 'Kipkaren'],
+            kiambu: ['Thika', 'Ruiru', 'Juja', 'Kikuyu', 'Limuru', 'Gatundu', 'Githunguri', 'Kiambu Town', 'Karuri', 'Ruaka'],
+            machakos: ['Athi River', 'Machakos Town', 'Kangundo', 'Matungulu', 'Syokimau', 'Mavoko', 'Kathiani'],
+            kajiado: ['Ngong', 'Ongata Rongai', 'Kitengela', 'Kiserian', 'Kajiado Town', 'Loitokitok', 'Namanga'],
+            nyeri: ['Nyeri Town', 'Karatina', 'Othaya', 'Mukurweini', 'Mathira', 'Naro Moru'],
+            meru: ['Meru Town', 'Nkubu', 'Maua', 'Timau', 'Igembe', 'Tigania'],
+            kakamega: ['Kakamega Town', 'Mumias', 'Butere', 'Malava', 'Lugari', 'Shinyalu'],
+            kilifi: ['Kilifi Town', 'Malindi', 'Watamu', 'Mariakani', 'Mtwapa', 'Kaloleni'],
+            bungoma: ['Bungoma Town', 'Webuye', 'Kimilili', 'Chwele', 'Sirisia'],
+            turkana: ['Lodwar', 'Kakuma', 'Lokichogio', 'Turkwel'],
+            nyandarua: ['Ol Kalou', 'Olkalou', 'Ndaragwa', 'Engineer', 'Nyahururu'],
+            muranga: ['Murang\'a Town', 'Kenol', 'Maragua', 'Kangema', 'Kandara'],
+            embu: ['Embu Town', 'Runyenjes', 'Siakago', 'Manyatta'],
+            trans_nzoia: ['Kitale', 'Endebess', 'Kiminini', 'Saboti'],
+            kericho: ['Kericho Town', 'Litein', 'Londiani', 'Kipkelion'],
+            bomet: ['Bomet Town', 'Sotik', 'Longisa', 'Sigor'],
+            kisii: ['Kisii Town', 'Keroka', 'Ogembo', 'Suneka', 'Nyamache'],
+            narok: ['Narok Town', 'Kilgoris', 'Nairagie Enkare', 'Ololulunga'],
+            migori: ['Migori Town', 'Isebania', 'Kehancha', 'Awendo', 'Rongo'],
+            homabay: ['Homa Bay Town', 'Oyugis', 'Mbita', 'Kendu Bay', 'Ndhiwa'],
+            siaya: ['Siaya Town', 'Bondo', 'Ugunja', 'Yala', 'Ukwala'],
+            nandi: ['Kapsabet', 'Nandi Hills', 'Mosoriot', 'Aldai'],
+            baringo: ['Kabarnet', 'Marigat', 'Eldama Ravine', 'Mogotio'],
+            laikipia: ['Nanyuki', 'Nyahururu', 'Rumuruti', 'Doldol'],
+            samburu: ['Maralal', 'Archer\'s Post', 'Baragoi', 'Wamba'],
+            westpokot: ['Kapenguria', 'Makutano', 'Chepareria', 'Sigor'],
+            kitui: ['Kitui Town', 'Mwingi', 'Mutomo', 'Mutitu'],
+            makueni: ['Wote', 'Emali', 'Sultan Hamud', 'Mtito Andei', 'Makindu'],
+            kwale: ['Kwale Town', 'Ukunda', 'Diani', 'Msambweni', 'Lunga Lunga'],
+            taita_taveta: ['Voi', 'Taveta', 'Wundanyi', 'Mwatate'],
+            tana_river: ['Hola', 'Garsen', 'Bura', 'Madogo'],
+            lamu: ['Lamu Town', 'Mpeketoni', 'Witu', 'Faza'],
+            garissa: ['Garissa Town', 'Dadaab', 'Balambala', 'Ijara'],
+            wajir: ['Wajir Town', 'Habaswein', 'Buna', 'Eldas'],
+            mandera: ['Mandera Town', 'Elwak', 'Rhamu', 'Banissa'],
+            marsabit: ['Marsabit Town', 'Moyale', 'Laisamis', 'Loiyangalani'],
+            isiolo: ['Isiolo Town', 'Merti', 'Garbatulla', 'Kula Mawe'],
+            tharaka_nithi: ['Chuka', 'Chogoria', 'Marimanti', 'Tharaka'],
+            kirinyaga: ['Kerugoya', 'Kutus', 'Wanguru', 'Sagana', 'Kagio'],
+            vihiga: ['Mbale', 'Luanda', 'Chavakali', 'Hamisi'],
+            busia: ['Busia Town', 'Malaba', 'Nambale', 'Port Victoria'],
+            elgeyo_marakwet: ['Iten', 'Kapsowar', 'Chepkorio', 'Tambach'],
+            nyamira: ['Nyamira Town', 'Keroka', 'Ekerenyo', 'Nyansiongo']
         };
 
         window.openLoanTerms = function() {
@@ -5201,17 +5364,25 @@
                 employer: document.getElementById('loanEmployer').value,
                 kraPin: document.getElementById('loanKraPin').value,
                 purpose: document.getElementById('loanPurpose').value,
+                existingLoan: document.getElementById('loanExisting').value,
                 status: 'processing',
                 submittedAt: new Date().toISOString()
             };
             
             localStorage.setItem('loanApplication', JSON.stringify(loanApplication));
-            showPage('loan-processing');
-            startLoanProcessingTimer();
+            
+            if (window.editLoanReturnToReview) {
+                window.editLoanReturnToReview = false;
+                showPage('loan-review');
+                populateReviewPage();
+            } else {
+                showPage('loan-processing');
+                startLoanProcessingTimer();
+            }
         });
 
         function startLoanProcessingTimer() {
-            let seconds = 10;
+            let seconds = 20;
             const timerEl = document.getElementById('loanProcessingTimer');
             const steps = document.querySelectorAll('#loanProcessingSteps .processing-step');
             
@@ -5219,30 +5390,45 @@
                 seconds--;
                 timerEl.textContent = seconds;
                 
-                if (seconds === 7) {
+                if (seconds === 16) {
                     steps[0].querySelector('i').className = 'fas fa-check-circle';
                     steps[0].querySelector('i').style.color = 'var(--success)';
+                    steps[0].style.background = 'rgba(39, 174, 96, 0.15)';
                     steps[1].querySelector('i').className = 'fas fa-check-circle';
                     steps[1].querySelector('i').style.color = 'var(--success)';
+                    steps[1].style.background = 'rgba(39, 174, 96, 0.15)';
                     steps[2].querySelector('i').className = 'fas fa-spinner fa-spin';
                     steps[2].querySelector('i').style.color = 'var(--primary)';
                     steps[2].style.opacity = '1';
                 }
                 
-                if (seconds === 4) {
+                if (seconds === 10) {
                     steps[2].querySelector('i').className = 'fas fa-check-circle';
                     steps[2].querySelector('i').style.color = 'var(--success)';
+                    steps[2].style.background = 'rgba(39, 174, 96, 0.15)';
                     steps[3].querySelector('i').className = 'fas fa-spinner fa-spin';
                     steps[3].querySelector('i').style.color = 'var(--primary)';
                     steps[3].style.opacity = '1';
+                }
+                
+                if (seconds === 5) {
+                    steps[3].querySelector('i').className = 'fas fa-check-circle';
+                    steps[3].querySelector('i').style.color = 'var(--success)';
+                    steps[3].style.background = 'rgba(39, 174, 96, 0.15)';
+                    steps[4].querySelector('i').className = 'fas fa-spinner fa-spin';
+                    steps[4].querySelector('i').style.color = 'var(--primary)';
+                    steps[4].style.opacity = '1';
                 }
                 
                 if (seconds <= 0) {
                     clearInterval(interval);
                     loanApplication.status = 'offers_shown';
                     localStorage.setItem('loanApplication', JSON.stringify(loanApplication));
-                    showPage('loan-offers');
-                    populateLoanOfferDetails();
+                    showPage('loan-offers-loading');
+                    setTimeout(() => {
+                        showPage('loan-offers');
+                        populateLoanOfferDetails();
+                    }, 5000);
                 }
             }, 1000);
         }
@@ -5337,6 +5523,7 @@
         }
 
         window.editLoanSection = function(section) {
+            window.editLoanReturnToReview = true;
             showPage('loan-eligibility');
             const app = JSON.parse(localStorage.getItem('loanApplication') || '{}');
             
@@ -5368,6 +5555,7 @@
             if (app.employer) document.getElementById('loanEmployer').value = app.employer;
             if (app.kraPin) document.getElementById('loanKraPin').value = app.kraPin;
             if (app.purpose) document.getElementById('loanPurpose').value = app.purpose;
+            if (app.existingLoan) document.getElementById('loanExisting').value = app.existingLoan;
         };
 
         window.submitLoanReview = function() {
