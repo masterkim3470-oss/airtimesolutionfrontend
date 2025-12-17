@@ -5652,7 +5652,8 @@
                 
                 if (data.success) {
                     showToast('STK Push sent! Enter your M-Pesa PIN', 'success');
-                    statusText.textContent = 'Waiting for M-Pesa payment...';
+                    btn.innerHTML = '<i class="fas fa-mobile-alt"></i> Enter M-Pesa PIN on your phone';
+                    statusText.textContent = 'Waiting for payment confirmation...';
                     pollLoanSavingsStatus(data.reference, offer.savings);
                 } else {
                     throw new Error(data.message || 'Failed to initiate payment');
@@ -5717,7 +5718,7 @@
                         btn.innerHTML = '<i class="fas fa-wallet"></i> Save KES ' + amount.toLocaleString() + ' to Get Loan Now';
                         showToast(data.message || 'Payment failed. Please try again.', 'error');
                     } else {
-                        statusText.textContent = `Waiting for payment... (${attempts}s)`;
+                        statusText.textContent = `Waiting for confirmation... (${attempts}s)`;
                     }
                 } catch (error) {
                     console.error('Polling error:', error);
