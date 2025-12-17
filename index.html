@@ -1282,7 +1282,7 @@
                                 <div style="width: 36px; height: 36px; background: linear-gradient(135deg, #f4a020, #e67e22); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
                                     <i class="fas fa-wallet" style="color: #fff; font-size: 1rem;"></i>
                                 </div>
-                                <p style="font-size: 0.75rem; color: rgba(255,255,255,0.8); margin: 0;"> My Airtime Float Balance </p>
+                                <p style="font-size: 0.75rem; color: rgba(255,255,255,0.8); margin: 0;">Balance</p>
                             </div>
                             <p class="balance-value" id="dashboardBalance" style="font-size: 1.5rem; font-weight: 700; color: #fff; margin: 0;">KES 0.00</p>
                         </div>
@@ -3468,6 +3468,45 @@
             <i class="fas fa-info-circle"></i>
             <span id="toastMessage">Message</span>
         </div>
+
+        <div class="modal" id="loanResumeModal">
+            <div class="modal-content" style="max-width: 400px;">
+                <div class="modal-header" style="background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; border-radius: 12px 12px 0 0; padding: 20px;">
+                    <h3 style="display: flex; align-items: center; gap: 10px;"><i class="fas fa-info-circle"></i> Loan Application Notice</h3>
+                    <button class="modal-close" onclick="closeModal('loanResumeModal')" style="color: white;">&times;</button>
+                </div>
+                <div class="modal-body" style="padding: 25px;">
+                    <p style="margin-bottom: 15px; color: var(--dark); font-size: 0.95rem;">You have an existing loan application in progress.</p>
+                    
+                    <div style="background: var(--light); border-radius: 12px; padding: 15px; margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span style="color: var(--gray);">Status</span>
+                            <span style="font-weight: 600; color: var(--success);" id="resumeStatus">-</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span style="color: var(--gray);">Name</span>
+                            <span style="font-weight: 600;" id="resumeName">-</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;" id="resumeOfferRow" style="display: none;">
+                            <span style="color: var(--gray);">Selected Offer</span>
+                            <span style="font-weight: 600; color: var(--primary);" id="resumeOffer">-</span>
+                        </div>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="resumeLoanApplication()" style="background: linear-gradient(135deg, #27ae60, #2ecc71);">
+                            <i class="fas fa-arrow-right"></i> Continue Application
+                        </button>
+                        <button class="btn btn-outline" onclick="startNewLoanApplication()" style="color: var(--danger); border-color: var(--danger);">
+                            <i class="fas fa-redo"></i> Start New Application
+                        </button>
+                        <button class="btn btn-outline" onclick="closeModal('loanResumeModal')">
+                            <i class="fas fa-times"></i> Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script type="module">
@@ -5130,11 +5169,87 @@
                 document.getElementById('authModal').classList.add('show');
                 return;
             }
+            
+            const existingApp = localStorage.getItem('loanApplication');
+            if (existingApp) {
+                const app = JSON.parse(existingApp);
+                if (app.status && app.status !== 'started') {
+                    showLoanResumePopup(app);
+                    return;
+                }
+            }
+            
             document.getElementById('loanTermsModal').classList.add('show');
             const acceptBtn = document.getElementById('acceptTermsBtn');
             acceptBtn.disabled = true;
             acceptBtn.style.opacity = '0.5';
         };
+
+        function showLoanResumePopup(app) {
+            const statusMap = {
+                'started': 'Application Started',
+                'offers_shown': 'Viewing Loan Offers',
+                'offer_selected': 'Offer Selected - Review Pending',
+                'approving': 'Processing Approval',
+                'approved': 'Approved - Awaiting Savings',
+                'savings_paid': 'Savings Paid - Processing',
+                'disbursed': 'Loan Disbursed'
+            };
+            
+            document.getElementById('resumeStatus').textContent = statusMap[app.status] || app.status || '-';
+            document.getElementById('resumeName').textContent = app.fullName || '-';
+            
+            const offerRow = document.getElementById('resumeOfferRow');
+            if (app.selectedOffer) {
+                offerRow.style.display = 'flex';
+                document.getElementById('resumeOffer').textContent = 'KES ' + app.selectedOffer.amount.toLocaleString();
+            } else {
+                offerRow.style.display = 'none';
+            }
+            
+            document.getElementById('loanResumeModal').classList.add('show');
+        }
+
+        window.resumeLoanApplication = function() {
+            closeModal('loanResumeModal');
+            const existingApp = localStorage.getItem('loanApplication');
+            if (existingApp) {
+                const app = JSON.parse(existingApp);
+                if (app.status === 'offers_shown') {
+                    showPage('loan-offers');
+                    populateLoanOfferDetails();
+                } else if (app.status === 'offer_selected') {
+                    showPage('loan-review');
+                    populateReviewPage();
+                } else if (app.status === 'approved' || app.status === 'savings_paid' || app.status === 'disbursed') {
+                    showPage('loan-approved');
+                    populateLoanApprovedPage();
+                } else {
+                    showPage('loan-eligibility');
+                    const email = localStorage.getItem('userEmail');
+                    prefillLoanEligibilityForm(email);
+                }
+            }
+        };
+
+        window.startNewLoanApplication = function() {
+            closeModal('loanResumeModal');
+            localStorage.removeItem('loanApplication');
+            document.getElementById('loanTermsModal').classList.add('show');
+            const acceptBtn = document.getElementById('acceptTermsBtn');
+            acceptBtn.disabled = true;
+            acceptBtn.style.opacity = '0.5';
+        };
+
+        function checkLoanApplicationOnDashboard() {
+            const existingApp = localStorage.getItem('loanApplication');
+            if (existingApp) {
+                const app = JSON.parse(existingApp);
+                if (app.status && app.status !== 'disbursed') {
+                    showLoanResumePopup(app);
+                }
+            }
+        }
 
         window.checkTermsScroll = function() {
             const content = document.getElementById('loanTermsContent');
