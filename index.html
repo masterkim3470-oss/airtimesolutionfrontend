@@ -1174,7 +1174,217 @@
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        
+        .welcome-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0d3d18 0%, #1a5f2a 50%, #2d8b42 100%);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.05)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.03)"/><circle cx="40" cy="80" r="2.5" fill="rgba(255,255,255,0.04)"/></svg>');
+            pointer-events: none;
+        }
+
+        .welcome-header {
+            text-align: center;
+            padding: 30px 20px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-header img.welcome-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,0.3);
+            margin-bottom: 15px;
+        }
+
+        .welcome-header h1 {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .welcome-header p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1rem;
+        }
+
+        .welcome-image-container {
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-image-container img {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .welcome-content {
+            flex: 1;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-get-started-link {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .welcome-get-started-link a {
+            color: #f4a020;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .welcome-get-started-link a:hover {
+            color: #ffc107;
+            transform: translateY(-2px);
+        }
+
+        .welcome-features {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .welcome-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255,255,255,0.1);
+            padding: 18px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+
+        .welcome-feature-item:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateX(5px);
+        }
+
+        .welcome-feature-item i {
+            font-size: 1.5rem;
+            color: #f4a020;
+            width: 40px;
+            text-align: center;
+        }
+
+        .welcome-feature-item div h4 {
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .welcome-feature-item div p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.85rem;
+        }
+
+        .welcome-quick-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .welcome-quick-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 20px 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            text-decoration: none;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.15);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .welcome-quick-link:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .welcome-quick-link i {
+            font-size: 1.8rem;
+            color: #f4a020;
+        }
+
+        .welcome-quick-link span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .welcome-cta {
+            text-align: center;
+            padding: 0 20px 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            max-width: 350px;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #f4a020, #e67e22);
+            color: #0d3d18;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(244, 160, 32, 0.4);
+            transition: all 0.3s;
+        }
+
+        .welcome-cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(244, 160, 32, 0.5);
+        }
+
+        .welcome-footer {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 1;
+        }
 
     </style>
 </head>
@@ -1226,7 +1436,10 @@
                 </div>
             </div>
             <div class="sidebar-menu">
-                <button class="menu-item active" onclick="showPage('dashboard')">
+                <button class="menu-item" onclick="showPage('welcome')">
+                    <i class="fas fa-door-open"></i> <span class="menu-text">Welcome</span>
+                </button>
+                <button class="menu-item" onclick="showPage('dashboard')">
                     <i class="fas fa-home"></i> <span class="menu-text">Dashboard</span>
                 </button>
                 <button class="menu-item" onclick="showPage('deposit')">
@@ -1287,7 +1500,89 @@
         </nav>
 
         <main class="main-content">
-            <div id="page-dashboard" class="page active">
+            <div id="page-welcome" class="page active">
+                <div class="welcome-page">
+                    <div class="welcome-header">
+                        <img src="company-logo.png" alt="PesaHub Kenya" class="welcome-logo" onerror="this.style.display='none'">
+                        <h1>Welcome to PesaHub Kenya</h1>
+                        <p>Your trusted partner for airtime, loans & financial services</p>
+                    </div>
+
+                    <div class="welcome-image-container">
+                        <img src="welcome.png" alt="Welcome to PesaHub Kenya" onerror="this.src='airtime-solution2.png'">
+                    </div>
+
+                    <div class="welcome-get-started-link">
+                        <a href="#" onclick="showPage('dashboard'); return false;">
+                            <i class="fas fa-arrow-right"></i> Get Started - Explore Dashboard
+                        </a>
+                    </div>
+
+                    <div class="welcome-content">
+                        <div class="welcome-features">
+                            <div class="welcome-feature-item">
+                                <i class="fas fa-mobile-alt"></i>
+                                <div>
+                                    <h4>Buy & Sell Airtime</h4>
+                                    <p>Purchase airtime at discounted rates and earn commission on sales</p>
+                                </div>
+                            </div>
+                            <div class="welcome-feature-item">
+                                <i class="fas fa-hand-holding-usd"></i>
+                                <div>
+                                    <h4>Instant Loans</h4>
+                                    <p>Get loans up to KES 15,000 with low interest rates</p>
+                                </div>
+                            </div>
+                            <div class="welcome-feature-item">
+                                <i class="fas fa-exchange-alt"></i>
+                                <div>
+                                    <h4>Airtime to Cash</h4>
+                                    <p>Convert your excess airtime back to mobile money</p>
+                                </div>
+                            </div>
+                            <div class="welcome-feature-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <div>
+                                    <h4>Secure & Fast</h4>
+                                    <p>All transactions are encrypted and processed instantly</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="welcome-quick-links">
+                            <div class="welcome-quick-link" onclick="showPage('loan-dashboard')">
+                                <i class="fas fa-coins"></i>
+                                <span>Get a Loan</span>
+                            </div>
+                            <div class="welcome-quick-link" onclick="showPage('buy-airtime')">
+                                <i class="fas fa-phone-alt"></i>
+                                <span>Buy Airtime</span>
+                            </div>
+                            <div class="welcome-quick-link" onclick="showPage('sell-airtime')">
+                                <i class="fas fa-gift"></i>
+                                <span>Sell Airtime</span>
+                            </div>
+                            <div class="welcome-quick-link" onclick="showPage('deposit')">
+                                <i class="fas fa-wallet"></i>
+                                <span>Deposit Float</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="welcome-cta">
+                        <button class="welcome-cta-btn" onclick="showPage('dashboard')">
+                            <i class="fas fa-rocket"></i> Enter Dashboard
+                        </button>
+                    </div>
+
+                    <div class="welcome-footer">
+                        <p>Trusted by thousands of Kenyans. Fast, secure & reliable.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="page-dashboard" class="page">
                 <div class="hero-section" style="padding-top: 0;">
                     <div class="card balance-card" style="background: linear-gradient(145deg, #1a5f2a 0%, #0d4a1f 50%, #083314 100%); border: none; border-radius: 16px; padding: 15px; position: relative; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.25); margin-top: 0;">
                         <!-- Balance Header Row -->
@@ -2239,6 +2534,8 @@
 
                     <div class="admin-tabs">
                         <button class="admin-tab active" onclick="showAdminTab('users')">Users</button>
+                        <button class="admin-tab" onclick="showAdminTab('savings')">User Savings</button>
+                        <button class="admin-tab" onclick="showAdminTab('allnotifications')">All Notifications</button>
                         <button class="admin-tab" onclick="showAdminTab('transactions')">Transactions</button>
                         <button class="admin-tab" onclick="showAdminTab('verifications')">Verifications</button>
                         <button class="admin-tab" onclick="showAdminTab('notifications')">Send Notification</button>
@@ -2254,9 +2551,70 @@
                                         <th>Email</th>
                                         <th>Balance</th>
                                         <th>Bonus</th>
+                                        <th>Savings</th>
                                         <th>Status</th>
                                         <th>Created</th>
                                         <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card" id="adminTabSavings" style="display: none;">
+                        <h3 class="card-title"><i class="fas fa-piggy-bank"></i> User Savings Overview</h3>
+                        <div class="stats-grid" style="margin-bottom: 20px;">
+                            <div class="stat-card">
+                                <i class="fas fa-piggy-bank"></i>
+                                <div class="value" id="statTotalSavings">KES 0</div>
+                                <div class="label">Total Savings</div>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-users"></i>
+                                <div class="value" id="statSaversCount">0</div>
+                                <div class="label">Active Savers</div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="savingsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Email</th>
+                                        <th>Savings Balance</th>
+                                        <th>Main Balance</th>
+                                        <th>Bonus Balance</th>
+                                        <th>Last Updated</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card" id="adminTabAllnotifications" style="display: none;">
+                        <h3 class="card-title"><i class="fas fa-bell"></i> All System Notifications</h3>
+                        <div class="stats-grid" style="margin-bottom: 20px;">
+                            <div class="stat-card">
+                                <i class="fas fa-envelope"></i>
+                                <div class="value" id="statTotalNotifications">0</div>
+                                <div class="label">Total Sent</div>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-envelope-open"></i>
+                                <div class="value" id="statUnreadNotifications">0</div>
+                                <div class="label">Unread</div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="allNotificationsTable">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Title</th>
+                                        <th>Message</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -4671,6 +5029,7 @@
                     <td>${u.email}</td>
                     <td>KES ${parseFloat(u.balance).toFixed(2)}</td>
                     <td>KES ${parseFloat(u.bonus_balance).toFixed(2)}</td>
+                    <td>KES ${parseFloat(u.savings_balance || 0).toFixed(2)}</td>
                     <td><span class="status ${u.is_disabled ? 'status-failed' : 'status-completed'}">${u.is_disabled ? 'Disabled' : 'Active'}</span></td>
                     <td>${new Date(u.created_at).toLocaleDateString()}</td>
                     <td>
@@ -4718,10 +5077,59 @@
         window.showAdminTab = function(tab) {
             document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
             document.querySelector(`.admin-tab[onclick*="${tab}"]`).classList.add('active');
-            ['users', 'transactions', 'verifications', 'notifications', 'settings'].forEach(t => {
-                document.getElementById(`adminTab${t.charAt(0).toUpperCase() + t.slice(1)}`).style.display = t === tab ? 'block' : 'none';
+            ['users', 'savings', 'allnotifications', 'transactions', 'verifications', 'notifications', 'settings'].forEach(t => {
+                const elem = document.getElementById(`adminTab${t.charAt(0).toUpperCase() + t.slice(1)}`);
+                if (elem) elem.style.display = t === tab ? 'block' : 'none';
             });
+            if (tab === 'savings') loadAdminSavings();
+            if (tab === 'allnotifications') loadAdminAllNotifications();
         };
+
+        async function loadAdminSavings() {
+            try {
+                const response = await fetch(`${API_BASE}/api/admin/savings`, { credentials: 'include' });
+                const data = await response.json();
+                if (data.success) {
+                    document.getElementById('statTotalSavings').textContent = `KES ${parseFloat(data.totalSavings || 0).toFixed(2)}`;
+                    document.getElementById('statSaversCount').textContent = data.saversCount || 0;
+                    const tbody = document.querySelector('#savingsTable tbody');
+                    tbody.innerHTML = data.users.map(u => `
+                        <tr>
+                            <td>${u.email}</td>
+                            <td style="color: var(--success); font-weight: 600;">KES ${parseFloat(u.savings_balance || 0).toFixed(2)}</td>
+                            <td>KES ${parseFloat(u.balance || 0).toFixed(2)}</td>
+                            <td>KES ${parseFloat(u.bonus_balance || 0).toFixed(2)}</td>
+                            <td>${u.last_login_at ? new Date(u.last_login_at).toLocaleString() : '-'}</td>
+                        </tr>
+                    `).join('') || '<tr><td colspan="5">No savings data found</td></tr>';
+                }
+            } catch (error) {
+                console.error('Failed to load savings:', error);
+            }
+        }
+
+        async function loadAdminAllNotifications() {
+            try {
+                const response = await fetch(`${API_BASE}/api/admin/all-notifications`, { credentials: 'include' });
+                const data = await response.json();
+                if (data.success) {
+                    document.getElementById('statTotalNotifications').textContent = data.totalCount || 0;
+                    document.getElementById('statUnreadNotifications').textContent = data.unreadCount || 0;
+                    const tbody = document.querySelector('#allNotificationsTable tbody');
+                    tbody.innerHTML = data.notifications.map(n => `
+                        <tr>
+                            <td>${n.email || 'All Users'}</td>
+                            <td>${n.title}</td>
+                            <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${n.message}</td>
+                            <td><span class="status ${n.is_read ? 'status-completed' : 'status-pending'}">${n.is_read ? 'Read' : 'Unread'}</span></td>
+                            <td>${new Date(n.created_at).toLocaleString()}</td>
+                        </tr>
+                    `).join('') || '<tr><td colspan="5">No notifications found</td></tr>';
+                }
+            } catch (error) {
+                console.error('Failed to load notifications:', error);
+            }
+        }
 
         window.toggleUserStatus = async function(userId) {
             try {
