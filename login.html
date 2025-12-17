@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Airtime Solution Kenya</title>
+    <title>Login - Pesahub Kenya</title>
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" type="image/png" href="airtime-logo.png">
     <link rel="apple-touch-icon" href="airtime-logo.png">
@@ -472,9 +472,9 @@
 
     <div class="auth-container">
         <div class="auth-header">
-            <img src="/airtime-logo.png" alt="Airtime Solution Kenya" id="logoImg" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22><rect fill=%22%231a5f2a%22 width=%2280%22 height=%2280%22 rx=%2240%22/><text x=%2240%22 y=%2250%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2224%22 font-family=%22sans-serif%22>ASK</text></svg>'">
-            <h1>Airtime Solution Kenya <span class="kenya-flag"><span class="black"></span><span class="red"></span><span class="green"></span></span></h1>
-            <p>Buy & Resell Airtime Instantly</p>
+            <img src="/airtime-logo.png" alt="Pesahub Kenya" id="logoImg" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22><rect fill=%22%231a5f2a%22 width=%2280%22 height=%2280%22 rx=%2240%22/><text x=%2240%22 y=%2250%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2224%22 font-family=%22sans-serif%22>ASK</text></svg>'">
+            <h1>Pesahub Kenya <span class="kenya-flag"><span class="black"></span><span class="red"></span><span class="green"></span></span></h1>
+            <p>Buy  airtime,sell airtime get commision and Apply for instant loans</p>
         </div>
 
         <div class="auth-tabs">
@@ -542,7 +542,7 @@
                         <input type="tel" class="form-input" id="signupPhone" placeholder="7XXXXXXXX" maxlength="9" required>
                     </div>
                     <div class="status-text" style="color: #666; margin-top: 5px;">
-                        <i class="fas fa-info-circle"></i> Phone saved locally for your profile
+                        <i class="fas fa-info-circle"></i> Phone saved securely 🔐 for your profile
                     </div>
                 </div>
 
@@ -970,7 +970,7 @@
             } catch (error) {
                 hideLoading();
                 console.error('Login error:', error);
-                let message = 'Login failed. Please try again.';
+                let message = 'Login failed. Please check password or use different email.';
                 if (error.code === 'auth/user-not-found') {
                     message = 'No account found with this email. Please sign up.';
                 } else if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
