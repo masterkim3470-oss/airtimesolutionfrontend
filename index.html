@@ -409,7 +409,7 @@
         }
 
         .hero-section {
-            background: url('airtime-hero-bg.png') center center / cover no-repeat;
+            background: url('welcome.png') center center / cover no-repeat;
             border-radius: 0;
             padding: 20px;
             margin: 0 0 20px 0;
@@ -417,15 +417,7 @@
         }
 
         .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 0;
-            z-index: 0;
+            display: none;
         }
 
         .hero-section > * {
@@ -1213,20 +1205,82 @@
             line-height: 1.6;
         }
 
-        .welcome-get-started-link {
-            color: var(--secondary);
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: underline;
-            cursor: pointer;
+        .welcome-get-started-btn {
             display: inline-block;
+            background: linear-gradient(135deg, var(--secondary), #e67e22);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            margin-top: 10px;
             margin-bottom: 20px;
-            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(244, 160, 32, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: pulse-btn 2s ease-in-out infinite;
+            transition: all 0.3s ease;
         }
 
-        .welcome-get-started-link:hover {
-            color: #fff;
-            transform: scale(1.05);
+        .welcome-get-started-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shine 2.5s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        @keyframes pulse-btn {
+            0%, 100% { transform: scale(1); box-shadow: 0 8px 25px rgba(244, 160, 32, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 12px 35px rgba(244, 160, 32, 0.6); }
+        }
+
+        .welcome-get-started-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 40px rgba(244, 160, 32, 0.5);
+        }
+
+        .welcome-get-started-btn:active {
+            transform: scale(0.98);
+        }
+
+        .welcome-tagline {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .welcome-highlights {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .welcome-highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            opacity: 0.95;
+        }
+
+        .welcome-highlight-item i {
+            color: var(--secondary);
         }
 
         .welcome-features {
@@ -1363,7 +1417,7 @@
             </div>
             <div class="sidebar-menu">
                 <button class="menu-item" onclick="showPage('welcome')">
-                    <i class="fas fa-door-open"></i> <span class="menu-text">Welcome</span>
+                    <i class="fas fa-door-open"></i> <span class="menu-text">Home</span>
                 </button>
                 <button class="menu-item active" onclick="showPage('dashboard')">
                     <i class="fas fa-home"></i> <span class="menu-text">Dashboard</span>
@@ -1429,9 +1483,16 @@
             <!-- Welcome Page -->
             <div id="page-welcome" class="page welcome-page active">
                 <div class="welcome-hero">
+                    <p class="welcome-tagline">Your Financial Partner</p>
                     <h1>Welcome to PesaHub Kenya</h1>
                     <p>Your trusted partner for airtime, loans, and financial services. Fast, reliable, and affordable solutions right at your fingertips.</p>
-                    <a class="welcome-get-started-link" onclick="goToDashboard()">Get Started</a>
+                    <div class="welcome-highlights">
+                        <span class="welcome-highlight-item"><i class="fas fa-bolt"></i> Instant Airtime</span>
+                        <span class="welcome-highlight-item"><i class="fas fa-hand-holding-usd"></i> Quick Loans</span>
+                        <span class="welcome-highlight-item"><i class="fas fa-shield-alt"></i> Secure & Safe</span>
+                    </div>
+                    <p style="margin-bottom: 5px; opacity: 0.9;">Join thousands of Kenyans saving time and money every day!</p>
+                    <button class="welcome-get-started-btn" onclick="goToDashboard()">Get Started <i class="fas fa-arrow-right"></i></button>
                 </div>
 
                 <div class="welcome-features">
