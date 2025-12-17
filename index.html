@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airtime & Loan Solution</title>
+    <title>QuickPay Kenya</title>
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" type="image/png" href="/airtime-logo.png">
     <link rel="apple-touch-icon" href="/airtime-logo.png">
@@ -355,6 +355,22 @@
             color: var(--primary);
             border-left: 4px solid var(--primary);
             padding-left: 21px;
+        }
+
+        .menu-item span.menu-text {
+            position: relative;
+        }
+
+        .menu-item.active span.menu-text::after,
+        .menu-item:hover span.menu-text::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            border-radius: 2px;
         }
 
         .menu-item i { width: 25px; text-align: center; }
@@ -1143,6 +1159,9 @@
             .notification-panel { right: 5px; left: 5px; width: auto; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
+
+        
+
     </style>
 </head>
 <body>
@@ -1160,8 +1179,8 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="logo">
-                    <img src="airtime-logo.png" alt="Logo" id="headerLogo">
-                    <span class="logo-text">Airtime & Loan</span>
+                    <img src="company-logo.png" alt="Logo" id="headerLogo">
+                    <span class="logo-text">QuickPay</span>
                 </div>
             </div>
             <div class="header-right">
@@ -1194,61 +1213,61 @@
             </div>
             <div class="sidebar-menu">
                 <button class="menu-item active" onclick="showPage('dashboard')">
-                    <i class="fas fa-home"></i> Dashboard
+                    <i class="fas fa-home"></i> <span class="menu-text">Dashboard</span>
                 </button>
                 <button class="menu-item" onclick="showPage('deposit')">
-                    <i class="fas fa-wallet"></i> Deposit
+                    <i class="fas fa-wallet"></i> <span class="menu-text">Deposit</span>
                 </button>
                 <button class="menu-item" onclick="showPage('buy-airtime')">
-                    <i class="fas fa-mobile-alt"></i> Buy Airtime
+                    <i class="fas fa-mobile-alt"></i> <span class="menu-text">Buy Airtime</span>
                 </button>
                 <button class="menu-item" onclick="showPage('sell-airtime')">
-                    <i class="fas fa-gift"></i> Sell Airtime Get Commission
+                    <i class="fas fa-gift"></i> <span class="menu-text">Sell Airtime Get Commission</span>
                 </button>
                 <button class="menu-item" onclick="showPage('airtime-to-cash')">
-                    <i class="fas fa-exchange-alt"></i> Airtime to Cash
+                    <i class="fas fa-exchange-alt"></i> <span class="menu-text">Airtime to Cash</span>
                 </button>
                 <button class="menu-item" onclick="closeSidebar(); scrollToDirectBuy();">
-                    <i class="fas fa-bolt"></i> Buy Airtime without account
+                    <i class="fas fa-bolt"></i> <span class="menu-text">Buy Airtime without account</span>
                 </button>
                 <button class="menu-item" onclick="showPage('transactions')">
-                    <i class="fas fa-history"></i> Transactions
+                    <i class="fas fa-history"></i> <span class="menu-text">Transactions</span>
                 </button>
                 <button class="menu-item" onclick="showPage('verify-deposit')">
-                    <i class="fas fa-check-circle"></i> Verify Deposit
+                    <i class="fas fa-check-circle"></i> <span class="menu-text">Verify Deposit</span>
                 </button>
-                <button class="menu-item" onclick="openLoanTerms()" style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), rgba(39, 174, 96, 0.1));">
-                    <i class="fas fa-hand-holding-usd" style="color: #27ae60;"></i> Get Loan Now
+                <button class="menu-item loan-feature" onclick="openLoanTerms()" style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), rgba(39, 174, 96, 0.1));">
+                    <i class="fas fa-hand-holding-usd" style="color: #27ae60;"></i> <span class="menu-text">Get Loan Now</span>
                 </button>
                 <div class="menu-divider"></div>
                 <button class="menu-item" onclick="showPage('bulk-sms')">
-                    <i class="fas fa-sms"></i> Bulk SMS
+                    <i class="fas fa-sms"></i> <span class="menu-text">Bulk SMS</span>
                 </button>
                 <div class="menu-divider"></div>
                 <button class="menu-item" onclick="showPage('settings')">
-                    <i class="fas fa-cog"></i> Settings
+                    <i class="fas fa-cog"></i> <span class="menu-text">Settings</span>
                 </button>
                 <button class="menu-item" onclick="showPage('about')">
-                    <i class="fas fa-info-circle"></i> About Us
+                    <i class="fas fa-info-circle"></i> <span class="menu-text">About Us</span>
                 </button>
                 <button class="menu-item" onclick="showPage('contact')">
-                    <i class="fas fa-envelope"></i> Contact Us
+                    <i class="fas fa-envelope"></i> <span class="menu-text">Contact Us</span>
                 </button>
                 <button class="menu-item" onclick="showPage('privacy')">
-                    <i class="fas fa-shield-alt"></i> Privacy Policy
+                    <i class="fas fa-shield-alt"></i> <span class="menu-text">Privacy Policy</span>
                 </button>
                 <button class="menu-item" onclick="showPage('terms')">
-                    <i class="fas fa-file-contract"></i> Terms of Service
+                    <i class="fas fa-file-contract"></i> <span class="menu-text">Terms of Service</span>
                 </button>
                 <button class="menu-item" onclick="showPage('cookies')">
-                    <i class="fas fa-cookie-bite"></i> Cookie Policy
+                    <i class="fas fa-cookie-bite"></i> <span class="menu-text">Cookie Policy</span>
                 </button>
                 <div class="menu-divider"></div>
                 <button class="menu-item" onclick="showPage('admin')">
-                    <i class="fas fa-user-shield"></i> Admin Panel
+                    <i class="fas fa-user-shield"></i> <span class="menu-text">Admin Panel</span>
                 </button>
                 <button class="menu-item" onclick="logout()" style="color: var(--danger);">
-                    <i class="fas fa-sign-out-alt"></i> Logout
+                    <i class="fas fa-sign-out-alt"></i> <span class="menu-text">Logout</span>
                 </button>
             </div>
         </nav>
@@ -1256,56 +1275,24 @@
         <main class="main-content">
             <div id="page-dashboard" class="page active">
                 <div class="hero-section" style="padding-top: 0;">
-                    <div class="card balance-card" style="background: linear-gradient(145deg, #1a5f2a 0%, #0d4a1f 50%, #083314 100%); border: none; border-radius: 24px; padding: 25px 20px; position: relative; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1); margin-top: 0;">
-                        <!-- Decorative circles -->
-                        <div style="position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; background: rgba(255,255,255,0.05); border-radius: 50%;"></div>
-                        <div style="position: absolute; bottom: -40px; left: -40px; width: 150px; height: 150px; background: rgba(255,255,255,0.03); border-radius: 50%;"></div>
-                        
-                        <!-- Card header with icon -->
-                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; position: relative; z-index: 1;">
-                            <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #f4a020, #e67e22); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(244, 160, 32, 0.4);">
-                                <i class="fas fa-wallet" style="color: #fff; font-size: 1.3rem;"></i>
+                    <div class="card balance-card" style="background: linear-gradient(145deg, #1a5f2a 0%, #0d4a1f 50%, #083314 100%); border: none; border-radius: 16px; padding: 15px; position: relative; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.25); margin-top: 0;">
+                        <!-- Balance Header Row -->
+                        <div style="display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1;">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 36px; height: 36px; background: linear-gradient(135deg, #f4a020, #e67e22); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-wallet" style="color: #fff; font-size: 1rem;"></i>
+                                </div>
+                                <p style="font-size: 0.75rem; color: rgba(255,255,255,0.8); margin: 0;"> My Airtime Float Balance </p>
                             </div>
-                            <div>
-                                <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7); margin: 0; text-transform: uppercase; letter-spacing: 1px;">Float Balance</p>
-                                <p style="font-size: 0.65rem; color: rgba(255,255,255,0.5); margin: 2px 0 0 0;">Available funds</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Balance amount -->
-                        <div style="text-align: center; margin: 25px 0; position: relative; z-index: 1;">
-                            <p style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-bottom: 5px;">Current Balance</p>
-                            <p class="balance-value" id="dashboardBalance" style="font-size: 1.8rem; font-weight: 700; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.3); margin: 0; letter-spacing: -0.5px;">KES 0.00</p>
+                            <p class="balance-value" id="dashboardBalance" style="font-size: 1.5rem; font-weight: 700; color: #fff; margin: 0;">KES 0.00</p>
                         </div>
                         
                         <!-- Bonus banner -->
-                        <div style="background: linear-gradient(90deg, rgba(244, 160, 32, 0.2), rgba(244, 160, 32, 0.1)); border: 1px solid rgba(244, 160, 32, 0.3); border-radius: 12px; padding: 12px 15px; margin-bottom: 20px; position: relative; z-index: 1;">
-                            <p style="margin: 0; font-size: 0.85rem; color: #fff; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                        <div style="background: rgba(244, 160, 32, 0.15); border-radius: 8px; padding: 8px 12px; margin-top: 12px; position: relative; z-index: 1;">
+                            <p style="margin: 0; font-size: 0.8rem; color: #fff; display: flex; align-items: center; justify-content: center; gap: 6px;">
                                 <i class="fas fa-gift" style="color: #f4a020;"></i>
                                 <span>Deposit KES 50+ = <strong style="color: #f4a020;">KES 6 Bonus!</strong></span>
                             </p>
-                        </div>
-                        
-                        <!-- Trust indicators -->
-                        <div style="display: flex; justify-content: space-around; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); position: relative; z-index: 1;">
-                            <div style="text-align: center;">
-                                <div style="width: 36px; height: 36px; background: rgba(76, 175, 80, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 6px;">
-                                    <i class="fas fa-shield-alt" style="color: #4CAF50; font-size: 0.9rem;"></i>
-                                </div>
-                                <p style="font-size: 0.65rem; color: rgba(255,255,255,0.7); margin: 0;">Secure</p>
-                            </div>
-                            <div style="text-align: center;">
-                                <div style="width: 36px; height: 36px; background: rgba(244, 160, 32, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 6px;">
-                                    <i class="fas fa-bolt" style="color: #f4a020; font-size: 0.9rem;"></i>
-                                </div>
-                                <p style="font-size: 0.65rem; color: rgba(255,255,255,0.7); margin: 0;">Instant</p>
-                            </div>
-                            <div style="text-align: center;">
-                                <div style="width: 36px; height: 36px; background: rgba(23, 162, 184, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 6px;">
-                                    <i class="fas fa-headset" style="color: #17a2b8; font-size: 0.9rem;"></i>
-                                </div>
-                                <p style="font-size: 0.65rem; color: rgba(255,255,255,0.7); margin: 0;">24/7 Support</p>
-                            </div>
                         </div>
                     </div>
 
@@ -1334,7 +1321,7 @@
                             <i class="fas fa-bolt" style="font-size: 1.5rem; margin-right: 12px;"></i>
                             <span style="font-weight: 700;">Buy Airtime Directly (No Account)</span>
                         </button>
-                        <button class="action-card" onclick="openLoanTerms()" style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.25), rgba(39, 174, 96, 0.35)); padding: 18px 20px; border-radius: 16px; border: 2px solid rgba(46, 204, 113, 0.4); flex-direction: row; justify-content: center;">
+                        <button class="action-card loan-feature" onclick="openLoanTerms()" style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.25), rgba(39, 174, 96, 0.35)); padding: 18px 20px; border-radius: 16px; border: 2px solid rgba(46, 204, 113, 0.4); flex-direction: row; justify-content: center;">
                             <i class="fas fa-hand-holding-usd" style="font-size: 1.5rem; margin-right: 12px;"></i>
                             <span style="font-weight: 700;">Get Loan Now</span>
                         </button>
