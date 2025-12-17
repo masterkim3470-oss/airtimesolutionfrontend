@@ -17,12 +17,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesahub Kenya</title>
+    <title>Pesahub Kenya - Buy Airtime, Sell Airtime & Get Instant Loans up to KES 15,000</title>
+    
+    <!-- Primary SEO Meta Tags -->
+    <meta name="title" content="Pesahub Kenya - Buy Airtime, Sell Airtime & Get Instant Loans up to KES 15,000">
+    <meta name="description" content="Kenya's trusted platform to buy and sell airtime for all networks (Safaricom, Airtel, Telkom). Get instant loans up to KES 15,000 with low interest rates. Fast, secure, and reliable M-Pesa transactions. No account needed for airtime purchase!">
+    <meta name="keywords" content="buy airtime Kenya, sell airtime Kenya, Safaricom airtime, Airtel airtime, Telkom airtime, instant loans Kenya, M-Pesa loans, quick loans Kenya, airtime to cash, mobile money Kenya, Pesahub, airtime float, cheap airtime Kenya, loan app Kenya, emergency loans Kenya, payday loans Kenya, micro loans Kenya">
+    <meta name="author" content="Pesahub Kenya">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="3 days">
+    <meta name="rating" content="general">
+    <meta name="distribution" content="global">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://pesahublmtd.onrender.com/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pesahublmtd.onrender.com/">
+    <meta property="og:title" content="Pesahub Kenya - Buy Airtime, Sell Airtime & Get Instant Loans up to KES 15,000">
+    <meta property="og:description" content="Kenya's trusted platform to buy and sell airtime for all networks. Get instant loans up to KES 15,000 with low interest rates. Fast M-Pesa transactions. No account needed!">
+    <meta property="og:image" content="https://pesahublmtd.onrender.com/airtime-logo.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:site_name" content="Pesahub Kenya">
+    <meta property="og:locale" content="en_KE">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://pesahublmtd.onrender.com/">
+    <meta name="twitter:title" content="Pesahub Kenya - Buy Airtime, Sell Airtime & Get Instant Loans up to KES 15,000">
+    <meta name="twitter:description" content="Kenya's trusted platform to buy and sell airtime for all networks. Get instant loans up to KES 15,000 with low interest rates. Fast M-Pesa transactions!">
+    <meta name="twitter:image" content="https://pesahublmtd.onrender.com/airtime-logo.png">
+    
+    <!-- Mobile App Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Pesahub Kenya">
+    <meta name="application-name" content="Pesahub Kenya">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=yes">
+    
+    <!-- Geo Tags for Kenya -->
+    <meta name="geo.region" content="KE">
+    <meta name="geo.country" content="Kenya">
+    <meta name="geo.placename" content="Nairobi, Kenya">
+    
+    <!-- Favicon and Icons -->
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" type="image/png" href="/airtime-logo.png">
     <link rel="apple-touch-icon" href="/airtime-logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/airtime-logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/airtime-logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/airtime-logo.png">
+    <meta name="msapplication-TileImage" content="/airtime-logo.png">
+    <meta name="msapplication-TileColor" content="#1a5f2a">
     <meta name="theme-color" content="#1a5f2a">
-    <meta name="description" content="Buy and resell airtime in Kenya and  Get loans of about Ksh 15,000. Fast, reliable, and affordable.">
+    
+    <!-- Structured Data / Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FinancialService",
+        "name": "Pesahub Kenya",
+        "description": "Kenya's trusted platform to buy and sell airtime for all networks and get instant loans up to KES 15,000",
+        "url": "https://pesahublmtd.onrender.com",
+        "logo": "https://pesahublmtd.onrender.com/airtime-logo.png",
+        "image": "https://pesahublmtd.onrender.com/airtime-logo.png",
+        "telephone": "+254700000000",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "KE",
+            "addressLocality": "Nairobi"
+        },
+        "areaServed": {
+            "@type": "Country",
+            "name": "Kenya"
+        },
+        "serviceType": ["Airtime Sales", "Mobile Loans", "Airtime to Cash"],
+        "currenciesAccepted": "KES",
+        "paymentAccepted": ["M-Pesa", "Airtel Money"],
+        "priceRange": "KES 10 - KES 15,000",
+        "sameAs": []
+    }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -114,6 +193,81 @@
 
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
         @keyframes spin { to { transform: rotate(360deg); } }
+
+        .live-activity-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 10px;
+            right: 10px;
+            max-width: 280px;
+            background: linear-gradient(135deg, rgba(26, 95, 42, 0.95), rgba(13, 61, 24, 0.98));
+            border-radius: 10px;
+            padding: 10px 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(150%);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 1px solid rgba(244, 160, 32, 0.3);
+        }
+        .live-activity-toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .live-activity-toast .live-dot {
+            width: 6px;
+            height: 6px;
+            background: #28a745;
+            border-radius: 50%;
+            animation: livePulse 1.5s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+        @keyframes livePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); }
+            50% { box-shadow: 0 0 0 4px rgba(40, 167, 69, 0); }
+        }
+        .live-activity-toast .activity-icon {
+            width: 28px;
+            height: 28px;
+            background: rgba(244, 160, 32, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .live-activity-toast .activity-icon i {
+            font-size: 0.75rem;
+            color: #f4a020;
+        }
+        .live-activity-toast .activity-content {
+            flex: 1;
+            min-width: 0;
+        }
+        .live-activity-toast .activity-name {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .live-activity-toast .activity-desc {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.8);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .live-activity-toast .activity-time {
+            font-size: 0.55rem;
+            color: rgba(255,255,255,0.5);
+            flex-shrink: 0;
+        }
         
         @keyframes bellShake {
             0%, 100% { transform: rotate(0); }
@@ -1383,8 +1537,8 @@
             </div>
             <div class="header-right">
                 <div class="user-balance">
-                    <span>KES</span>
-                    <span class="balance-amount" id="headerBalance">0.00</span>
+                    <span id="headerBalanceLabel">KES</span>
+                    <span class="balance-amount" id="headerBalance"><i class="fas fa-lock" style="font-size: 0.8rem;"></i></span>
                     <button class="refresh-btn" onclick="refreshBalance()" id="refreshBtn">
                         <i class="fas fa-sync-alt"></i>
                     </button>
@@ -1405,7 +1559,7 @@
                     </div>
                     <div class="user-info">
                         <h3 id="sidebarEmail">Guest</h3>
-                        <p id="sidebarBalance">KES 0.00</p>
+                        <p id="sidebarBalance"><i class="fas fa-lock" style="font-size: 0.7rem; margin-right: 5px;"></i>Login to view</p>
                     </div>
                 </div>
             </div>
@@ -1562,7 +1716,7 @@
                                 </div>
                                 <p style="font-size: 0.75rem; color: rgba(255,255,255,0.8); margin: 0;">Airtime Float Balance</p>
                             </div>
-                            <p class="balance-value" id="dashboardBalance" style="font-size: 1.5rem; font-weight: 700; color: #fff; margin: 0;">KES 0.00</p>
+                            <p class="balance-value" id="dashboardBalance" style="font-size: 1.5rem; font-weight: 700; color: #fff; margin: 0;"><i class="fas fa-lock" style="font-size: 0.9rem; margin-right: 5px;"></i>Login</p>
                         </div>
                         
                         <!-- Bonus banner -->
@@ -1595,11 +1749,11 @@
 
                     <!-- Separate Full Width Action Buttons -->
                     <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 15px;">
-                        <button class="action-card" onclick="scrollToDirectBuy()" style="background: linear-gradient(135deg, rgba(244, 160, 32, 0.25), rgba(230, 126, 34, 0.35)); padding: 18px 20px; border-radius: 16px; border: 2px solid rgba(244, 160, 32, 0.4); flex-direction: row; justify-content: center;">
+                        <button class="action-card" onclick="scrollToDirectBuy()" style="background: linear-gradient(135deg, rgba(180, 110, 20, 0.85), rgba(140, 80, 10, 0.95)); padding: 18px 20px; border-radius: 16px; border: 2px solid rgba(244, 160, 32, 0.6); flex-direction: row; justify-content: center;">
                             <i class="fas fa-bolt" style="font-size: 1.5rem; margin-right: 12px;"></i>
                             <span style="font-weight: 700;">Buy Airtime Directly (Quick buy with or without account)</span>
                         </button>
-                        <button class="action-card loan-feature" onclick="openLoanTerms()" style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.25), rgba(39, 174, 96, 0.35)); padding: 18px 20px; border-radius: 16px; border: 2px solid rgba(46, 204, 113, 0.4); flex-direction: row; justify-content: center;">
+                        <button class="action-card loan-feature" onclick="openLoanTerms()" style="background: linear-gradient(135deg, rgba(30, 130, 75, 0.9), rgba(20, 100, 55, 0.95)); padding: 18px 20px; border-radius: 16px; border: 2px solid rgba(46, 204, 113, 0.6); flex-direction: row; justify-content: center;">
                             <i class="fas fa-hand-holding-usd" style="font-size: 1.5rem; margin-right: 12px;"></i>
                             <span style="font-weight: 700;">Get Loan Now</span>
                         </button>
@@ -6293,6 +6447,102 @@
             @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
         `;
         document.head.appendChild(style);
+
+        // Fake Live Activity Notifications
+        (function initLiveActivity() {
+            const firstNames = [
+                'James', 'Mary', 'John', 'Patricia', 'David', 'Sarah', 'Michael', 'Grace', 'Peter', 'Faith',
+                'Joseph', 'Mercy', 'Daniel', 'Joy', 'Stephen', 'Rose', 'Kevin', 'Ann', 'Brian', 'Lucy',
+                'Victor', 'Nancy', 'George', 'Alice', 'Samuel', 'Esther', 'Paul', 'Cynthia', 'Moses', 'Diana',
+                'Anthony', 'Elizabeth', 'Charles', 'Catherine', 'Robert', 'Jane', 'William', 'Margaret', 'Richard', 'Susan',
+                'Thomas', 'Dorothy', 'Christopher', 'Ruth', 'Andrew', 'Florence', 'Martin', 'Beatrice', 'Lawrence', 'Winnie',
+                'Emmanuel', 'Josephine', 'Patrick', 'Caroline', 'Dennis', 'Gladys', 'Francis', 'Irene', 'Geoffrey', 'Jackline',
+                'Henry', 'Lilian', 'Isaac', 'Maureen', 'Julius', 'Naomi', 'Kenneth', 'Pauline', 'Leonard', 'Rachel',
+                'Mark', 'Sharon', 'Nicholas', 'Teresa', 'Oscar', 'Victoria', 'Philip', 'Wanjiku', 'Raphael', 'Yvonne',
+                'Simon', 'Agnes', 'Timothy', 'Brenda', 'Vincent', 'Christine', 'Walter', 'Dorcas', 'Zachary', 'Evelyn',
+                'Alex', 'Fatuma', 'Ben', 'Hannah', 'Caleb', 'Janet', 'Edwin', 'Leah', 'Felix', 'Marion',
+                'Gerald', 'Nelly', 'Harrison', 'Pamela', 'Ivan', 'Regina', 'Jackson', 'Stellah', 'Kennedy', 'Tabitha',
+                'Linus', 'Wambui', 'Maxwell', 'Zipporah', 'Nathan', 'Amina', 'Oliver', 'Baraka', 'Pius', 'Charity',
+                'Quentin', 'Damaris', 'Ronald', 'Eunice', 'Steve', 'Francisca', 'Tony', 'Gaudencia', 'Amos', 'Hope',
+                'Bernard', 'Immaculate', 'Collins', 'Juliet', 'Dominic', 'Keziah', 'Eric', 'Lydia', 'Fredrick', 'Martha',
+                'Gordon', 'Njeri', 'Hillary', 'Olive', 'Innocent', 'Peris', 'Joel', 'Risper', 'Kelvin', 'Salome',
+                'Lewis', 'Truphena', 'Mathew', 'Veronica', 'Nelson', 'Wangari', 'Owen', 'Achieng', 'Purity', 'Consolata',
+                'Raymond', 'Damiana', 'Sebastian', 'Emily', 'Titus', 'Felistas', 'Urban', 'Georgina', 'Wesley', 'Hellen',
+                'Xavier', 'Ivy', 'Yusuf', 'Judy', 'Zedekiah', 'Karen', 'Abraham', 'Linda', 'Boniface', 'Miriam',
+                'Clifford', 'Nyambura', 'Douglas', 'Omondi', 'Elijah', 'Phoebe', 'Franklin', 'Rita', 'Gregory', 'Sylvia',
+                'Herbert', 'Teresia', 'Isaiah', 'Upendo', 'Japheth', 'Vivian', 'Kimani', 'Wairimu', 'Lameck', 'Atieno'
+            ];
+            const lastInitials = ['K', 'M', 'N', 'O', 'W', 'A', 'J', 'G', 'C', 'L', 'S', 'P', 'T', 'R', 'B', 'D', 'E', 'F', 'H', 'I', 'U', 'V', 'Y', 'Z', 'Q', 'X'];
+            
+            const activities = [
+                { type: 'airtime', icon: 'fa-mobile-alt', messages: ['bought KES {amount} airtime', 'purchased KES {amount} airtime', 'topped up KES {amount}', 'recharged KES {amount}', 'got KES {amount} airtime'] },
+                { type: 'loan', icon: 'fa-hand-holding-usd', messages: ['loan of KES {amount} approved', 'received KES {amount} loan', 'got KES {amount} instant loan', 'loan KES {amount} disbursed', 'qualified for KES {amount} loan'] },
+                { type: 'deposit', icon: 'fa-wallet', messages: ['deposited KES {amount}', 'added KES {amount} to wallet', 'loaded KES {amount} float', 'topped up KES {amount} balance'] },
+                { type: 'sell', icon: 'fa-coins', messages: ['earned KES {amount} commission', 'sold airtime, earned KES {amount}', 'made KES {amount} profit', 'commission of KES {amount} received'] }
+            ];
+
+            function getRandomItem(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+            function getRandomAmount(min, max) { return Math.floor(Math.random() * (max - min + 1) + min); }
+            function maskPhone() {
+                const prefixes = ['07', '01'];
+                const prefix = getRandomItem(prefixes);
+                const last3 = String(getRandomAmount(100, 999));
+                return prefix + 'XX XXX ' + last3;
+            }
+            function getTimeAgo() {
+                const times = ['just now', '1 min ago', '2 mins ago', '3 mins ago', '5 mins ago'];
+                return getRandomItem(times);
+            }
+
+            let toastEl = document.createElement('div');
+            toastEl.className = 'live-activity-toast';
+            toastEl.innerHTML = `
+                <div class="live-dot"></div>
+                <div class="activity-icon"><i class="fas fa-mobile-alt"></i></div>
+                <div class="activity-content">
+                    <div class="activity-name"></div>
+                    <div class="activity-desc"></div>
+                </div>
+                <div class="activity-time"></div>
+            `;
+            document.body.appendChild(toastEl);
+
+            function showLiveActivity() {
+                const activity = getRandomItem(activities);
+                const firstName = getRandomItem(firstNames);
+                const lastInit = getRandomItem(lastInitials);
+                const phone = maskPhone();
+                
+                let amount;
+                if (activity.type === 'airtime') amount = getRandomAmount(50, 500);
+                else if (activity.type === 'loan') amount = getRandomItem([1000, 2000, 3000, 5000, 7500, 10000, 15000]);
+                else if (activity.type === 'deposit') amount = getRandomAmount(100, 2000);
+                else amount = getRandomAmount(10, 100);
+
+                const message = getRandomItem(activity.messages).replace('{amount}', amount.toLocaleString());
+                
+                toastEl.querySelector('.activity-icon i').className = 'fas ' + activity.icon;
+                toastEl.querySelector('.activity-name').textContent = firstName + ' ' + lastInit + '. (' + phone + ')';
+                toastEl.querySelector('.activity-desc').textContent = message;
+                toastEl.querySelector('.activity-time').textContent = getTimeAgo();
+
+                toastEl.classList.add('show');
+                setTimeout(() => { toastEl.classList.remove('show'); }, 4000);
+            }
+
+            function scheduleNext() {
+                const delay = getRandomAmount(25000, 60000);
+                setTimeout(() => {
+                    showLiveActivity();
+                    scheduleNext();
+                }, delay);
+            }
+
+            setTimeout(() => {
+                showLiveActivity();
+                scheduleNext();
+            }, getRandomAmount(8000, 15000));
+        })();
     </script>
 </body>
 </html>
