@@ -1172,7 +1172,7 @@
         }
 
         .welcome-hero {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('welcome.png') center center / cover no-repeat;
             color: white;
             padding: 60px 20px 40px;
             text-align: center;
@@ -1181,13 +1181,7 @@
         }
 
         .welcome-hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            display: none;
         }
 
         .welcome-hero h1 {
@@ -3864,6 +3858,17 @@
         let pendingPurchase = null;
         let currentDepositReference = null;
 
+        (function checkReturningUser() {
+            if (localStorage.getItem('pesahubVisited') === 'true') {
+                const welcomePage = document.getElementById('page-welcome');
+                const dashboardPage = document.getElementById('page-dashboard');
+                if (welcomePage && dashboardPage) {
+                    welcomePage.classList.remove('active');
+                    dashboardPage.classList.add('active');
+                }
+            }
+        })();
+
         function showLoading(text = 'Loading...') {
             document.getElementById('loadingText').textContent = text;
             document.getElementById('loadingOverlay').classList.add('show');
@@ -5095,6 +5100,7 @@
         };
 
         window.goToDashboard = function() {
+            localStorage.setItem('pesahubVisited', 'true');
             showPage('dashboard');
         };
 
