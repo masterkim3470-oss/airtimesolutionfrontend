@@ -432,6 +432,7 @@
             font-size: 1.3rem;
             cursor: pointer;
             position: relative;
+            flex-shrink: 0;
         }
 
         .notification-badge {
@@ -471,9 +472,13 @@
             color: #f4a020;
             font-size: 1.3rem;
             min-width: 80px;
+            max-width: 120px;
             text-align: right;
             font-family: 'Courier New', monospace;
             letter-spacing: 0.5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .refresh-btn {
@@ -487,6 +492,32 @@
 
         .refresh-btn:hover { transform: rotate(180deg); }
         .refresh-btn.spinning { animation: spin 1s linear infinite; }
+
+        /* Mobile responsive styles */
+        @media (max-width: 640px) {
+            .refresh-btn {
+                display: none;
+            }
+            
+            .user-balance {
+                gap: 6px;
+                padding: 8px 12px;
+            }
+            
+            #headerBalanceLabel {
+                display: none;
+            }
+            
+            .balance-amount {
+                font-size: 1.1rem;
+                min-width: 60px;
+                max-width: 90px;
+            }
+            
+            .header-right {
+                gap: 10px;
+            }
+        }
 
         .sidebar {
             position: fixed;
@@ -1588,7 +1619,7 @@
                 <div class="user-balance">
                     <span id="headerBalanceLabel">KES</span>
                     <span class="balance-amount" id="headerBalance"><i class="fas fa-lock" style="font-size: 1.2rem;"></i></span>
-                    <button class="refresh-btn" onclick="refreshBalance()" id="refreshBtn" style="display: none; margin-left: 5px;">
+                    <button class="refresh-btn" onclick="refreshBalance()" id="refreshBtn">
                         <i class="fas fa-sync-alt"></i>
                     </button>
                 </div>
