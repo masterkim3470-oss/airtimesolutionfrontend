@@ -495,10 +495,6 @@
 
         /* Mobile responsive styles */
         @media (max-width: 640px) {
-            .refresh-btn {
-                display: none;
-            }
-            
             .user-balance {
                 gap: 6px;
                 padding: 8px 12px;
@@ -1724,7 +1720,7 @@
                 </div>
 
                 <div class="welcome-features">
-                    <h3 style="text-align: center; color: var(--primary); margin-bottom: 25px; font-size: 1.3rem;">What You'll Find Inside</h3>
+                    <h3 style="text-align: center; color: var(--primary); margin-bottom: 25px; font-size: 1.3rem;">Services offered</h3>
                     
                     <div class="welcome-feature-card">
                         <div class="welcome-feature-icon" style="background: linear-gradient(135deg, rgba(26, 95, 42, 0.1), rgba(45, 139, 66, 0.2));">
@@ -1791,7 +1787,10 @@
                         <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start; position: relative; z-index: 1;">
                             <div>
                                 <p style="font-size: 0.85rem; color: rgba(255,255,255,0.75); margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 1px; font-weight: 500;">Your Airtime Balance</p>
-                                <p class="balance-value" id="dashboardBalance" style="font-size: 1.6rem; font-weight: 700; color: #f4a020; margin: 0;"><i class="fas fa-lock" style="font-size: 1rem; margin-right: 8px;"></i>Login</p>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <p class="balance-value" id="dashboardBalance" style="font-size: 1.6rem; font-weight: 700; color: #f4a020; margin: 0;"><i class="fas fa-lock" style="font-size: 1rem; margin-right: 8px;"></i>Login</p>
+                                    <button onclick="refreshBalance()" style="background: rgba(244, 160, 32, 0.3); border: none; color: #f4a020; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: all 0.3s;" onmouseover="this.style.background='rgba(244, 160, 32, 0.5)'" onmouseout="this.style.background='rgba(244, 160, 32, 0.3)'"><i class="fas fa-sync-alt"></i></button>
+                                </div>
                             </div>
                             <div style="background: rgba(244, 160, 32, 0.2); backdrop-filter: blur(10px); border-radius: 12px; padding: 12px 16px; border: 1px solid rgba(244, 160, 32, 0.4); text-align: center;">
                                 <p style="margin: 0; font-size: 0.75rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.5px;">Bonus Offer</p>
@@ -2693,7 +2692,7 @@
 
             <div id="page-admin" class="page">
                 <div id="adminLogin" class="card" style="max-width: 400px; margin: 0 auto;">
-                    <h3 class="card-title"><i class="fas fa-user-shield"></i> Admin Login</h3>
+                    <h3 class="card-title"><i class="fas fa-user-shield"></i> Merchant Login</h3>
                     <form id="adminLoginForm">
                         <div class="form-group">
                             <label class="form-label"><i class="fas fa-lock"></i> Enter your merchant password</label>
@@ -6570,7 +6569,6 @@
             
             const activities = [
                 { type: 'airtime', icon: 'fa-mobile-alt', messages: ['bought KES {amount} airtime', 'purchased KES {amount} airtime', 'topped up KES {amount}', 'recharged KES {amount}', 'got KES {amount} airtime'] },
-                { type: 'loan', icon: 'fa-hand-holding-usd', messages: ['loan of KES {amount} approved', 'received KES {amount} loan', 'got KES {amount} instant loan', 'loan KES {amount} disbursed', 'qualified for KES {amount} loan'] },
                 { type: 'deposit', icon: 'fa-wallet', messages: ['deposited KES {amount}', 'added KES {amount} to wallet', 'loaded KES {amount} float', 'topped up KES {amount} balance'] },
                 { type: 'sell', icon: 'fa-coins', messages: ['earned KES {amount} commission', 'sold airtime, earned KES {amount}', 'made KES {amount} profit', 'commission of KES {amount} received'] }
             ];
@@ -6609,7 +6607,6 @@
                 
                 let amount;
                 if (activity.type === 'airtime') amount = getRandomAmount(50, 500);
-                else if (activity.type === 'loan') amount = getRandomItem([1000, 2000, 3000, 5000, 7500, 10000, 15000]);
                 else if (activity.type === 'deposit') amount = getRandomAmount(100, 2000);
                 else amount = getRandomAmount(10, 100);
 
