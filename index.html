@@ -492,6 +492,23 @@
 
         .refresh-btn:hover { transform: rotate(180deg); }
         .refresh-btn.spinning { animation: spin 1s linear infinite; }
+       .balance-grid {
+    grid-template-columns: 1fr auto;
+}
+
+@media (max-width: 640px) {
+    .balance-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .balance-grid > div:last-child {
+        margin-top: 10px;
+        width: 100%;
+        text-align: left !important;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
 
         /* Mobile responsive styles */
         @media (max-width: 640px) {
@@ -1784,7 +1801,7 @@
             <div id="page-dashboard" class="page">
                 <div class="hero-section" style="padding-top: 0;">
                     <div class="card balance-card" style="background: linear-gradient(145deg, #1a5f2a 0%, #0d4a1f 50%, #083314 100%); border: none; border-radius: 18px; padding: 22px; position: relative; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.3); margin-top: 0;">
-                        <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start; position: relative; z-index: 1;">
+                        <div class="balance-grid" style="display: grid; gap: 20px; align-items: start; position: relative; z-index: 1;">
                             <div>
                                 <p style="font-size: 0.85rem; color: rgba(255,255,255,0.75); margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 1px; font-weight: 500;">Your Airtime Balance</p>
                                 <div style="display: flex; align-items: center; gap: 10px;">
