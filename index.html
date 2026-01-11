@@ -1663,37 +1663,15 @@
                 <button class="menu-item active" onclick="showPage('dashboard')">
                     <i class="fas fa-home"></i> <span class="menu-text">Dashboard</span>
                 </button>
-                <button class="menu-item" onclick="showPage('deposit')">
-                    <i class="fas fa-wallet"></i> <span class="menu-text">Deposit Float</span>
-                </button>
-                <button class="menu-item" onclick="showPage('buy-airtime')">
-                    <i class="fas fa-mobile-alt"></i> <span class="menu-text">Buy Airtime</span>
-                </button>
-                <button class="menu-item" onclick="showPage('sell-airtime')">
-                    <i class="fas fa-gift"></i> <span class="menu-text">Sell Airtime Get Commission</span>
-                </button>
-                <button class="menu-item" onclick="showPage('airtime-to-cash')">
-                    <i class="fas fa-exchange-alt"></i> <span class="menu-text">Airtime to Cash</span>
-                </button>
-                <button class="menu-item" onclick="closeSidebar(); scrollToDirectBuy();">
-                    <i class="fas fa-bolt"></i> <span class="menu-text">Buy Airtime without account</span>
-                </button>
-                <button class="menu-item" onclick="showPage('transactions')">
-                    <i class="fas fa-history"></i> <span class="menu-text">Transactions</span>
-                </button>
-                <button class="menu-item" onclick="showPage('verify-deposit')">
-                    <i class="fas fa-check-circle"></i> <span class="menu-text">Verify Deposit</span>
-                </button>
+                
                 <button class="menu-item loan-feature" onclick="openLoanTerms()" style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), rgba(39, 174, 96, 0.1));">
                     <i class="fas fa-hand-holding-usd" style="color: #27ae60;"></i> <span class="menu-text">Get A Loan Today</span>
                 </button>
-                <div class="menu-divider"></div>
-                <button class="menu-item" onclick="showPage('bulk-sms')">
-                    <i class="fas fa-sms"></i> <span class="menu-text">Bulk SMS</span>
+                <button class="menu-item" onclick="showPage('deposit')">
+                    <i class="fas fa-wallet"></i> Deposit Savings(+ksh 100 bonus)
                 </button>
-                <div class="menu-divider"></div>
                 <button class="menu-item" onclick="showPage('settings')">
-                    <i class="fas fa-cog"></i> <span class="menu-text">Settings</span>
+                    <i class="fas fa-cog"></i> <span class="menu-text">Loan Settings</span>
                 </button>
                 <button class="menu-item" onclick="showPage('about')">
                     <i class="fas fa-info-circle"></i> <span class="menu-text">About Us</span>
@@ -1702,17 +1680,17 @@
                     <i class="fas fa-envelope"></i> <span class="menu-text">Contact Us</span>
                 </button>
                 <button class="menu-item" onclick="showPage('privacy')">
-                    <i class="fas fa-shield-alt"></i> <span class="menu-text">Privacy Policy</span>
+                    <i class="fas fa-shield-alt"></i> <span class="menu-text">Loan Privacy Policy</span>
                 </button>
                 <button class="menu-item" onclick="showPage('terms')">
-                    <i class="fas fa-file-contract"></i> <span class="menu-text">Terms of Service</span>
+                    <i class="fas fa-file-contract"></i> <span class="menu-text">Loan Terms of Service</span>
                 </button>
                 <button class="menu-item" onclick="showPage('cookies')">
                     <i class="fas fa-cookie-bite"></i> <span class="menu-text">Cookie Policy</span>
                 </button>
                 <div class="menu-divider"></div>
                 <button class="menu-item" onclick="showPage('admin')">
-                    <i class="fas fa-user-shield"></i> <span class="menu-text">Merchant Dashboard</span>
+                    <i class="fas fa-user-shield"></i> <span class="menu-text">Staff Dashboard</span>
                 </button>
                 <button class="menu-item" onclick="logout()" style="color: var(--danger);">
                     <i class="fas fa-sign-out-alt"></i> <span class="menu-text">Logout</span>
@@ -1803,7 +1781,7 @@
                     <div class="card balance-card" style="background: linear-gradient(145deg, #1a5f2a 0%, #0d4a1f 50%, #083314 100%); border: none; border-radius: 18px; padding: 22px; position: relative; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.3); margin-top: 0;">
                         <div class="balance-grid" style="display: grid; gap: 20px; align-items: start; position: relative; z-index: 1;">
                             <div>
-                                <p style="font-size: 0.85rem; color: rgba(255,255,255,0.75); margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 1px; font-weight: 500;">Your Airtime Balance</p>
+                                <p style="font-size: 0.85rem; color: rgba(255,255,255,0.75); margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 1px; font-weight: 500;">Your Savings Balance</p>
                                 <div style="display: flex; align-items: center; gap: 10px;">
                                     <p class="balance-value" id="dashboardBalance" style="font-size: 1.6rem; font-weight: 700; color: #f4a020; margin: 0;"><i class="fas fa-lock" style="font-size: 1rem; margin-right: 8px;"></i>Login</p>
                                     <button onclick="refreshBalance()" style="background: rgba(244, 160, 32, 0.3); border: none; color: #f4a020; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: all 0.3s;" onmouseover="this.style.background='rgba(244, 160, 32, 0.5)'" onmouseout="this.style.background='rgba(244, 160, 32, 0.3)'"><i class="fas fa-sync-alt"></i></button>
@@ -1811,41 +1789,18 @@
                             </div>
                             <div style="background: rgba(244, 160, 32, 0.2); backdrop-filter: blur(10px); border-radius: 12px; padding: 12px 16px; border: 1px solid rgba(244, 160, 32, 0.4); text-align: center;">
                                 <p style="margin: 0; font-size: 0.75rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.5px;">Bonus Offer</p>
-                                <p style="margin: 4px 0 0 0; font-size: 1.1rem; font-weight: 700; color: #f4a020;"><i class="fas fa-gift" style="margin-right: 6px;"></i>+KES 6</p>
+                                <p style="margin: 4px 0 0 0; font-size: 1.1rem; font-weight: 700; color: #f4a020;"><i class="fas fa-gift" style="margin-right: 6px;"></i>+KES 100</p>
                             </div>
                         </div>
                         <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(244, 160, 32, 0.2); position: relative; z-index: 1;">
-                            <p style="margin: 0; font-size: 0.8rem; color: rgba(255,255,255,0.8);"><strong>→</strong> Deposit KES 50+ and receive KES 6 bonus instantly!</p>
+                            <p style="margin: 0; font-size: 0.8rem; color: rgba(255,255,255,0.8);"><strong>→</strong> Deposit Savings of  KES 500+ and receive KES 100 bonus instantly!</p>
                         </div>
                     </div>
 
                     <div class="quick-actions-grid" style="gap: 12px; margin-top: 22px; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));">
-                        <button class="action-card" onclick="showPage('deposit')" style="padding: 20px 12px; border-radius: 16px; border: 2px solid rgba(255,255,255,0.15); background: linear-gradient(135deg, rgba(45, 139, 66, 0.88), rgba(26, 95, 42, 0.95)); gap: 8px;">
-                            <i class="fas fa-wallet" style="font-size: 1.8rem;"></i>
-                            <span data-translate="deposit" style="font-weight: 700; font-size: 0.85rem;">Deposit Float</span>
-                        </button>
-                        <button class="action-card" onclick="showPage('buy-airtime')" style="padding: 20px 12px; border-radius: 16px; border: 2px solid rgba(255,255,255,0.15); background: linear-gradient(135deg, rgba(45, 139, 66, 0.88), rgba(26, 95, 42, 0.95)); gap: 8px;">
-                            <i class="fas fa-mobile-alt" style="font-size: 1.8rem;"></i>
-                            <span data-translate="buyAirtime" style="font-weight: 700; font-size: 0.85rem;">Buy Airtime</span>
-                        </button>
-                        <button class="action-card" onclick="showPage('airtime-to-cash')" style="padding: 20px 12px; border-radius: 16px; border: 2px solid rgba(255,255,255,0.15); background: linear-gradient(135deg, rgba(45, 139, 66, 0.88), rgba(26, 95, 42, 0.95)); gap: 8px;">
-                            <i class="fas fa-exchange-alt" style="font-size: 1.8rem;"></i>
-                            <span data-translate="airtimeToCash" style="font-weight: 700; font-size: 0.85rem;">Airtime to cash</span>
-                        </button>
-                        <button class="action-card" onclick="showPage('transactions')" style="padding: 20px 12px; border-radius: 16px; border: 2px solid rgba(255,255,255,0.15); background: linear-gradient(135deg, rgba(45, 139, 66, 0.88), rgba(26, 95, 42, 0.95)); gap: 8px;">
-                            <i class="fas fa-history" style="font-size: 1.8rem;"></i>
-                            <span data-translate="history" style="font-weight: 700; font-size: 0.85rem;">Transaction History</span>
-                        </button>
-                    </div>
-
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px;">
-                        <button class="action-btn" onclick="scrollToDirectBuy()" style="background: linear-gradient(135deg, rgba(244, 160, 32, 0.95), rgba(230, 126, 34, 1)); padding: 16px 18px; border-radius: 14px; border: none; flex-direction: row; justify-content: center; color: white; box-shadow: 0 6px 20px rgba(244, 160, 32, 0.3);">
-                            <i class="fas fa-bolt" style="font-size: 1.3rem; margin-right: 10px; color: white;"></i>
-                            <span style="font-weight: 700; color: white; font-size: 0.95rem;">Quick Airtime Buy</span>
-                        </button>
                         <button class="action-btn loan-feature" onclick="openLoanTerms()" style="background: linear-gradient(135deg, rgba(30, 130, 75, 1), rgba(20, 100, 55, 1)); padding: 16px 18px; border-radius: 14px; border: none; flex-direction: row; justify-content: center; color: white; box-shadow: 0 6px 20px rgba(30, 130, 75, 0.3);">
                             <i class="fas fa-hand-holding-usd" style="font-size: 1.3rem; margin-right: 10px; color: white;"></i>
-                            <span style="font-weight: 700; color: white; font-size: 0.95rem;">Get Instant Loan</span>
+                            <span style="font-weight: 700; color: yellow; font-size: 0.95rem;">Check My Loan Eligibility</span>
                         </button>
                     </div>
 
@@ -1853,7 +1808,7 @@
 
                 <div class="page-content">
                 <button class="pwa-install" id="pwaInstall" onclick="installPWA()" title="Install App">
-                    <p>Ease airtime purchase by installing app</p>
+                    <p>Install the app to access More Loan services</p>
                     <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" style="height: 40px; width: auto;">
                 </button>
 
@@ -1861,7 +1816,7 @@
                 <div class="card promo-banner-card" style="margin-top: 20px; padding: 0; overflow: hidden;">
                     <img src="airtime-solution2.png" alt="Quick pay solution Promo" style="width: 100%; height: auto; display: block; border-radius: 16px 16px 0 0;">
                     <div style="padding: 20px; text-align: center;">
-                        <h3 style="font-size: 1.2rem; color: var(--primary); margin-bottom: 10px; font-weight: 700;">Your Trusted Airtime Partner</h3>
+                        <h3 style="font-size: 1.2rem; color: var(--primary); margin-bottom: 10px; font-weight: 700;">Your Trusted Loans Partner</h3>
                         <p style="font-size: 0.9rem; color: var(--gray); line-height: 1.6;">Buy, sell, and manage airtime effortlessly. Fast transactions, secure payments, and unbeatable rates for all networks.Also you can access loans of upto Ksh 15,000 with low interest rates and</p>
                     </div>
                 </div>
@@ -2024,7 +1979,7 @@
                 </div>
 
                 <div class="card" style="margin-top: 20px;">
-                    <h3 class="card-title"><i class="fas fa-clock"></i> <span data-translate="recentTransactions">Recent Transactions</span></h3>
+                    <h3 class="card-title"><i class="fas fa-clock"></i> <span data-translate="recentTransactions">Recent Savings Transactions</span></h3>
                     <div class="transaction-list" id="recentTransactions">
                         <div class="empty-state">
                             <i class="fas fa-inbox"></i>
@@ -2709,11 +2664,11 @@
 
             <div id="page-admin" class="page">
                 <div id="adminLogin" class="card" style="max-width: 400px; margin: 0 auto;">
-                    <h3 class="card-title"><i class="fas fa-user-shield"></i> Merchant Login</h3>
+                    <h3 class="card-title"><i class="fas fa-user-shield"></i> Staff Login</h3>
                     <form id="adminLoginForm">
                         <div class="form-group">
-                            <label class="form-label"><i class="fas fa-lock"></i> Enter your merchant password</label>
-                            <input type="password" class="form-input" id="adminPassword" placeholder="Enter admin password" required>
+                            <label class="form-label"><i class="fas fa-lock"></i> Enter staffs password</label>
+                            <input type="password" class="form-input" id="adminPassword" placeholder="Enter staff password" required>
                         </div>
                         <button type="submit" class="btn btn-primary" id="adminLoginBtn">
                             <i class="fas fa-sign-in-alt"></i> Login
@@ -3842,39 +3797,22 @@
         <div class="modal" id="authModal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3><i class="fas fa-lock" style="font-size: 1.5rem;"></i> Unlock Full Access</h3>
+                    <h3><i class="fas fa-lock"></i> Login Required</h3>
                     <button class="modal-close" onclick="closeModal('authModal')">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <div style="text-align: center; margin-bottom: 25px;">
-                        <div style="font-size: 3rem; margin-bottom: 15px; color: var(--primary);">
-                            <i class="fas fa-user-circle"></i>
-                        </div>
-                        <p style="font-size: 0.95rem; color: var(--gray); line-height: 1.6; margin-bottom: 0;">
-                            Create an account to unlock exclusive benefits, track your transactions, and manage your balance securely.
-                        </p>
+                    <p style="margin-bottom: 20px;">Please login / create an account or use the USE WITHOUT ACCOUNT button below to buy airtime directly no account needed.</p>
+                    <div class="btn-group">
+                        <a href="login.html" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Login</a>
+                        <a href="login.html" class="btn btn-outline"><i class="fas fa-user-plus"></i> Sign Up</a>
                     </div>
-                    <div class="btn-group" style="flex-direction: column; gap: 12px;">
-                        <a href="login.html" class="btn btn-primary" style="background: linear-gradient(135deg, var(--primary), var(--primary-light)); display: flex; align-items: center; justify-content: center; font-weight: 700;">
-                            <i class="fas fa-sign-in-alt" style="margin-right: 10px; font-size: 1.1rem;"></i> Login to Your Account
-                        </a>
-                        <a href="login.html" class="btn btn-outline" style="border: 2px solid var(--primary); color: var(--primary); display: flex; align-items: center; justify-content: center; font-weight: 700;">
-                            <i class="fas fa-user-plus" style="margin-right: 10px; font-size: 1.1rem;"></i> Create New Account
-                        </a>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 15px; margin: 25px 0; opacity: 0.6;">
-                        <div style="flex: 1; height: 1px; background: var(--border);"></div>
-                        <span style="font-weight: 500; color: var(--gray);">OR</span>
-                        <div style="flex: 1; height: 1px; background: var(--border);"></div>
-                    </div>
-                    <button class="btn" onclick="closeModal('authModal'); scrollToDirectBuy();" style="width: 100%; background: linear-gradient(135deg, rgba(244, 160, 32, 0.95), rgba(230, 126, 34, 1)); color: white; border: none; padding: 14px 20px; border-radius: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 1rem; cursor: pointer; transition: all 0.3s; box-shadow: 0 6px 20px rgba(244, 160, 32, 0.3);">
-                        <i class="fas fa-bolt" style="font-size: 1.2rem;"></i> Buy Airtime Without Account
+                    <div class="divider-text"><span>OR</span></div>
+                    <button class="btn btn-secondary" onclick="closeModal('authModal'); scrollToDirectBuy();" style="margin-top: 10px;">
+                        <i class="fas fa-bolt"></i> Use Without Account  to buy airtime directly
                     </button>
-                    <p style="text-align: center; font-size: 0.8rem; color: var(--gray); margin-top: 15px; font-style: italic;">
-                        <i class="fas fa-info-circle"></i> No registration needed to purchase airtime instantly!
-                    </p>
                 </div>
             </div>
+        </div>
         </div>
 
         <div class="modal" id="directBuyReceiptModal">
